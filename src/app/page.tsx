@@ -1,10 +1,17 @@
-import Image from "next/image";
-import { Button } from 'primereact/button';
+"use client";
+import React from "react";
+import AuthUpdater from "./auth.updater";
+import { authSelector } from "@/store/selectors/auth.selectors";
 
-export default function Home() {
+const Page = () => {
+  const authState = authSelector();
   return (
-    <main className="">
-     <Button label="Check" icon="pi pi-check" />
-    </main>
+    <>
+    <div className="flex gap border border-1 border-black p-20">
+      You are now {authState ? "Logged  In" : "Logged Out"}
+    </div>
+    <AuthUpdater />
+    </>
   );
-}
+};
+export default Page;
