@@ -9,6 +9,7 @@ import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import "./globals.css";
 import ReduxProvider from "@/store/redux-provider";
+import Header from "@/components/header/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ReduxProvider>
           <PrimeReactProvider>
+            <Header />
             {children}
           </PrimeReactProvider>
         </ReduxProvider>
