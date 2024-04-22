@@ -7,7 +7,6 @@ import "../theme.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 import "../globals.css";
-import CategoryMenuItems from "@/components/menu.category/menu.catrgory";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +25,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <PrimeReactProvider>
           <div>
-            {/* <CategoryMenuItems/> */}
             {children}
           </div>
         </PrimeReactProvider>

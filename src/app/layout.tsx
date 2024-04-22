@@ -9,7 +9,7 @@ import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import "./globals.css";
 import ReduxProvider from "@/store/redux-provider";
-import Header from "@/components/header/header";
+import Header from "@/components/common/header/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
