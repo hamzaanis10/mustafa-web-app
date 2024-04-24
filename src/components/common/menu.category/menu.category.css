@@ -15,7 +15,7 @@
     position: fixed;
     top: 88px !important;
     min-width: 25%;
-    left: 23% !important;
+    left: 25% !important;
     display: block !important;
     width: auto;
     height: 100vh;
@@ -26,7 +26,7 @@
     position: fixed;
     top: 88px !important;
     min-width: 25%;
-    left: 48% !important;
+    left: 50% !important;
     display: block !important;
     width: auto;
     height: 100vh;
@@ -38,12 +38,10 @@
 @media (min-width: 1200px) {
   .p-tieredmenu .p-menuitem-active>[id^="pr_id_1_list_"]:not([id^="pr_id_1_list_0_"]) {
     left: 23% !important;
-    min-width: 316px;
   }
 
   .p-tieredmenu .p-menuitem-active>[id^="pr_id_1_list_0_"] {
-    left: 49.3% !important;
-    min-width: 316px;
+    left: 47.5% !important;
   }
 
 }
@@ -51,9 +49,11 @@
 @media (min-width: 1400px) {
   .p-tieredmenu .p-menuitem-active>[id^="pr_id_1_list_"]:not([id^="pr_id_1_list_0_"]) {
     left: 17.5% !important;
+    min-width: 18%;
   }
   .p-tieredmenu .p-menuitem-active>[id^="pr_id_1_list_0_"] {
-    left: 34.1% !important;
+    left: 35.5% !important;
+    min-width: 18%;
   }
   .menu-container{
     width: 18% !important;
