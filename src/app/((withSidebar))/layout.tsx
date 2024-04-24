@@ -26,7 +26,7 @@ export default function RootLayout({
       <body >
         <PrimeReactProvider>
           <div className="flex" style={{backgroundColor:"#F5F5F5"}}>
-            <div className="hidden lg:flex w-9 lg:w-3 lg:relative xl:w-2 z-2">
+            <div className="hidden lg:flex w-9 lg:w-3 lg:relative xl:w-3 z-2 menu-container">
               <CategoryMenuItems />
             </div>
             {children}
