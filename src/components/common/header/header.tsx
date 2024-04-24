@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <>
       {isCategoryMenuVisible && (
-        <div className="absolute z-1 bg-white">
+        <div className="fixed z-5 bg-white h-screen">
           <div className="flex justify-content-around items-center" style={{borderBottom:"1px solid #c4c4c4"}}>
             <h3 className="text-lg font-semibold">Categories</h3>
             <button
