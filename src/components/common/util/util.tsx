@@ -1,3 +1,23 @@
+import { appLoaderStatusSelector } from "@/store/selectors/app.selectors";
+
+export const differenceBetweenDatesInMinutes = (startDate: any, endDate: any) => {
+  const date1: any = new Date(startDate);
+  const date2: any = new Date(endDate);
+  const ms: any = Math.abs(date2 - date1);
+  var diffMins = Math.round(((ms % 86400000) % 3600000) / 60000); // minutes
+  return diffMins;
+};
+
+export const isActionLoading = (actionType: string) => {
+  const appLoaderState = appLoaderStatusSelector();
+  const loadingState: any = appLoaderState && appLoaderState.find((loaderStatus: any) => loaderStatus.get('status') === 'PENDING');
+  if (loadingState) {
+    return true
+  }
+  else
+    return false;
+}
+
 export const CATEGORY_MENU_ITEMS = [
   {
     label: "Fruit & Vegetables",
@@ -147,7 +167,7 @@ export const CATEGORY_MENU_ITEMS = [
       { label: "Cabbage" },
     ],
   },
-  
+
 ];
 
 export const CAROUSEL_ITEMS = [

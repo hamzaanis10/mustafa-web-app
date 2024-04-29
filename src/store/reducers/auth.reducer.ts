@@ -24,12 +24,10 @@ import { doLogin } from '../actions/auth.actions'
       builder
         .addCase(doLogin, (state, action) => {
           // action is inferred correctly here
-          debugger
           return state;
         })
         // You can chain calls, or have separate `builder.addCase()` lines each time
         .addCase("LOGIN_SUCCESS", (state, action) => {
-          debugger
           return state;
         })
         // You can apply a "matcher function" to incoming actions

@@ -9,20 +9,7 @@ function parseJSON(response: any) {
   //       response.data && response.data.text();
   //   }
   // }
-  if (response && response.code === 401) {
-    return {
-      code: 401,
-      error: response.error,
-      message: "Session Expired"
-    }
-  }
-  if (response && response.code === 419) {
-    return {
-      code: 419,
-      message: "Session Expired"
-    }
-  }
-  if (response.status === 402 || response.status === 400 || response.status === 500 || response.status === 404) {
+  if (response.status === 402 || response.status === 401 || response.status === 419 || response.status === 400 || response.status === 500 || response.status === 404) {
     if (response.config.actionType === "DOWNLOAD_RECEIPT") {
       return response.data.text().then((res: any) => {
         return JSON.parse(res)
@@ -45,18 +32,18 @@ function parseJSON(response: any) {
     }
   }
 
-  if (response && response.code === 204 || response && response.code === 205) {
-    return null;
-  }
-  if (response && response.headers && response.headers['x-total']) {
-    return {
-      ...response.data, 'x-total': response.headers['x-total']
-    }
-  }
-  else if (response && typeof response.data === 'number') {
-    return { value: response && response.data }
-  }
-  else if (response.data) {
+  // if (response && response.code === 204 || response && response.code === 205) {
+  //   return null;
+  // }
+  // if (response && response.headers && response.headers['x-total']) {
+  //   return {
+  //     ...response.data, 'x-total': response.headers['x-total']
+  //   }
+  // }
+  // else if (response && typeof response.data === 'number') {
+  //   return { value: response && response.data }
+  // }
+   else if (response.data) {
     return response && response.data;
   }
   else {
@@ -115,12 +102,25 @@ const apiMiddleware = ({ dispatch }: any) => (next: any) => async (action: any) 
     }).then(checkStatus)
       .then(parseJSON)
       .then((response) => {
-        dispatch({
-          type: `${action.type}_SUCCESS`, payload: {
-            additionalData: action.payload,
-            response
-          }
-        })
+        if(response && response.error) {
+          dispatch({
+            type: `${action.type}_ERROR`, payload: {
+              additionalData: action.payload,
+              response,
+              baseType: action.type
+            }
+          })
+        }
+        else {
+          dispatch({
+            type: `${action.type}_SUCCESS`, payload: {
+              additionalData: action.payload,
+              response,
+              baseType: action.type
+            }
+          })
+        }
+      
       })
       .catch(error => {
         console.log(error)
@@ -142,27 +142,5 @@ const apiMiddleware = ({ dispatch }: any) => (next: any) => async (action: any) 
   else {
     return next(action)
   }
-  // if (action.type !== actions.apiCall.type) return next(action);
-
-  // next(action);
-  // const { url, method, data, onSuccess, onError } = action.payload;
-  // try {
-  //   const response = await axios.request({
-  //     // baseURL: "",
-  //     url,
-  //     method
-  //     // data
-  //   });
-  //   // dispatch(action);
-  //   //General
-  //   dispatch(actions.apiCallSuccess(response.data));
-  //   //Specific
-  //   if (onSuccess) dispatch({ type: onSuccess, payload: response.data });
-  // } catch (error:any) {
-  //   //general
-  //   dispatch(actions.apiCallFailed(error));
-  //   //specific
-  //   if (onError) dispatch({ type: onError, payload: error });
-  // }
 };
 export default apiMiddleware;
