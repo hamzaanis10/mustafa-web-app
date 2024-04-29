@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { InputText } from "primereact/inputtext";
-import ButtonOne from "../app.button/app.button";
+import AppButton from "../app.button/app.button";
  
-interface OtpDialogProps {
+interface AppOtpDialogProps {
     otp: string[];
     onHandleOtpChange: (value: string, index: number) => void;
     onVerifyOtp: () => void;
@@ -12,7 +12,7 @@ interface OtpDialogProps {
     label: string;
 }
  
-const OtpDialogContent: React.FC<OtpDialogProps> = ({
+const AppOtpDialog: React.FC<AppOtpDialogProps> = ({
     otp,
     onHandleOtpChange,
     onVerifyOtp,
@@ -59,11 +59,11 @@ const OtpDialogContent: React.FC<OtpDialogProps> = ({
                     ))}
                 </div>
                 <div className="w-full">
-                    <ButtonOne label={label} disabled={!isOtpComplete} onClick={onVerifyOtp} />
+                    <AppButton label={label} disabled={!isOtpComplete} onClick={onVerifyOtp} style={{backgroundColor: "#00CB56"}}/>
                 </div>
             </div>
         </>
     );
 }
 
-export default OtpDialogContent
+export default AppOtpDialog

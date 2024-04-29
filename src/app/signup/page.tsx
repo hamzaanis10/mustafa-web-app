@@ -1,13 +1,12 @@
 "use client";
 import 'primeflex/primeflex.css';
-import "./signup.css";
-import Signup from "../../cu_components/common/singup.dialog/signup.dialog";
+// import "./signup.css";
 import { useState } from 'react';
-import { Dialog } from 'primereact/dialog';
-import { VerificationMethodDialogContent } from "../../cu_components/common/verification.form.dialog.content/verification.form.dialog.content";
-import { SuccessDialogContent } from "../../cu_components/common/success.dialog.content/success.dialog.content";
-import OtpDialogContent from '../../cu_components/common/otp.dialog.content/otp.dialog.content';
-// import OtpTwo from '@/cu_components/common/app.otp.orig/app.otp.orig';
+import { AppVerificationMethod } from "../../components/common/app.verification.form.dialog.content/app.verification.form.dialog.content";
+import AppDialog from '@/components/common/app.dialog/app.dialog';
+import AppSuccessDialog from '@/components/common/app.success.dialog.content/app.success.dialog.content';
+import AppOtpDialog from '../../components/common/app.otp.dialog.content/app.otp.dialog.content';
+import AppSignup from '../../components/common/app.singup.dialog/app.signup.dialog';
 
 const Page: React.FC = () => {
   const [showForm, setShowForm] = useState<boolean>(true);
@@ -65,23 +64,21 @@ const goBackToSignupForm = () => {
 
   return (
     <>
-      <Dialog header="Hi there, new friend!" visible={showForm} modal style={{ width: '350px' }} onHide={closeForm} contentStyle={{ overflow: 'hidden' }}>
-        <Signup onContinue={onSignupContinue} />
-      </Dialog>
+      <AppDialog header="Hi there, new friend!" visible={showForm} modal onHide={closeForm} className="sm: w-15rem md: w-20rem lg: w-25rem">
+        <AppSignup onContinue={onSignupContinue} />
+      </AppDialog>
 
-      <Dialog header="Verify your number." visible={showVerificationMethodForm} modal style={{ width: '350px' }} onHide={closeVerificationMethodForm} contentStyle={{ overflow: 'hidden' }} className='relative'>
-        <VerificationMethodDialogContent onOpenOtpForm={openOtpForm} onGoBack={goBackToSignupForm}/>
-      </Dialog>
+      <AppDialog header="Verify your number." visible={showVerificationMethodForm} modal onHide={closeVerificationMethodForm} className='relative sm: w-15rem md: w-20rem lg: w-22rem'>
+        <AppVerificationMethod onOpenOtpForm={openOtpForm} onGoBack={goBackToSignupForm}/>
+      </AppDialog>
 
-      <Dialog header="Verification Started." visible={showOtpForm} modal style={{ width: '350px' }} onHide={closeOtpForm} className='relative'>
-        <OtpDialogContent label="Verify" description="Please enter the verification code we just sent to your phone number. " otp={otp} onHandleOtpChange={handleOtpChange} onVerifyOtp={verifyOtp} isOtpComplete={isOtpComplete} onGoBack={goBackToVerificationMethodDialog} />
-      </Dialog>
+      <AppDialog header="Verification Started." visible={showOtpForm} modal onHide={closeOtpForm} className='relative sm: w-15rem md: w-20rem lg: w-22rem'>
+        <AppOtpDialog label="Verify" description="Please enter the verification code we just sent to your phone number. " otp={otp} onHandleOtpChange={handleOtpChange} onVerifyOtp={verifyOtp} isOtpComplete={isOtpComplete} onGoBack={goBackToVerificationMethodDialog} />
+      </AppDialog>
 
-      <Dialog header="" visible={showSuccessDialog} modal style={{ width: '350px'}} onHide={() => setShowSuccessDialog(false)} className='relative'>
-        <SuccessDialogContent label="Let's get started" title="Verified!" description="You have successfully verified the account. Now it’s time to start your MUST journey!"/>
-      </Dialog><Dialog header="" visible={showSuccessDialog} modal style={{ width: '350px'}} onHide={() => setShowSuccessDialog(false)} className='relative'>
-        <SuccessDialogContent label="Let's get started" title="Verified!" description="You have successfully verified the account. Now it’s time to start your MUST journey!"/>
-      </Dialog>
+      <AppDialog header="" visible={showSuccessDialog} modal onHide={() => setShowSuccessDialog(false)} className='relative sm: w-15rem md: w-20rem lg: w-22rem'>
+        <AppSuccessDialog label="Let's get started" title="Verified!" description="You have successfully verified the account. Now it’s time to start your MUST journey!"/>
+      </AppDialog>
       {/* <OtpTwo /> */}
     </>
   );
