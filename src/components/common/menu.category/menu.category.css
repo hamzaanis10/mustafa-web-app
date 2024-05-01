@@ -7,7 +7,12 @@
 
 .p-tieredmenu-root-list::-webkit-scrollbar {
   width: 5px;
-
+}
+.p-submenu-list{
+  padding-top:0;
+}
+.p-menuitem {
+  border-bottom: 1px solid #c4c4c4;
 }
 
 @media (min-width: 992px) {

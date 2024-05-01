@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import SearchInput from "../serach/serach";
 import MyCart from "../shopping.cart/shopping.cart";
@@ -53,5 +52,4 @@ const Header = () => {
     </>
   );
 };
-
 export default Header;

@@ -1,6 +1,4 @@
 // SliderComponent.tsx
-"use client";
-
 import React from "react";
 import { Carousel, CarouselResponsiveOption } from "primereact/carousel";
 import { CAROUSEL_ITEMS } from "../util/util";
@@ -34,7 +32,7 @@ const HomeBanner: React.FC = () => {
     },
   ];
 
-  const itemTemplate = (item: Image) => {
+  const itemTemplate = (item: any) => {
     return (
       <div className="carousel-item">
         <picture >
