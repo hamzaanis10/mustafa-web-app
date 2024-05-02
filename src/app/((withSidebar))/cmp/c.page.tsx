@@ -1,6 +1,5 @@
 "use client";
-import { useCategoriesList } from "@/app/hooks/fetch/categories";
-import ErrorMessages from "@/components/common/app.alert.messages/error.messages/error.messages";
+ import ErrorMessages from "@/components/common/app.alert.messages/error.messages/error.messages";
 import HomeBanner from "@/components/common/home.page.banner/home.page.banner";
 import { isActionLoading } from "@/components/common/util/util";
 import { doLogin } from "@/store/actions/auth.actions";
@@ -16,12 +15,6 @@ export default function CPage() {
       password: 'Tester@2'
     }))
   }
-  const {
-    mutate,
-    data,
-    isLoading,
-    error } = useCategoriesList();
-  
   return (
     <ReduxProvider>
     <div>

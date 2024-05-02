@@ -4,8 +4,8 @@ import SearchInput from "../serach/serach";
 import MyCart from "../shopping.cart/shopping.cart";
 import Image from "next/image";
 import UserProfile from "../user.profile/user.profile";
-import CategoryMenuItems from "../menu.category/menu.catrgory";
 import { Sidebar } from "primereact/sidebar";
+import AppCategories from "@/app/((withsidebar))/cmp/c.layout/menu.category/menu.catrgory";
 
 const Header = () => {
   const [isCategoryMenuVisible, setIsCategoryMenuVisible] =
@@ -23,7 +23,7 @@ const Header = () => {
             onHide={() => setIsCategoryMenuVisible(false)}
             header={customHeader}
           >
-            <CategoryMenuItems />
+            <AppCategories />
           </Sidebar>
         </div>
       )}

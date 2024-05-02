@@ -33,9 +33,11 @@ export const getLanguageBaseName = (name:any, language = 'en') => {
 export const CATEGORY_MENU_ITEMS = [
   {
     label: "Fruit & Vegetables",
+    id: "2",
     items: [
       {
         label: "Leaves",
+        id: "33",
         items: [
           { label: "Spinach" },
           { label: "Coriander" },
