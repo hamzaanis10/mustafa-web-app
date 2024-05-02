@@ -20,7 +20,8 @@
     "axios": "^1.6.8",
     "immutable": "5.0.0-beta.5",
     "styled-components": "^6.1.8",
-    "swr": "^2.2.5"
+    "swr": "^2.2.5",
+    "query-string": "^9.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",

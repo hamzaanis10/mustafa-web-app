@@ -18,6 +18,18 @@ export const isActionLoading = (actionType: string) => {
     return false;
 }
 
+export const getLanguageBaseName = (name:any, language = 'en') => {
+  if (name) {
+      let theName = name && name[language] !== undefined ? name[language] : name.get(language);
+      if (!theName) {
+          theName = name && name['en'] !== undefined ? name['en'] : name.get('en');
+      }
+      return theName && theName.trim();
+  }
+  else
+      return '';
+}
+
 export const CATEGORY_MENU_ITEMS = [
   {
     label: "Fruit & Vegetables",
