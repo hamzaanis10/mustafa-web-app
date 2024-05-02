@@ -1,0 +1,27 @@
+.phone-input-container {
+    position: relative;
+    max-width: 320px;
+    margin: auto;
+}
+
+.PhoneInputCountry, .PhoneInputInput {
+    padding: 10px 0px;
+}
+
+.PhoneInputInput {
+    padding: 10px 0px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    outline: none;
+}
+
+.phone-input-field.invalid {
+    border-color: #d9534f; 
+}
+
+.phone-input-error {
+    color: #d9534f; 
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    text-align: left;
+}
