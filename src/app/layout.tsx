@@ -11,6 +11,7 @@ import Header from "@/components/common/header/header";
 import { SWRProvider } from "./swr-provider";
 import { Metadata } from "next";
 import { RefToastProvider } from "./toast.wrapper";
+import AppClient from "./app.client";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -32,6 +33,7 @@ export default function RootLayout({
         <SWRProvider>
           <PrimeReactProvider>
             <Header />
+            <AppClient />
             {children}
           </PrimeReactProvider>
         </SWRProvider>

@@ -1,0 +1,126 @@
+// SliderComponent.tsx
+"use client";
+import { useState, useEffect } from "react";
+import React from "react";
+import { Carousel, CarouselResponsiveOption } from "primereact/carousel";
+import Image from "next/image";
+import { CAROUSEL_ITEMS } from "@/components/common/util/util";
+import { useBannersList } from "@/app/hooks/fetch/banners";
+import { useSystemConfig } from "@/app/hooks/fetch/app";
+
+interface Image {
+    source: string;
+    alt: string;
+}
+
+const AppHomeBanner: React.FC = () => {
+    const [carousel, setCarousel] = useState<Image[]>([]);
+    const [imageWidth, setImageWidth] = useState<number>(0);
+    const [imageHeight, setImageHeight] = useState<number>(0);
+    const responsiveOptions: CarouselResponsiveOption[] = [
+        {
+            breakpoint: "1400px",
+            numVisible: 1,
+            numScroll: 1,
+        },
+        {
+            breakpoint: "1199px",
+            numVisible: 1,
+            numScroll: 1,
+        },
+        {
+            breakpoint: "767px",
+            numVisible: 1,
+            numScroll: 1,
+        },
+        {
+            breakpoint: "575px",
+            numVisible: 1,
+            numScroll: 1,
+        },
+    ];
+
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            if (width >= 768) {
+                setImageWidth(1150);
+                setImageHeight(359);
+            } else {
+                setImageWidth(375);
+                setImageHeight(550);
+            }
+        };
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    useEffect(() => {
+        CAROUSEL_ITEMS.getCarousel().then((item: any) => setCarousel(item.slice(0, 9)));
+    }, []);
+
+    const {
+        mutate,
+        data,
+        isLoading,
+        error } = useBannersList();
+
+    const { data: systemConfig } = useSystemConfig();
+    const itemTemplate = (item: any) => {
+        return (
+            <picture>
+                <source
+                    media="(min-width: 768px)"
+                    srcSet={`images/${item.desktopSource}`}
+                />
+                <source
+                    media="(max-width: 575px)"
+                    srcSet={`images/${item.mobileSource}`}
+                />
+                <Image
+                    src={`/images/${item.desktopSource}`}
+                    alt={item.alt}
+                    className="dark:invert"
+                    width={imageWidth}
+                    height={imageHeight}
+                    priority
+                />
+            </picture>
+        );
+    };
+
+    return (
+        <div className="carousel-demo" style={{ overflow: "hidden" }}>
+            <Carousel
+                value={[
+                    {
+                      desktopSource: "../assets/images/desktop-banner.png",
+                      mobileSource: "../assets/images/mobil-banner.png",
+                      alt: "Slide 1",
+                    },
+                    {
+                      desktopSource: "../assets/images/desktop-banner.png",
+                      mobileSource: "../assets/images/mobil-banner.png",
+                      alt: "Slide 2",
+                      caption: "Second Slide",
+                    },
+                    {
+                      desktopSource: "../assets/images/desktop-banner.png",
+                      mobileSource: "../assets/images/mobil-banner.png",
+                      alt: "Slide 3",
+                    },
+                  ]}
+                itemTemplate={itemTemplate}
+                numVisible={1}
+                numScroll={1}
+                responsiveOptions={responsiveOptions}
+                showNavigators={false}
+            />
+        </div>
+    );
+};
+
+export default AppHomeBanner;
