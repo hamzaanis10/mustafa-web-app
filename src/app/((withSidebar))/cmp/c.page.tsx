@@ -25,7 +25,7 @@ export default function CPage() {
             <Skeleton size={"20"} height="200px" width="200px" /> : <HomeBanner />
         }
         <ErrorMessages /> */}
-        <AppHomeBanner />
+        {/* <AppHomeBanner /> */}
         <div className="p-5">
           <h1
           onClick={testCall}
