@@ -45,6 +45,11 @@ html {
   border-bottom: 1px solid #c4c4c4;
 }
 
+.carousel-container img{
+  object-fit: cover;
+  width: 100%;
+}
+
 .carousel-item img {
   height: auto;
   width: 100%;
