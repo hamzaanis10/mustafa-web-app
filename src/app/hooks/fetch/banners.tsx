@@ -14,7 +14,7 @@ export function useBannersList(params: any = {}) {
             method: 'GET',
             type: 'GET_BANNERS'
         }));
-    const theData: BannerList = data;
+    const theData: BannerList[] = data;
     return {
         mutate,
         data: fromJS(theData),

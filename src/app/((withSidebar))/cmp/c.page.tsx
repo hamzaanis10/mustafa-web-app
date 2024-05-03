@@ -7,7 +7,7 @@ import ReduxProvider from "@/store/redux-provider";
 import AppHomeBanner from "./c.page/app.home.banner/app.home.banner";
 // import { useAppDispatch } from "@/store/store";
 // import { Skeleton } from "primereact/skeleton";
-import Link from "next/link";
+//import Link from "next/link";
 
 export default function CPage() {
   // const dispatch = useAppDispatch();
@@ -25,7 +25,7 @@ export default function CPage() {
             <Skeleton size={"20"} height="200px" width="200px" /> : <HomeBanner />
         }
         <ErrorMessages /> */}
-        {/* <AppHomeBanner /> */}
+        <AppHomeBanner />
         <div className="p-5">
           <h1
           onClick={testCall}

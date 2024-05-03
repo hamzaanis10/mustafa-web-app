@@ -64,24 +64,24 @@ const AppHomeBanner: React.FC = () => {
 
     const {
         mutate,
-        data,
-        isLoading,
+        data: banners,
+        isLoading: bannersLoading,
         error } = useBannersList();
 
-    const { data: systemConfig } = useSystemConfig();
+    const { data: systemConfig, isLoading: systemConfigLoading } = useSystemConfig();
     const itemTemplate = (item: any) => {
         return (
             <picture>
-                <source
+                {/* <source
                     media="(min-width: 768px)"
                     srcSet={`images/${item.desktopSource}`}
                 />
                 <source
                     media="(max-width: 575px)"
                     srcSet={`images/${item.mobileSource}`}
-                />
+                /> */}
                 <Image
-                    src={`/images/${item.desktopSource}`}
+                    src={`${systemConfig && systemConfig.get('fileUploadBaseUrl') && systemConfig.get('fileUploadBaseUrl')}${item.imagePath}`}
                     alt={item.alt}
                     className="dark:invert"
                     width={imageWidth}
@@ -94,31 +94,17 @@ const AppHomeBanner: React.FC = () => {
 
     return (
         <div className="carousel-demo" style={{ overflow: "hidden" }}>
-            <Carousel
-                value={[
-                    {
-                      desktopSource: "../assets/images/desktop-banner.png",
-                      mobileSource: "../assets/images/mobil-banner.png",
-                      alt: "Slide 1",
-                    },
-                    {
-                      desktopSource: "../assets/images/desktop-banner.png",
-                      mobileSource: "../assets/images/mobil-banner.png",
-                      alt: "Slide 2",
-                      caption: "Second Slide",
-                    },
-                    {
-                      desktopSource: "../assets/images/desktop-banner.png",
-                      mobileSource: "../assets/images/mobil-banner.png",
-                      alt: "Slide 3",
-                    },
-                  ]}
-                itemTemplate={itemTemplate}
-                numVisible={1}
-                numScroll={1}
-                responsiveOptions={responsiveOptions}
-                showNavigators={false}
-            />
+            {
+                banners && banners.size > 0 && systemConfig && systemConfig.size > 0 ?
+                    <Carousel
+                        value={banners && banners.toJS()}
+                        itemTemplate={itemTemplate}
+                        numVisible={1}
+                        numScroll={1}
+                        responsiveOptions={responsiveOptions}
+                        showNavigators={false}
+                    /> : null
+            }
         </div>
     );
 };
