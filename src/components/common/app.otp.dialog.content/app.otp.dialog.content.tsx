@@ -1,65 +1,44 @@
-import { useRef } from "react";
-import { InputText } from "primereact/inputtext";
+import "./app.otp.dialog.content.css";
+import React from 'react';
+import { InputOtp, InputOtpProps } from 'primereact/inputotp';
 import AppButton from "../app.button/app.button";
  
-interface AppOtpDialogProps {
-    otp: string[];
-    onHandleOtpChange: (value: string, index: number) => void;
-    onVerifyOtp: () => void;
-    isOtpComplete: boolean;
+interface AppOtpDialogProps extends InputOtpProps {
     onGoBack: () => void;
     description: string;
     label: string;
+    onVerifyOtp: () => void;
+    otp: string;
+    setOtp: (newOtp: string) => void;
 }
  
-const AppOtpDialog: React.FC<AppOtpDialogProps> = ({
-    otp,
-    onHandleOtpChange,
-    onVerifyOtp,
-    isOtpComplete,
-    onGoBack,
-    description,
-    label
-}) => {
-    const inputRefs = Array(otp.length).fill(0).map(() => useRef<HTMLInputElement>(null));
- 
-    const handleOtpChange = (value: string, index: number) => {
-        onHandleOtpChange(value, index);
-        if (value !== '') {
-            const nextElement = index + 1 < otp.length ? inputRefs[index + 1].current : null;
-            if (nextElement) {
-                nextElement.focus();
-            }
-        } else {
-            const prevElement = index - 1 >= 0 ? inputRefs[index - 1].current : null;
-            if (prevElement) {
-                prevElement.focus();
-                prevElement.value = '';
-            }
+const AppOtpDialog: React.FC<AppOtpDialogProps> = (props:any) => {
+    const { description, label, otp, length } = props;
+
+    const handleChange = (e: any) => {
+        const value = e.value;
+        if (typeof value === 'string') {
+          props.setOtp(value);
         }
-    };
+      };
+    
+    const isOtpFilled = otp.length === length;
+    
     return (
         <>
-            <i className="pi pi-arrow-left absolute top-0 py-3 cursor-pointer" onClick={onGoBack} />
+            <i className="pi pi-arrow-left absolute top-0 py-3 cursor-pointer" onClick={props.onGoBack} />
             <div className="flex flex-column align-items-center w-full">
                 <p className="text-sm text-center font-normal pb-4" style={{color: '#7B7B7B'}}> {description} </p>
-                <div className="flex mb-4">
-                    {otp.map((digit, index) => (
-                        <InputText
-                            key={index}
-                            ref={inputRefs[index]}
-                            type="tel"
-                            value={digit}
-                            onChange={(e) => handleOtpChange(e.target.value, index)}
-                            autoFocus={index === 0}
-                            className="ml-2"
-                            style={{ width: '40px', height: '40px', textAlign: 'center', borderRadius: '5px', border: '1px solid #C4C4C4' }}
-                            maxLength={1}
-                        />
-                    ))}
+                <div className="mb-5">
+                <InputOtp 
+                    length={length}
+                    value={otp} 
+                    onChange={handleChange} 
+                    integerOnly
+                />
                 </div>
                 <div className="w-full">
-                    <AppButton label={label} disabled={!isOtpComplete} onClick={onVerifyOtp} style={{backgroundColor: "#00CB56"}}/>
+                    <AppButton label={label} disabled={!isOtpFilled} onClick={props.onVerifyOtp}/>
                 </div>
             </div>
         </>

@@ -1,17 +1,17 @@
 "use client";
 import "./app.input.password.css";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { InputText, InputTextProps } from 'primereact/inputtext';
 import { classNames } from 'primereact/utils';
 
 interface AppInputPasswordProps extends InputTextProps {
+    placeholder?: string;
     removeLabel?: boolean;
-    isPasswordValid?: boolean;
-    validationMessage?: string;
+    error?: string;
 }
 
 const AppInputPassword: React.FC<AppInputPasswordProps> = (props: any) => {
-    const { value, removeLabel = false, isPasswordValid = true, validationMessage } = props;
+    const { placeholder, value, removeLabel = false, error } = props;
     const [passwordVisible, setPasswordVisible] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -29,16 +29,15 @@ const AppInputPassword: React.FC<AppInputPasswordProps> = (props: any) => {
                                 type={passwordVisible ? 'text' : 'password'}
                                 value={value}
                                 onChange={props.onChange}
-                                className={classNames('w-full text-xs password-input', { 'p-invalid': !isPasswordValid })}
-                                placeholder='your password'
+                                className={classNames('w-full text-xs password-input', { 'p-invalid': error })}
+                                placeholder={placeholder}
                             />
                             <i className={classNames('pi', { 'pi-eye': passwordVisible, 'pi-eye-slash': !passwordVisible }, 'eye-icon')}
                                 onClick={togglePasswordVisibility}></i>
                         </div>
                         <div>                     
-                            {!isPasswordValid && validationMessage && (
-                                <small className="text-red-500 p-error block mb-3 mt-1 text-xs">*It must be a combination of minimum 8 letters, numbers, and symbols.</small>
-                            )}
+                            {error && (
+                                <p className="text-red-500 text-xs mt-0">{error}</p>                            )}
                         </div>
                     </div> :
                     <div className="password-wrapper">
@@ -46,13 +45,13 @@ const AppInputPassword: React.FC<AppInputPasswordProps> = (props: any) => {
                             type={passwordVisible ? 'text' : 'password'}
                             value={value}
                             onChange={props.onChange}
-                            className={classNames('w-full mb-2 text-xs password-input', { 'p-invalid': !isPasswordValid })}
-                            placeholder='your password'
+                            className={classNames('w-full mb-2 text-xs password-input', { 'p-invalid': error })}
+                            placeholder={placeholder}
                         />
                         <i className={classNames('pi', { 'pi-eye': passwordVisible, 'pi-eye-slash': !passwordVisible }, 'eye-icon')}
                             onClick={togglePasswordVisibility}></i>
-                        {!isPasswordValid && validationMessage && (
-                            <small className="text-red-500 block text-xs mb-1">*It must be a combination of minimum 8 letters, numbers, and symbols.</small>
+                        {error && (
+                            <p className="text-red-500 text-xs mt-0">{error}</p>
                         )}
                     </div>
             }
