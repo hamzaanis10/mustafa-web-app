@@ -1,4 +1,5 @@
 "use client";
+import { PRODUCTS_PAGE_SIZE } from "@/components/common/util/util";
 // import ErrorMessages from "@/components/common/app.alert.messages/error.messages/error.messages";
 // import HomeBanner from "@/components/common/home.page.banner/home.page.banner";
 // import { isActionLoading } from "@/components/common/util/util";
@@ -25,7 +26,14 @@ export default function CPage() {
     error,
   } = useProductList({
     page: 0,
-    size: 20
+    size: PRODUCTS_PAGE_SIZE,
+    sortBy: "total_sale_count",
+    sortDir: "desc",
+    // sortBy2: "",
+    // sortDir2: "",
+    // keyword: "",
+    //categoryId: "",
+    categoryIds: [],// TODO to be user selec4ed cateogories
   });
 
   return (

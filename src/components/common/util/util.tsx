@@ -7,6 +7,7 @@ export const differenceBetweenDatesInMinutes = (startDate: any, endDate: any) =>
   var diffMins = Math.round(((ms % 86400000) % 3600000) / 60000); // minutes
   return diffMins;
 };
+export const PRODUCTS_PAGE_SIZE = 20;
 
 export const isActionLoading = (actionType: string) => {
   const appLoaderState = appLoaderStatusSelector();
