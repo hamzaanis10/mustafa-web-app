@@ -3,10 +3,20 @@ import axios, { AxiosError } from 'axios';
 
 const http = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });
 const http2 = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });
+const { v4: uuidv4 } = require('uuid');
+import { setCookie, getCookie } from 'cookies-next';
 
 http.interceptors.request.use(
     async (config: any) => {
-        config.headers['X-Device-Serial'] = "abc12345gfrrtrgw"
+        const deviceSerial = getCookie('deviceSerial'); // => 'value'
+        if(!deviceSerial) {
+            const uuid = uuidv4();
+            setCookie('deviceSerial', uuid);
+            config.headers['X-Device-Serial'] = uuid;
+        }
+        else {
+            config.headers['X-Device-Serial'] = deviceSerial;
+        }
         //config?.appToastRef?.current?.show({ severity: 'error', summary: '', detail: 'yes', life: 3000 });
         // config.headers['Authorization'] = `Bearer ${getCookie('token')}`;
         // config.headers['X-Language'] = localStorage.getItem(LANG);
@@ -15,12 +25,20 @@ http.interceptors.request.use(
     },
     (error) => {
         return Promise.reject(error)
-    } 
+    }
 );
 
 http2.interceptors.request.use(
     async (config: any) => {
-        config.headers['X-Device-Serial'] = "abc12345gfrrtrgw"
+        const deviceSerial = getCookie('deviceSerial'); // => 'value'
+        if(!deviceSerial) {
+            const uuid = uuidv4();
+            setCookie('deviceSerial', uuid);
+            config.headers['X-Device-Serial'] = uuid;
+        }
+        else {
+            config.headers['X-Device-Serial'] = deviceSerial;
+        }
         //config?.appToastRef?.current?.show({ severity: 'error', summary: '', detail: 'yes', life: 3000 });
         // config.headers['Authorization'] = `Bearer ${getCookie('token')}`;
         // config.headers['X-Language'] = localStorage.getItem(LANG);
