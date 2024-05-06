@@ -6,8 +6,8 @@ import { Skeleton } from "primereact/skeleton";
 const BannerBarSkeleton: React.FC = () => {
   return (
     <Skeleton
-      width='1920px'
-      height='359px'
+      width='100%'
+      height='230px'
       className="mb-2"
     />
   );

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useBannersList } from "@/app/hooks/fetch/banners";
 import { useSystemConfig } from "@/app/hooks/fetch/app";
 import BannerBarSkeleton from "@/skeletons/horizontal.bars.skeleton/banners.bars.skeleton";
+import './app.home.banner.css'
 
 interface Image {
   source: string;
@@ -57,8 +58,6 @@ const AppHomeBanner: React.FC = () => {
     };
   }, []);
 
-
-
   const {
     mutate,
     data: banners,
@@ -86,28 +85,30 @@ const AppHomeBanner: React.FC = () => {
   };
 
   return (
-    <div className="carousel-container" style={{ overflow: "hidden", background:"#fff" }}>
-    {bannersLoading && systemConfigLoading ? (
-      <BannerBarSkeleton />
-    ) : (
-      <>
-        {banners &&
-        banners.size > 0 &&
-        systemConfig &&
-        systemConfig.size > 0 ? (
-          <Carousel
-            value={banners.toJS()}
-            itemTemplate={itemTemplate}
-            numVisible={1}
-            numScroll={1}
-            responsiveOptions={responsiveOptions}
-            showNavigators={false}
-            autoplayInterval={3000}
-          />
-        ) : null}
-      </>
-    )}
-  </div>
+    <div id="home-banner" style={{ overflow: "hidden", background: "#e9f3e5" }}>
+      <div className="carousel-container w-full  md:w-9 m-auto">
+        {bannersLoading && systemConfigLoading ? (
+          <BannerBarSkeleton />
+        ) : (
+          <>
+            {banners &&
+            banners.size > 0 &&
+            systemConfig &&
+            systemConfig.size > 0 ? (
+              <Carousel
+                value={banners.toJS()}
+                itemTemplate={itemTemplate}
+                numVisible={1}
+                numScroll={1}
+                responsiveOptions={responsiveOptions}
+                showNavigators={false}
+                autoplayInterval={3000}
+              />
+            ) : null}
+          </>
+        )}
+      </div>
+    </div>
   );
 };
 
