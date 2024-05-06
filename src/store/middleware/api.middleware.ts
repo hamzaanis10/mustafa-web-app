@@ -1,4 +1,6 @@
 import axios from "axios";
+const { v4: uuidv4 } = require('uuid');
+import { setCookie, getCookie } from 'cookies-next';
 
 function parseJSON(response: any) {
   // if (response && response.headers) {
@@ -43,7 +45,7 @@ function parseJSON(response: any) {
   // else if (response && typeof response.data === 'number') {
   //   return { value: response && response.data }
   // }
-   else if (response.data) {
+  else if (response.data) {
     return response && response.data;
   }
   else {
@@ -91,18 +93,29 @@ function checkStatus(response: any) {
 }
 const apiMiddleware = ({ dispatch }: any) => (next: any) => async (action: any) => {
   if (action.payload && action.payload.url) {
+    let headers = {};
+    const deviceSerial = getCookie('deviceSerial'); // => 'value'
+    if (!deviceSerial) {
+      const uuid = uuidv4();
+      setCookie('deviceSerial', uuid);
+      headers = { ...headers, 'X-Device-Serial': uuid }
+    }
+    else {
+      headers = { ...headers, 'X-Device-Serial': deviceSerial }
+    }
     const resAxios = axios({
       //...options,
       url: `${process.env.NEXT_PUBLIC_API_URL}/${action.payload.url}`,
       method: action.payload.method,
       data: action.payload.data,
+      headers: headers,
       validateStatus: function (status) {
         return status >= 200 && status <= 700;
       }
     }).then(checkStatus)
       .then(parseJSON)
       .then((response) => {
-        if(response && response.error) {
+        if (response && response.error) {
           dispatch({
             type: `${action.type}_ERROR`, payload: {
               additionalData: action.payload,
@@ -120,7 +133,7 @@ const apiMiddleware = ({ dispatch }: any) => (next: any) => async (action: any) 
             }
           })
         }
-      
+
       })
       .catch(error => {
         console.log(error)

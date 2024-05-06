@@ -16,7 +16,7 @@ const AppSuccessDialog: React.FC<AppSuccessDialogProps> = (props: any) => {
             <h2 className="text-center line-height-2 font-normal mb-1" style={{ fontSize: '24px', color: "#000000" }}> {title} </h2>
             <p className="text-sm text-center line-height-3 font-normal mb-4" style={{ fontSize: '16px', color: '#7B7B7B' }}> {description} </p>
             <div className="w-full">
-                <AppButton label={label} disabled={false} style={{backgroundColor: "#00CB56"}} />
+                <AppButton label={label} disabled={false} />
             </div>
         </div>
     )

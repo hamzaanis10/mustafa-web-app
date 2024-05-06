@@ -10,10 +10,10 @@ import AppSignup from '../../components/common/app.singup.dialog/app.signup.dial
 
 const Page: React.FC = () => {
   const [showForm, setShowForm] = useState<boolean>(true);
-  const [otp, setOtp] = useState(["", "", "", "", ""]);
   const [showVerificationMethodForm, setShowVerificationMethodForm] = useState<boolean>(false);
-  const [showOtpForm, setShowOtpForm] = useState<boolean>(false);
   const [showSuccessDialog, setShowSuccessDialog] = useState<boolean>(false);
+  const [otp, setOtp] = useState<string>('');
+  const [showOtpForm, setShowOtpForm] = useState<boolean>(false);
 
   const closeForm = () => {
     setShowForm(false);
@@ -29,7 +29,6 @@ const Page: React.FC = () => {
   };
 
   const openOtpForm = () => {
-    console.log("opening otp form")
     setShowVerificationMethodForm(false);
     setShowOtpForm(true);
   };
@@ -38,16 +37,7 @@ const Page: React.FC = () => {
     setShowOtpForm(false);
   };
 
-  const handleOtpChange = (value: string, index: number) => {
-    const updatedOtp = [...otp];
-    updatedOtp[index] = value;
-    setOtp(updatedOtp);
-  };
-
-  const isOtpComplete = otp.every(digit => digit.trim() !== "");
-
   const verifyOtp = () => {
-    console.log("Verifying OTP");
     setShowOtpForm(false);
     setShowSuccessDialog(true);
   };
@@ -73,7 +63,7 @@ const goBackToSignupForm = () => {
       </AppDialog>
 
       <AppDialog header="Verification Started." visible={showOtpForm} modal onHide={closeOtpForm} className='relative sm: w-15rem md: w-20rem lg: w-22rem'>
-        <AppOtpDialog label="Verify" description="Please enter the verification code we just sent to your phone number. " otp={otp} onHandleOtpChange={handleOtpChange} onVerifyOtp={verifyOtp} isOtpComplete={isOtpComplete} onGoBack={goBackToVerificationMethodDialog} />
+        <AppOtpDialog label="Verify" description="Please enter the verification code we just sent to your phone number. " otp={otp} setOtp={setOtp} length={5} onVerifyOtp={verifyOtp} onGoBack={goBackToVerificationMethodDialog} />
       </AppDialog>
 
       <AppDialog header="" visible={showSuccessDialog} modal onHide={() => setShowSuccessDialog(false)} className='relative sm: w-15rem md: w-20rem lg: w-22rem'>

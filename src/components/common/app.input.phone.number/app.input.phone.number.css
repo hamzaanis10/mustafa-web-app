@@ -25,3 +25,9 @@
     margin-top: 0.25rem;
     text-align: left;
 }
+
+.PhoneInputCountry{
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding: 2px 5px;
+}

@@ -10,7 +10,7 @@ const AppButton: React.FC<ButtonProps> = (props: any) => {
        disabled={disabled}
         className="w-full mb-3 text-sm font-semibold p-button-rounded"
         style={style ? style :
-          { backgroundColor: 'transparent', color: "#00CB56" }} />
+          { backgroundColor: "#00CB56" } }/>
     </div>
   );
 }

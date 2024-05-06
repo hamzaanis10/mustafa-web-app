@@ -19,7 +19,7 @@ const AppInputEmail: React.FC<AppInputEmailProps> = (props: any) => {
                             value={value}
                             className="w-full text-xs"
                             placeholder="Enter your email"
-                            onChange={(e) => props.onChange(e.target.value)}
+                            onChange={props.onChange}
                         />
                     </div>
                     <div>
@@ -35,7 +35,7 @@ const AppInputEmail: React.FC<AppInputEmailProps> = (props: any) => {
                         placeholder="Email or Mobile number"
                         className="w-full mb-1 text-xs"
                         value={value}
-                        onChange={(e) => props.onChange(e.target.value)}
+                        onChange={props.onChange}
                         required />
                     {error && <p className="text-red-500 text-xs mt-0">{error}</p>}
                 </>
