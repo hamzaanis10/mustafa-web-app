@@ -44,10 +44,10 @@ const AppHomeBanner: React.FC = () => {
       const width = window.innerWidth;
       if (width >= 768) {
         setImageWidth(1920);
-        setImageHeight(359);
+        setImageHeight(230);
       } else {
         setImageWidth(375);
-        setImageHeight(359);
+        setImageHeight(230);
       }
     };
     handleResize();
@@ -86,7 +86,7 @@ const AppHomeBanner: React.FC = () => {
   };
 
   return (
-    <div className="carousel-container" style={{ overflow: "hidden" }}>
+    <div className="carousel-container" style={{ overflow: "hidden", background:"#fff" }}>
     {bannersLoading && systemConfigLoading ? (
       <BannerBarSkeleton />
     ) : (
