@@ -1,0 +1,17 @@
+#home-banner {
+    img {
+        object-fit: contain;
+        width: 100%;
+    }
+
+    .p-carousel .p-carousel-indicators .p-carousel-indicator button {
+        height: 1rem;
+        width: 1rem;
+        border-radius: 50px;
+        background-color: #fff;
+    }
+
+    .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+        background-color: #009736;
+    }
+}
