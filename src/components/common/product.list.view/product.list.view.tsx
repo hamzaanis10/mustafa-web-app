@@ -18,14 +18,15 @@ interface Product {
   category: string;
   quantity: number;
   inventoryStatus: string;
+  discountedPrice: any,
   rating: number;
 }
-
 export default function ProductListView() {
   const [products, setProducts] = useState<Product[]>([]);
   const [page, setPage] = useState<number>(1);
   const itemsPerPage = 10;
-
+  
+  
   useEffect(() => {
     const fetchProducts = async () => {
       const startIndex = (page - 1) * itemsPerPage;
@@ -96,7 +97,7 @@ export default function ProductListView() {
           <div>
             <div className="flex flex-row  align-items-center gap-2 pt-3">
               <span className="text-2xl font-medium">
-                ${product.discountedPrice}
+                ${product?.discountedPrice}
               </span>
               <span className="text-base">
                 <del>${product.price}</del>
@@ -130,7 +131,7 @@ export default function ProductListView() {
     );
   };
 
-  const listTemplate = (items: Product[]) => {
+  const listTemplate = (items: Product[]): any => {
     if (!items || items.length === 0) return null;
 
     let list = items.map((product) => {

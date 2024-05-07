@@ -1,24 +1,34 @@
-import useSWR from "swr";
 import { fetcherPost, useKey } from ".";
-import { fromJS } from "immutable";
 import { useRefToastContext } from "@/app/toast.wrapper";
+import useSWRInfinite from "swr/infinite";
 
 export function useProductList(params: any = {}) {
-    const key = useKey(`v1/product/list`, params);
+    const key = useKey(`v1/product/list`);
     const appToastRef = useRefToastContext();
     //appToastRef.current?.show({ severity: 'error', summary: '', detail: 'test', life: 3000 });
-    const { data, error, isLoading, mutate } = useSWR<any>(key, (url: any) => fetcherPost(url,
-        {
-            ...params,
-            appToastRef,
-            method: 'POST',
-            type: 'GET_PRODUCTS'
-        }));
+    const { data,
+        mutate,
+        size,
+        setSize,
+        isValidating,
+        isLoading,
+        error } = useSWRInfinite((index) => {
+            return `${key}page=${index + 1}&per_page=${params.size}`
+        }, (url: any) => fetcherPost(url,
+            {
+                ...params,
+                appToastRef,
+                method: 'POST',
+                type: 'GET_PRODUCTS'
+            }));
 
     return {
         mutate,
-        data: fromJS(data),
+        data: data,
         isLoading,
+        size,
+        isValidating,
+        setSize,
         error
     };
 }

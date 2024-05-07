@@ -1,0 +1,35 @@
+#product-container {
+
+    .p-dataview .p-dataview-content{
+        background: transparent;
+    }
+
+    .p-datascroller .p-datascroller-content {
+      background: transparent;
+      padding: 0;
+    }
+  
+    .p-card .p-card-body {
+      padding: 15px 10px 10px 10px;
+    }
+  
+    .p-card-content {
+      padding: 0;
+    }
+  
+    span.p-button-label.p-c {
+      border-bottom: 1px solid;
+    }
+  
+    .p-button:focus {
+      box-shadow: none;
+    }
+  
+    ul.p-datascroller-list {
+      display: flex;
+      flex-flow: row wrap;
+      gap: 20px;
+    }
+  
+  
+  }

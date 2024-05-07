@@ -55,7 +55,13 @@ http2.interceptors.response.use(
 );
 
 http.interceptors.response.use(
-    (response) => response,
+    (response) => {
+        if(response.config.url?.includes("v1/product/list")) {
+            return response?.data?.content;
+        }
+        else
+        return response
+    },
     async (error) => {
         if (error.response?.status === 401) {
             // toast.error(error?.response?.data?.message || error.message);
