@@ -1,4 +1,5 @@
 "use client";
+import ReduxProvider from "@/store/redux-provider";
 // import ErrorMessages from "@/components/common/app.alert.messages/error.messages/error.messages";
 // import HomeBanner from "@/components/common/home.page.banner/home.page.banner";
 // import { isActionLoading } from "@/components/common/util/util";
@@ -6,21 +7,26 @@
 //import ReduxProvider from "@/store/redux-provider";
 import AppHomeBanner from "./c.page/app.home.banner/app.home.banner";
 import ProductListing from "./c.page/product.listing/product.listing";
+// import { useEffect } from "react";
+// import { resetTesting } from "@/store/actions/app.actions";
+import { useAppDispatch } from "@/store/store";
+// import { doLogin } from "@/store/actions/auth.actions";
 // import { useAppDispatch } from "@/store/store";
 // import { Skeleton } from "primereact/skeleton";
 //import Link from "next/link";
 
 export default function CPage() {
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const testCall = () => {
     // dispatch(doLogin({
     //   identifier: 'muhammad.hamza501@yahoo.com',
     //   password: 'Tester@2'
     // }))
   }
+ 
 
   return (
-    // <ReduxProvider>
+    <ReduxProvider>
     <div>
       {/* {
           isActionLoading("LOGIN") ?
@@ -33,6 +39,6 @@ export default function CPage() {
         <ProductListing />
       </div>
     </div>
-    //</ReduxProvider>
+    </ReduxProvider>
   );
 }
