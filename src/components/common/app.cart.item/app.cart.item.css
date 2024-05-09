@@ -1,0 +1,29 @@
+#cart-items {
+    .p-sidebar-header {
+        display: none;
+    }
+
+    .p-sidebar-content {
+        padding: 0;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.p-sidebar-right {
+    top: 76px !important;
+}
+
+.p-sidebar-right.p-component-overlay-enter {
+    animation: none;
+}
+
+@media (min-width: 992px) {
+
+    .p-sidebar-right {
+        top: 88px !important;
+    }
+}
