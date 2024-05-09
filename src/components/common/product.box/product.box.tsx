@@ -28,7 +28,7 @@ export default function ProductBox(props: any) {
     return (
         <div id={`listitem-${index + 1}`}>
             {
-                systemConfig ?
+                systemConfig && product ?
                     <Card className="md:w-14rem xl:w-15rem border-round-3xl shadow-none" style={{ height: "fit-content" }} key={product.id}>
                         <img
                             className="shadow-2 block xl:block"
