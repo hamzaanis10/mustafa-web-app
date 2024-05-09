@@ -34,8 +34,8 @@ export default function CPage() {
         }
         <ErrorMessages /> */}
       <AppHomeBanner />
-      <div className="p-5 pt-3">
-        <h1 onClick={testCall} className="text-3xl font-medium" style={{ color: "#009736" }}>Trending at the moment</h1>
+      <div className="md:p-5 pt-3 pr-1 pl-4">
+        <h1 onClick={testCall} className="text-xl pb-2 md:text-3xl font-medium md:pb-0" style={{ color: "#009736" }}>Trending at the moment</h1>
         <ProductListing />
       </div>
     </div>
