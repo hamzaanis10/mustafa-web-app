@@ -5,6 +5,7 @@ import './product.listing.css';
 import { PRODUCTS_PAGE_SIZE } from "@/components/common/util/util";
 import { useProductList } from "@/app/hooks/fetch/products";
 import ProductBox from "@/components/common/product.box/product.box";
+import HorizontalBarSkeleton from "@/skeletons/horizontal.bars.skeleton/horizontal.bars.skeleton";
 
 interface Product {
   id: string;
@@ -47,6 +48,7 @@ export default function ProductListing() {
     return Math.floor(itemIndex / PRODUCTS_PAGE_SIZE) + 1;
   }
   const observerMap = useRef(new Map());
+
   useEffect(() => {
     const observeElement = (elementId: any) => {
       const observer = new IntersectionObserver(
@@ -101,7 +103,7 @@ export default function ProductListing() {
     );
   };
 
-  const listTemplate = (items: Product[]): any => {
+  const listTemplate = (items: Product[],layout:any): any => {
     if (!items || items.length === 0) return null;
 
     let list = items.map((product, index) => {
@@ -110,10 +112,13 @@ export default function ProductListing() {
 
     return <div className="grid grid-gutter column-gap-3 row-gap-5">{list}</div>;
   };
-
+  const isLoadingMore = productsLoading || (size > 0 && productsList && typeof productsList[size - 1] === "undefined");
   return (
     <div id="product-container" className="flex flex-wrap ">
       <DataView value={pList} listTemplate={listTemplate} />
+      {
+        isLoadingMore === true ?  <HorizontalBarSkeleton /> : null
+      }
     </div>
   );
 }

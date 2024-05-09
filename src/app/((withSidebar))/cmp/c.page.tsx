@@ -1,5 +1,4 @@
 "use client";
-import { PRODUCTS_PAGE_SIZE } from "@/components/common/util/util";
 // import ErrorMessages from "@/components/common/app.alert.messages/error.messages/error.messages";
 // import HomeBanner from "@/components/common/home.page.banner/home.page.banner";
 // import { isActionLoading } from "@/components/common/util/util";
@@ -29,7 +28,7 @@ export default function CPage() {
         }
         <ErrorMessages /> */}
       <AppHomeBanner />
-      <div className="p-5">
+      <div className="p-5 pt-3">
         <h1 onClick={testCall} className="text-3xl font-medium" style={{ color: "#009736" }}>Trending at the moment</h1>
         <ProductListing />
       </div>
