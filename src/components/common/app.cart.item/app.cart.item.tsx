@@ -35,23 +35,23 @@ const CartListView: React.FC<CartListViewProps> = ({
       position="right"
       onHide={onHideSidebar} // Call parent function to hide the sidebar
       showCloseIcon={false}
-      className="xl:w-3"
+      className="w-23rem md:w-29rem xl:w-3 "
       id="cart-items"
     >
       <div className="overflow-auto" style={{height:"80vh"}}>
         <div
-          className="flex justify-content-between  p-3"
+          className="flex justify-content-between  p-3 text-sm md:text-base"
           style={{ backgroundColor: "#FFF2E3", color: "#FFAD4C" }}
         >
           Buy €5.00 more to enjoy FREE Delivery!
-          <span className="underline font-semibold">Add more</span>
+          <span className="underline font-semibold text-sm md:text-base">Add more</span>
         </div>
         <div
-          className="flex justify-content-between p-3"
+          className="flex justify-content-between p-3 text-sm md:text-base"
           style={{ backgroundColor: "#E6FFED", color: "#009736" }}
         >
           Eligible to pick an add-on item
-          <span className="underline font-semibold">Pick</span>
+          <span className="underline font-semibold text-sm md:text-base">Pick</span>
         </div>
 
         <div>
@@ -78,7 +78,8 @@ const CartListView: React.FC<CartListViewProps> = ({
                   <Checkbox
                     onChange={(e) => toggleItem(item.id)}
                     checked={checkedItems.has(item.id)}
-                    className="w-1rem lg:w-2rem"
+                    // className="w-1rem lg:w-2rem"
+                    style={{width:"fit-content"}}
                   />
                   <div className="w-3rem lg:w-4rem">
                     <img

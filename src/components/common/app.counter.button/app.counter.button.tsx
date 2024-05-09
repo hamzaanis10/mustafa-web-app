@@ -22,7 +22,7 @@ export default function AppCounterButton() {
         incrementButtonIcon="pi pi-plus"
         decrementButtonIcon="pi pi-minus"
         min={0}
-        inputStyle={{ pointerEvents: "none" }}
+        useGrouping={false}
       />
     </div>
   );

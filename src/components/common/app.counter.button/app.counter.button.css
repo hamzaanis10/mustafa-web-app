@@ -7,18 +7,18 @@
     .p-inputnumber-buttons-horizontal .p-inputnumber-input{
         width: 30px;
         height: 0;
-        padding: 12px 5px 10px 5px;
+        padding: 14px 5px 12px 5px;
         text-align: center;
-        background-color: #D9D9D9;
+        background-color: #F5F5F5;
         border: 1px solid #D9D9D9;
         border-radius: 5px;
     }
     input.p-inputnumber-input.p-inputtext.p-component.p-filled {
         width: 30px;
         height: 0;
-        padding: 12px 5px 10px 5px;
+        padding: 14px 5px 12px 5px;
         text-align: center;
-        background-color: #D9D9D9;
+        background-color: #F5F5F5;
         border: 1px solid #D9D9D9;
         border-radius: 5px;
     }
@@ -29,7 +29,7 @@
     .p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-down {
         height: 0;
         width: 0;
-        padding: 10px 10px;
+        padding: 15px;
         border-radius: 50px;
         background-color: #8FC158;
         border: none;
@@ -37,7 +37,7 @@
     .p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-up{
         height: 0;
         width: 0;
-        padding: 10px 10px;
+        padding: 15px;
         border-radius: 50px;
         background-color: #8FC158;
         border: none;

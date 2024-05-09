@@ -1961,7 +1961,7 @@
     border-radius: 50%;
   }
   .p-rating .p-rating-item .p-rating-icon {
-    color: #000000;
+    color: #D9D9D9;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     font-size: 1.143rem;
   }

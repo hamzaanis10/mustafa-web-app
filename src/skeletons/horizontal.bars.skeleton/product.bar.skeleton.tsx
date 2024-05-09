@@ -9,21 +9,19 @@ interface LoaderSkeletonProps {
 
 const ProductBarSkeleton: React.FC<LoaderSkeletonProps> = ({ count = 7 }) => {
   const skeletonItems = Array.from({ length: count }).map((_, index) => (
-    <div className="card md:w-22rem border-round-3xl" key={index}>
-      <div className="border-round border-1 surface-border p-4 surface-card">
-        <div className="flex mb-3">
-          <Skeleton shape="circle" size="4rem" className="mr-2"></Skeleton>
-          <div>
-            <Skeleton width="10rem" className="mb-2"></Skeleton>
-            <Skeleton width="5rem" className="mb-2"></Skeleton>
-            <Skeleton height=".5rem"></Skeleton>
-          </div>
-        </div>
-        <Skeleton width="100%" height="150px"></Skeleton>
-        <div className="flex justify-content-between mt-3">
-          <Skeleton width="4rem" height="2rem"></Skeleton>
-          <Skeleton width="4rem" height="2rem"></Skeleton>
-        </div>
+    <div
+      className="card md:w-14rem xl:w-15rem "
+      key={index}
+    >
+      <div className="border-round-3xl border-1 surface-border p-4 surface-card">
+        <Skeleton width="100%" height="150px" className="mb-4"></Skeleton>
+        <Skeleton width="5rem" className="mb-2"></Skeleton>
+        <Skeleton width="100%" height="3rem" className="mb-2"></Skeleton>
+        <Skeleton width="100%" height="2rem" className="mb-2"></Skeleton>
+        <Skeleton width="100%" height="2rem" className="mb-2"></Skeleton>
+        <Skeleton width="5rem" className="mb-2"></Skeleton>
+        <Skeleton width="5rem" height="2rem" className="mb-2 m-auto"></Skeleton>
+        <Skeleton width="4rem" height="2rem m-auto"></Skeleton>
       </div>
     </div>
   ));

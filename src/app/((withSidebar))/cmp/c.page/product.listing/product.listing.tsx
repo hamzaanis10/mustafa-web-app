@@ -6,6 +6,7 @@ import { PRODUCTS_PAGE_SIZE } from "@/components/common/util/util";
 import { useProductList } from "@/app/hooks/fetch/products";
 import ProductBox from "@/components/common/product.box/product.box";
 import HorizontalBarSkeleton from "@/skeletons/horizontal.bars.skeleton/horizontal.bars.skeleton";
+import ProductBarSkeleton from "@/skeletons/horizontal.bars.skeleton/product.bar.skeleton";
 
 interface Product {
   id: string;
@@ -114,10 +115,10 @@ export default function ProductListing() {
   };
   const isLoadingMore = productsLoading || (size > 0 && productsList && typeof productsList[size - 1] === "undefined");
   return (
-    <div id="product-container" className="flex flex-wrap ">
+    <div id="product-container" className="flex flex-wrap gap-2">
       <DataView value={pList} listTemplate={listTemplate} />
       {
-        isLoadingMore === true ?  <HorizontalBarSkeleton /> : null
+        isLoadingMore === true ?  <ProductBarSkeleton /> : null
       }
     </div>
   );
