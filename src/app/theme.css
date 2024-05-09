@@ -6714,12 +6714,12 @@
     background: rgba(0, 0, 0, 0.8);
   }
   .p-scrolltop .p-scrolltop-icon {
-    font-size: 1.5rem;
-    color: #f9fafb;
+    font-size: 2rem;
+    color: #00CB56;
   }
   .p-scrolltop .p-scrolltop-icon.p-icon {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2rem;
+    height: 2rem;
   }
   .p-skeleton {
     background-color: #e5e7eb;

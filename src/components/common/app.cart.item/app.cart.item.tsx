@@ -38,7 +38,7 @@ const CartListView: React.FC<CartListViewProps> = ({
       className="w-23rem md:w-30rem"
       id="cart-items"
     >
-      <div className="overflow-auto" style={{height:"80vh"}}>
+      <div className="overflow-auto content-container" style={{height:"80vh"}}>
         <div
           className="flex justify-content-between  p-3 text-sm md:text-base"
           style={{ backgroundColor: "#FFF2E3", color: "#FFAD4C" }}
