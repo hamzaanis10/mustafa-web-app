@@ -35,7 +35,7 @@ const CartListView: React.FC<CartListViewProps> = ({
       position="right"
       onHide={onHideSidebar} // Call parent function to hide the sidebar
       showCloseIcon={false}
-      className="w-23rem md:w-29rem xl:w-3 "
+      className="w-23rem md:w-30rem"
       id="cart-items"
     >
       <div className="overflow-auto" style={{height:"80vh"}}>
@@ -131,7 +131,7 @@ const CartListView: React.FC<CartListViewProps> = ({
           ))}
         </div>
       </div>
-      <div className="flex p-3 justify-content-between align-items-center fixed bottom-0" style={{width:"-webkit-fill-available"}}>
+      <div className="flex p-3 justify-content-between align-items-center fixed bottom-0 w-23rem md:w-29rem xl:w-3">
         <div className="flex flex-column">
           <p className="m-0 pb-2">Total: €999.99</p>
           <p className="m-0" style={{ color: "#FF4C72" }}>
