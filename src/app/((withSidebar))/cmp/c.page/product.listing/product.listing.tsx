@@ -1,6 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
-import { Button } from "primereact/button";
+import React, { useEffect, useRef } from "react";
 import { DataView } from "primereact/dataview";
 import './product.listing.css';
 import { PRODUCTS_PAGE_SIZE } from "@/components/common/util/util";
@@ -40,58 +39,80 @@ export default function ProductListing() {
     categoryIds: [],// TODO to be user selec4ed cateogories
   });
   const pList: any = productsList ? [].concat(...productsList) : [];
-
-  function isNearBottom() {
-    const scrolledTo = window.scrollY + window.innerHeight;
-    let scrollDiff = document.body.scrollHeight - scrolledTo;
-    if (scrollDiff) {
-      return true;
-    }
-    else return false;
+  function isMultipleOfProductListingSize(number: any) {
+    return number % PRODUCTS_PAGE_SIZE === 0;
   }
-
-  const handleScroll = () => {
-    if (isNearBottom()) {
-
-    }
-    // if (
-    //   window.innerHeight + document.documentElement.scrollTop ===
-    //   document.documentElement.offsetHeight
-    // ) {
-    //   setSize(size + 1)
-    // }
-  };
-
+  function getNextPageNumber(itemIndex: any) {
+    // Adding 1 to account for 1-based indexing
+    return Math.floor(itemIndex / PRODUCTS_PAGE_SIZE) + 1;
+  }
+  const observerMap = useRef(new Map());
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+    const observeElement = (elementId: any) => {
+      const observer = new IntersectionObserver(
+        async (entries) => {
+          if (entries[0].isIntersecting && !productsLoading) {
+            const splitedId = entries[0].target.id && entries[0].target.id.split('-');
+            if (splitedId && splitedId.length > 1) {
+              const nextPageNumber = getNextPageNumber(Number(splitedId[1]));
+              setSize(nextPageNumber)
+            }
+          }
+        },
+        {
+          threshold: 0.1, // Trigger when 10% of the element is visible
+        }
+      );
 
-  const itemTemplate = (product: Product) => {
+      observerMap.current.set(elementId, observer);
+
+      const element = document.getElementById(elementId);
+      if (element) observer.observe(element);
+    };
+
+    const cleanupObserver = (elementId: any) => {
+      const observer = observerMap.current.get(elementId);
+      if (observer) {
+        observer.disconnect();
+        observerMap.current.delete(elementId);
+      }
+    };
+
+    pList && pList.forEach((item: any, index: any) => {
+      let newIndex = index + 1;
+      const elementId = `listitem-${index + 1}`;
+      if (isMultipleOfProductListingSize(newIndex)) {
+        const observer = observerMap.current.get(elementId);
+        if (!observer)
+          observeElement(elementId);
+      }
+    });
+
+    return () => {
+      observerMap.current.forEach((observer, elementId) => {
+        cleanupObserver(elementId);
+      });
+    };
+  }, [pList, productsLoading]);
+
+  const itemTemplate = (product: Product, index: any) => {
     return (
-      <ProductBox product={product} />
+      <ProductBox product={product} index={index} />
     );
   };
-  const yes = () => {
-    setSize(size + 1)
-  }
 
   const listTemplate = (items: Product[]): any => {
     if (!items || items.length === 0) return null;
 
-    let list = items.map((product) => {
-      return itemTemplate(product);
+    let list = items.map((product, index) => {
+      return itemTemplate(product, index);
     });
 
     return <div className="grid grid-gutter column-gap-3 row-gap-5">{list}</div>;
   };
 
   return (
-
     <div id="product-container" className="flex flex-wrap ">
-      <Button onClick={yes}>yes</Button>
       <DataView value={pList} listTemplate={listTemplate} />
     </div>
   );

@@ -24,9 +24,9 @@ export default function ProductBox(props: any) {
                 return null;
         }
     };
-    const { product } = props;
+    const { product, index } = props;
     return (
-        <>
+        <div id={`listitem-${index + 1}`}>
             {
                 systemConfig ?
                     <Card className="md:w-14rem xl:w-15rem border-round-3xl shadow-none" style={{ height: "fit-content" }} key={product.id}>
@@ -74,6 +74,6 @@ export default function ProductBox(props: any) {
                         </div>
                     </Card> : null
             }
-        </>
+        </div>
     );
 }
