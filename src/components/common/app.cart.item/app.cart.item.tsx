@@ -6,7 +6,7 @@ import { Checkbox } from "primereact/checkbox";
 import { useState } from "react";
 import { CART_LIST_ITEMS } from "../util/util";
 import "./app.cart.item.css";
-import AddMoreItems from "../app.add.more.item/app.add.more.item";
+import AppCounterButton from "../app.counter.button/app.counter.button";
 
 interface CartListViewProps {
   visibleRight: boolean;
@@ -109,7 +109,7 @@ const CartListView: React.FC<CartListViewProps> = ({
                       </span>
                     </p>
                   </div>
-                  <AddMoreItems />
+                  <AppCounterButton />
                 </div>
                 <div className="flex align-items-center gap-2 p-3 lg:pl-6 pr-5 pb-3 justify-content-between">
                   <p

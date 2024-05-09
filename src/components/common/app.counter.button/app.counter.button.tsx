@@ -3,11 +3,11 @@ import {
   InputNumber,
   InputNumberValueChangeEvent,
 } from "primereact/inputnumber";
-import './add-more-item.css';
+import './app.counter.button.css';
 
 
 
-export default function AddMoreItems() {
+export default function AppCounterButton() {
   const [value, setValue] = useState<number>();
 
   return (
@@ -22,6 +22,7 @@ export default function AddMoreItems() {
         incrementButtonIcon="pi pi-plus"
         decrementButtonIcon="pi pi-minus"
         min={0}
+        inputStyle={{ pointerEvents: "none" }}
       />
     </div>
   );
