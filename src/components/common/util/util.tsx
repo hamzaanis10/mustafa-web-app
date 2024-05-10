@@ -17,7 +17,8 @@ export const isActionLoading = (actionType: string) => {
   const loadingState: any =
     appLoaderState &&
     appLoaderState.find(
-      (loaderStatus: any) => loaderStatus.get("status") === "PENDING"
+      (loaderStatus: any) => loaderStatus.get("status") === "PENDING" &&
+      loaderStatus.get("actionType") == actionType
     );
   if (loadingState) {
     return true;
