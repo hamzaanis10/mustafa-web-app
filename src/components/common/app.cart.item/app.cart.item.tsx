@@ -38,7 +38,7 @@ const CartListView: React.FC<CartListViewProps> = ({
       className="w-23rem md:w-30rem"
       id="cart-items"
     >
-      <div className="overflow-auto" style={{height:"80vh"}}>
+      <div className="overflow-auto content-container" style={{height:"80vh"}}>
         <div
           className="flex justify-content-between  p-3 text-sm md:text-base"
           style={{ backgroundColor: "#FFF2E3", color: "#FFAD4C" }}
@@ -112,7 +112,7 @@ const CartListView: React.FC<CartListViewProps> = ({
                   </div>
                   <AppCounterButton />
                 </div>
-                <div className="flex align-items-center gap-2 p-3 lg:pl-6 pr-5 pb-3 justify-content-between">
+                <div className="flex align-items-center gap-2 p-3 lg:pl-6 pr-5 pb-3 justify-content-between bg-white" >
                   <p
                     style={{ color: "#5A9429" }}
                     className="border-1 text-xs p-1 pr-3 p-1 pl-3 border-round-lg m-0"

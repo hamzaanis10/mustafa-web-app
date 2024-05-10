@@ -48,7 +48,7 @@ export default function ProductBox(props: any) {
         <div id={`listitem-${index + 1}`}>
             {systemConfig && product ? (
                 <Card
-                    className="md:w-14rem xl:w-15rem border-round-3xl shadow-none"
+                    className="w-11rem sm:w-14rem md:w-14rem xl:w-15rem border-round-3xl shadow-none"
                     style={{ height: "fit-content" }}
                     key={product.id}
                 >
@@ -76,13 +76,13 @@ export default function ProductBox(props: any) {
                         </div>
                         <div className="flex flex-column gap-1">
                             <div
-                                className="text-base font-medium pt-1 pb-1"
+                                className="text-sm md:text-base font-medium pt-1 pb-1"
                                 style={{ color: "#555555" }}
                             >
                                 {getLanguageBaseName(product.name)}
                             </div>
                             <div
-                                className="text-700 line-clamp-3 mb-2 text-sm"
+                                className="text-700 line-clamp-3 mb-2 md:text-sm text-xs"
                                 style={{ color: "#C4C4C4" }}
                             >
                                 {getLanguageBaseName(product.description)}
@@ -103,7 +103,7 @@ export default function ProductBox(props: any) {
                     </div>
 
                     <div className="flex flex-column lg:flex-row align-items-center xl:align-items-center justify-content-center lg:flex-1 gap-4">
-                        <div className="flex flex-row lg:flex-column align-items-center gap-4 lg:gap-2">
+                        <div className="flex flex-row lg:flex-column align-items-center gap-4 lg:gap-2 ">
                             {
                                 isActionLoading(`ADD_PRODUCT_TO_CART_${product.id}`) ?
                                     <div><ProgressBar mode="indeterminate" className="mt-3 mb-3" style={{ width: '11rem', height: '6px' }}></ProgressBar></div> :

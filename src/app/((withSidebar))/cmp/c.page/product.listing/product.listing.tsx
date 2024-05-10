@@ -5,7 +5,6 @@ import './product.listing.css';
 import { PRODUCTS_PAGE_SIZE } from "@/components/common/util/util";
 import { useProductList } from "@/app/hooks/fetch/products";
 import ProductBox from "@/components/common/product.box/product.box";
-import HorizontalBarSkeleton from "@/skeletons/horizontal.bars.skeleton/horizontal.bars.skeleton";
 import ProductBarSkeleton from "@/skeletons/horizontal.bars.skeleton/product.bar.skeleton";
 
 interface Product {
@@ -111,7 +110,7 @@ export default function ProductListing() {
       return itemTemplate(product, index);
     });
 
-    return <div className="grid grid-gutter column-gap-3 row-gap-5">{list}</div>;
+    return <div className="grid column-gap-3 row-gap-5 justify-content-center md:justify-content-start">{list}</div>;
   };
   const isLoadingMore = productsLoading || (size > 0 && productsList && typeof productsList[size - 1] === "undefined");
   return (
