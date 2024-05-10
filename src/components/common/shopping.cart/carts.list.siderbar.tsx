@@ -5,18 +5,13 @@ import { Sidebar } from "primereact/sidebar";
 import { Checkbox } from "primereact/checkbox";
 import { useState } from "react";
 import { CART_LIST_ITEMS } from "../util/util";
-import "./app.cart.item.css";
+import "./carts.list.sidebar.css";
 import AppCounterButton from "../app.counter.button/app.counter.button";
+import { useCartsList } from "@/app/hooks/fetch/cart";
 
-interface CartListViewProps {
-  visibleRight: boolean;
-  onHideSidebar: () => void; // Callback function to hide the sidebar
-}
-
-const CartListView: React.FC<CartListViewProps> = ({
-  visibleRight,
-  onHideSidebar,
-}) => {
+const CartsListSidebar: React.FC<any> = (props:any) => {
+  const { isOpen } = props;
+  const { mutate: cartsMutate, data: cartsList, isLoading: isCartsLoading, error: cartsListError } = useCartsList();
   const [checked, setChecked] = useState<boolean>(false);
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
 
@@ -32,25 +27,22 @@ const CartListView: React.FC<CartListViewProps> = ({
 
   return (
     <Sidebar
-      visible={visibleRight}
+      visible={isOpen}
       position="right"
-      onHide={onHideSidebar} // Call parent function to hide the sidebar
+      onHide={props.onHideSidebar} // Call parent function to hide the sidebar
       showCloseIcon={false}
       className="w-23rem md:w-30rem"
-      id="cart-items"
-    >
+      id="cart-items">
       <div className="overflow-auto content-container" style={{ height: "80vh" }}>
         <div
           className="flex justify-content-between  p-3 text-sm md:text-base"
-          style={{ backgroundColor: "#FFF2E3", color: "#FFAD4C" }}
-        >
+          style={{ backgroundColor: "#FFF2E3", color: "#FFAD4C" }}>
           Buy €5.00 more to enjoy FREE Delivery!
           <span className="underline font-semibold text-sm md:text-base">Add more</span>
         </div>
         <div
           className="flex justify-content-between p-3 text-sm md:text-base"
-          style={{ backgroundColor: "#E6FFED", color: "#009736" }}
-        >
+          style={{ backgroundColor: "#E6FFED", color: "#009736" }}>
           Eligible to pick an add-on item
           <span className="underline font-semibold text-sm md:text-base">Pick</span>
         </div>
@@ -63,7 +55,7 @@ const CartListView: React.FC<CartListViewProps> = ({
                 style={{ borderBottom: "1px solid #E9E9E9" }}
               >
                 <Checkbox
-                  onChange={(e) => setChecked(e.checked)}
+                 // onChange={(e) => setChecked(e.checked)}
                   checked={checked}
                 ></Checkbox>{" "}
                 <p className="m-0 font-semibold">SG Department (2)</p>
@@ -72,9 +64,7 @@ const CartListView: React.FC<CartListViewProps> = ({
               <div
                 key={item.id}
                 className="item-container"
-                style={{ borderBottom: "1px solid #E9E9E9" }}
-
-              >
+                style={{ borderBottom: "1px solid #E9E9E9" }}>
                 <div className="flex align-items-center gap-2 p-3 flex-wrap lg:flex-nowrap">
                   <Checkbox
                     onChange={(e) => toggleItem(item.id)}
@@ -116,14 +106,12 @@ const CartListView: React.FC<CartListViewProps> = ({
                 <div className="flex align-items-center gap-2 p-3 lg:pl-6 pr-5 pb-3 justify-content-between bg-white" >
                   <p
                     style={{ color: "#5A9429" }}
-                    className="border-1 text-xs p-1 pr-3 p-1 pl-3 border-round-lg m-0"
-                  >
+                    className="border-1 text-xs p-1 pr-3 p-1 pl-3 border-round-lg m-0">
                     Pick 1 more, get 20% off
                   </p>
                   <p
                     style={{ color: "#4C70FF" }}
-                    className="underline text-xs m-0"
-                  >
+                    className="underline text-xs m-0">
                     View Details
                   </p>
                 </div>
@@ -145,4 +133,4 @@ const CartListView: React.FC<CartListViewProps> = ({
   );
 };
 
-export default CartListView;
+export default CartsListSidebar;

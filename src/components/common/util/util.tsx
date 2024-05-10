@@ -1,4 +1,5 @@
 import { appLoaderStatusSelector } from "@/store/selectors/app.selectors";
+import { fromJS } from "immutable";
 
 export const differenceBetweenDatesInMinutes = (
   startDate: any,
@@ -18,11 +19,35 @@ export const isActionLoading = (actionType: string) => {
     appLoaderState &&
     appLoaderState.find(
       (loaderStatus: any) => loaderStatus.get("status") === "PENDING" &&
-      loaderStatus.get("actionType") == actionType
+        loaderStatus.get("actionType") == actionType
     );
   if (loadingState) {
     return true;
   } else return false;
+};
+
+export const getAllCartProducts = (packages: any) => {
+  let foundProducts: any = [];
+  packages && packages.forEach((element: any) => {
+    let stockId = element.get("stockId");
+    element && element.get('products') && element.get('products').forEach((prod: any) => {
+      foundProducts.push(fromJS({ product: prod, stockId: stockId }))
+    })
+  });
+  return foundProducts;
+};
+
+export const findCartItem = (packages:any, targetId:any) => {
+  let foundProduct: any = false;
+  packages && packages.forEach((element:any) => {
+      let stockId = element.get("stockId");
+      element && element.get('products').forEach((prod:any) => {
+          if (prod.get('productId') === targetId) {
+              foundProduct = fromJS({ product: prod, stockId: stockId })
+          }
+      })
+  });
+  return foundProduct;
 };
 
 export const getLanguageBaseName = (name: any, language = "en") => {

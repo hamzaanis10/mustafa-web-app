@@ -8,6 +8,7 @@ import ProductBox from "@/components/common/product.box/product.box";
 import ProductBarSkeleton from "@/skeletons/horizontal.bars.skeleton/product.bar.skeleton";
 import { useSystemConfig } from "@/app/hooks/fetch/app";
 import { useAppDispatch } from "@/store/store";
+import { useCartsList } from "@/app/hooks/fetch/cart";
 
 interface Product {
   id: string;
@@ -41,6 +42,10 @@ export default function ProductListing() {
     //categoryId: "",
     categoryIds: [],// TODO to be user selec4ed cateogories
   });
+  const { mutate: cartsMutate, data: userCart, isLoading: isCartsLoading, error: cartsListError } = useCartsList();
+
+  //const cartProducts = getAllCartProducts(userCart && userCart.get('packages'));
+
   const pList: any = productsList ? [].concat(...productsList) : [];
   function isMultipleOfProductListingSize(number: any) {
     return number % PRODUCTS_PAGE_SIZE === 0;
@@ -52,9 +57,11 @@ export default function ProductListing() {
   const observerMap = useRef(new Map());
 
   const { data: systemConfig, isLoading: systemConfigLoading } =
-  useSystemConfig();
+    useSystemConfig();
 
-const dispatch = useAppDispatch();
+
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const observeElement = (elementId: any) => {
@@ -106,16 +113,19 @@ const dispatch = useAppDispatch();
 
   const itemTemplate = (product: Product, index: any) => {
     return (
-      <ProductBox 
-      dispatch={dispatch}
-      systemConfig={systemConfig} 
-      systemConfigLoading={systemConfigLoading} 
-      product={product} 
-      index={index} />
+      <ProductBox
+        userCart={userCart}
+        //cartProducts={cartProducts}
+        dispatch={dispatch}
+        cartsMutate={cartsMutate}
+        systemConfig={systemConfig}
+        systemConfigLoading={systemConfigLoading}
+        product={product}
+        index={index} />
     );
   };
 
-  const listTemplate = (items: Product[],layout:any): any => {
+  const listTemplate = (items: Product[], layout: any): any => {
     if (!items || items.length === 0) return null;
 
     let list = items.map((product, index) => {
@@ -129,7 +139,7 @@ const dispatch = useAppDispatch();
     <div id="product-container" className="flex flex-wrap gap-2">
       <DataView value={pList} listTemplate={listTemplate} />
       {
-        isLoadingMore === true ?  <ProductBarSkeleton /> : null
+        isLoadingMore === true ? <ProductBarSkeleton /> : null
       }
     </div>
   );

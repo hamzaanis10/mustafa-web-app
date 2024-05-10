@@ -4,27 +4,21 @@ import { Button } from "primereact/button";
 import { Rating } from "primereact/rating";
 import { Tag } from "primereact/tag";
 import { Card } from "primereact/card";
-import { getLanguageBaseName, isActionLoading } from "../util/util";
+import { findCartItem, getLanguageBaseName, isActionLoading } from "../util/util";
 import AppCounterButton from "../app.counter.button/app.counter.button";
 //import { addProductToCart } from "@/store/actions/cart.actions";
 import { createAction } from "@reduxjs/toolkit";
 import { ProgressBar } from "primereact/progressbar";
 
 export default function ProductBox(props: any) {
-    const { product, index, dispatch, systemConfig } = props;
+    const { product, index, cartProducts, dispatch, userCart, systemConfig, cartsMutate } = props;
 
     const addToCart = () => {
         if (product) {
-            const addTProductToCart = createAction(`ADD_PRODUCT_TO_CART_${product.id}`, (dataR: any = {}, additionalData: any = {}) => ({
+            const addTProductToCart = createAction(`ADD_PRODUCT_TO_CART_${product.id}`, (dataR: any = {}, dt: any = {}) => ({
                 payload: {
-                    data: {
-                        productId: product && product.id,
-                        quantity: 1
-                    },
-                    additionalData: {
-                        productId: product && product.id,
-                        quantity: 1
-                    },
+                    data: dataR,
+                    details: dt,
                     url: `v1/cart?id=${dataR.productId}`,
                     method: 'PUT'
                 }
@@ -33,11 +27,15 @@ export default function ProductBox(props: any) {
                 productId: product && product.id,
                 quantity: 1
             }, {
-                productId: product && product.id
+                productId: product && product.id,
+                quantity: 1,
+                cartsMutate: cartsMutate,
+                mutationKeys: ['v1/cart/count', 'v1/cart']
             }))
         }
     }
-
+    const cartProduct: any = findCartItem(userCart && userCart.get('packages'), product && product.id);
+    
     return (
         <div id={`listitem-${index + 1}`}>
             {systemConfig && product ? (
@@ -97,22 +95,25 @@ export default function ProductBox(props: any) {
                     </div>
 
                     <div className="flex flex-column lg:flex-row align-items-center xl:align-items-center justify-content-center lg:flex-1 gap-4">
-                        <div className="flex flex-row lg:flex-column align-items-center gap-4 lg:gap-2 ">
-                            {
-                                isActionLoading(`ADD_PRODUCT_TO_CART_${product.id}`) ?
-                                    <div><ProgressBar mode="indeterminate" className="mt-3 mb-3" style={{ width: '11rem', height: '6px' }}></ProgressBar></div> :
-                                    <Button
-                                        onClick={addToCart}
-                                        icon="pi pi-shopping-cart"
-                                        label="Add to Cart"
-                                        disabled={product.inventoryStatus === "OUTOFSTOCK"}
-                                        className="border-none hover:border-none focus:border-none"
-                                        style={{ background: "transparent", color: "#5A9429" }}
-                                    ></Button>
-                            }
-                        </div>
+                        {
+                            cartProduct && cartProduct.get('product') && cartProduct.get('product').get('productId') ?
+                                <AppCounterButton /> :
+                                <div className="flex flex-row lg:flex-column align-items-center gap-4 lg:gap-2 ">
+                                    {
+                                        isActionLoading(`ADD_PRODUCT_TO_CART_${product.id}`) ?
+                                            <div><ProgressBar mode="indeterminate" className="mt-3 mb-3" style={{ width: '11rem', height: '6px' }}></ProgressBar></div> :
+                                            <Button
+                                                onClick={addToCart}
+                                                icon="pi pi-shopping-cart"
+                                                label="Add to Cart"
+                                                disabled={product.inventoryStatus === "OUTOFSTOCK"}
+                                                className="border-none hover:border-none focus:border-none"
+                                                style={{ background: "transparent", color: "#5A9429" }}
+                                            ></Button>
+                                    }
+                                </div>
+                        }
                     </div>
-                    <AppCounterButton />
                 </Card>
             ) : null}
         </div>
