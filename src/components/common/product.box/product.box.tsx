@@ -5,19 +5,13 @@ import { Rating } from "primereact/rating";
 import { Tag } from "primereact/tag";
 import { Card } from "primereact/card";
 import { getLanguageBaseName, isActionLoading } from "../util/util";
-import { useSystemConfig } from "@/app/hooks/fetch/app";
 import AppCounterButton from "../app.counter.button/app.counter.button";
-import { useAppDispatch } from "@/store/store";
 //import { addProductToCart } from "@/store/actions/cart.actions";
 import { createAction } from "@reduxjs/toolkit";
 import { ProgressBar } from "primereact/progressbar";
 
 export default function ProductBox(props: any) {
-    const { data: systemConfig, isLoading: systemConfigLoading } =
-        useSystemConfig();
-
-    const dispatch = useAppDispatch();
-    const { product, index } = props;
+    const { product, index, dispatch, systemConfig } = props;
 
     const addToCart = () => {
         if (product) {

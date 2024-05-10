@@ -6,6 +6,8 @@ import { PRODUCTS_PAGE_SIZE } from "@/components/common/util/util";
 import { useProductList } from "@/app/hooks/fetch/products";
 import ProductBox from "@/components/common/product.box/product.box";
 import ProductBarSkeleton from "@/skeletons/horizontal.bars.skeleton/product.bar.skeleton";
+import { useSystemConfig } from "@/app/hooks/fetch/app";
+import { useAppDispatch } from "@/store/store";
 
 interface Product {
   id: string;
@@ -48,6 +50,11 @@ export default function ProductListing() {
     return Math.floor(itemIndex / PRODUCTS_PAGE_SIZE) + 1;
   }
   const observerMap = useRef(new Map());
+
+  const { data: systemConfig, isLoading: systemConfigLoading } =
+  useSystemConfig();
+
+const dispatch = useAppDispatch();
 
   useEffect(() => {
     const observeElement = (elementId: any) => {
@@ -99,7 +106,12 @@ export default function ProductListing() {
 
   const itemTemplate = (product: Product, index: any) => {
     return (
-      <ProductBox product={product} index={index} />
+      <ProductBox 
+      dispatch={dispatch}
+      systemConfig={systemConfig} 
+      systemConfigLoading={systemConfigLoading} 
+      product={product} 
+      index={index} />
     );
   };
 

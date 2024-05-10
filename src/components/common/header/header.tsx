@@ -6,6 +6,7 @@ import Image from "next/image";
 import UserProfile from "../user.profile/user.profile";
 import { Sidebar } from "primereact/sidebar";
 import AppCategories from "@/app/((withsidebar))/cmp/c.layout/menu.category/menu.catrgory";
+import ReduxProvider from "@/store/redux-provider";
 
 const Header = () => {
   const [isCategoryMenuVisible, setIsCategoryMenuVisible] =
@@ -27,7 +28,7 @@ const Header = () => {
           </Sidebar>
         </div>
       )}
-      
+
       <header
         className="z-4 sticky top-0 flex flex-wrap align-items-center justify-content-between p-3 lg:flex-nowrap xl:pl-6 xl:pr-6"
         style={{ backgroundColor: "#fff" }}
@@ -48,10 +49,12 @@ const Header = () => {
             priority
           />
         </div>
-        <div className="flex flex-initial align-items-center pl-2 gap-4 text-sm font-medium lg:flex-order-4 lg:text-base lg:pl-4">
-          <MyCart />
-          <UserProfile />
-        </div>
+        <ReduxProvider>
+          <div className="flex flex-initial align-items-center pl-2 gap-4 text-sm font-medium lg:flex-order-4 lg:text-base lg:pl-4">
+            <MyCart />
+            <UserProfile />
+          </div>
+        </ReduxProvider>
         <SearchInput />
       </header>
     </>
