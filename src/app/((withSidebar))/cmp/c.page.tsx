@@ -35,7 +35,7 @@ export default function CPage() {
         } */}
         <ErrorMessages />
         <AppHomeBanner />
-        <div className="md:p-5 pt-3 pr-1 pl-4">
+        <div className="md:p-5 md:pb-8 pb-8 pt-3 pr-1 pl-4 ">
           <h1
             onClick={testCall}
             className="text-xl pb-2 md:text-3xl font-medium md:pb-0"

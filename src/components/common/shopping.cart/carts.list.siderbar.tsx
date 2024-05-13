@@ -70,7 +70,7 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
           })
         }
       </div>
-      <div className="flex p-3 justify-content-between align-items-center fixed bottom-0 w-23rem md:w-29rem xl:w-3">
+      <div className="flex p-3 justify-content-between align-items-center fixed bottom-0 w-23rem md:w-29rem">
         <div className="flex flex-column">
           <p className="m-0 pb-2">Total: €999.99</p>
           <p className="m-0" style={{ color: "#FF4C72" }}>
