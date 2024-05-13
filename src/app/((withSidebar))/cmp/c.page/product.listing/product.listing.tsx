@@ -114,6 +114,7 @@ export default function ProductListing() {
   const itemTemplate = (product: Product, index: any) => {
     return (
       <ProductBox
+        isCartsLoading={isCartsLoading}
         userCart={userCart}
         //cartProducts={cartProducts}
         dispatch={dispatch}

@@ -11,8 +11,7 @@ import { createAction } from "@reduxjs/toolkit";
 import { ProgressBar } from "primereact/progressbar";
 
 export default function ProductBox(props: any) {
-    const { product, index, cartProducts, dispatch, userCart, systemConfig, cartsMutate } = props;
-
+    const { product, index, cartProducts, dispatch, userCart, isCartsLoading, systemConfig, cartsMutate } = props;
     const addToCart = () => {
         if (product) {
             const addTProductToCart = createAction(`ADD_PRODUCT_TO_CART_${product.id}`, (dataR: any = {}, dt: any = {}) => ({
@@ -27,6 +26,7 @@ export default function ProductBox(props: any) {
                 productId: product && product.id,
                 quantity: 1
             }, {
+                //userCart: userCart,
                 productId: product && product.id,
                 quantity: 1,
                 cartsMutate: cartsMutate,
@@ -35,7 +35,7 @@ export default function ProductBox(props: any) {
         }
     }
     const cartProduct: any = findCartItem(userCart && userCart.get('packages'), product && product.id);
-    
+
     return (
         <div id={`listitem-${index + 1}`}>
             {systemConfig && product ? (
@@ -97,21 +97,22 @@ export default function ProductBox(props: any) {
                     <div className="flex flex-column lg:flex-row align-items-center xl:align-items-center justify-content-center lg:flex-1 gap-4">
                         {
                             cartProduct && cartProduct.get('product') && cartProduct.get('product').get('productId') ?
-                                <AppCounterButton /> :
-                                <div className="flex flex-row lg:flex-column align-items-center gap-4 lg:gap-2 ">
-                                    {
-                                        isActionLoading(`ADD_PRODUCT_TO_CART_${product.id}`) ?
-                                            <div><ProgressBar mode="indeterminate" className="mt-3 mb-3" style={{ width: '11rem', height: '6px' }}></ProgressBar></div> :
-                                            <Button
-                                                onClick={addToCart}
-                                                icon="pi pi-shopping-cart"
-                                                label="Add to Cart"
-                                                disabled={product.inventoryStatus === "OUTOFSTOCK"}
-                                                className="border-none hover:border-none focus:border-none"
-                                                style={{ background: "transparent", color: "#5A9429" }}
-                                            ></Button>
-                                    }
-                                </div>
+                                <AppCounterButton cartProduct={cartProduct} /> :
+                                isCartsLoading ? null :
+                                    <div className="flex flex-row lg:flex-column align-items-center gap-4 lg:gap-2 ">
+                                        {
+                                            isActionLoading(`ADD_PRODUCT_TO_CART_${product.id}`) ?
+                                                <div><ProgressBar mode="indeterminate" className="mt-3 mb-3" style={{ width: '11rem', height: '6px' }}></ProgressBar></div> :
+                                                <Button
+                                                    onClick={addToCart}
+                                                    icon="pi pi-shopping-cart"
+                                                    label="Add to Cart"
+                                                    disabled={product.inventoryStatus === "OUTOFSTOCK"}
+                                                    className="border-none hover:border-none focus:border-none"
+                                                    style={{ background: "transparent", color: "#5A9429" }}
+                                                ></Button>
+                                        }
+                                    </div>
                         }
                     </div>
                 </Card>

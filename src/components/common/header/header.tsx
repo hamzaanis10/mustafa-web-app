@@ -11,7 +11,7 @@ import { useTotalCartItems } from "@/app/hooks/fetch/cart";
 
 const Header = () => {
   const { mutate: totalCartItemsMutate, data: totalCartItems, isLoading: isLoadingTotalCartItems } = useTotalCartItems();
-  
+
   const [isCategoryMenuVisible, setIsCategoryMenuVisible] =
     useState<boolean>(false);
 
@@ -53,7 +53,10 @@ const Header = () => {
         </div>
         <ReduxProvider>
           <div className="flex flex-initial align-items-center pl-2 gap-4 text-sm font-medium lg:flex-order-4 lg:text-base lg:pl-4">
-            <MyCart totalCartItems={totalCartItems} />
+            {
+              totalCartItems && totalCartItems.get('count') > 0 ?
+                <MyCart totalCartItems={totalCartItems} /> : null
+            }
             <UserProfile />
           </div>
         </ReduxProvider>

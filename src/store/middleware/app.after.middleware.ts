@@ -4,13 +4,25 @@ import { mutate } from "swr"
 
 const appAfterMiddleware = ({ dispatch }: any) => (next: any) => async (action: any) => {
   if (action.type.includes('SUCCESS')) {
-    // if (action.payload.baseType.includes('ADD_PRODUCT_TO_CART')) {
-    //   action?.payload?.additionalData?.details?.cartsMutate();
-    // }
-    action?.payload?.additionalData?.details?.mutationKeys?.forEach((key: any) => {
-      const ke = useKey(key)
-      mutate(ke);
-    });
+    if (action.payload.baseType.includes('ADD_PRODUCT_TO_CART')) {
+      action?.payload?.additionalData?.details?.mutationKeys?.forEach((key: any) => {
+        if (key == 'v1/cart') {
+          const ke = useKey(key)
+          mutate(ke,action?.payload?.response,true);
+        }
+        else {
+          const ke = useKey(key)
+          mutate(ke);
+        }
+      });
+    }
+    else {
+      action?.payload?.additionalData?.details?.mutationKeys?.forEach((key: any) => {
+        const ke = useKey(key)
+        mutate(ke);
+      });
+    }
+
 
     dispatch(addUpdateAppLoadersStatus({
       actionType: action.payload.baseType,

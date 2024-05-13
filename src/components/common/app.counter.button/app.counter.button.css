@@ -29,7 +29,7 @@
     .p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-down {
         height: 0;
         width: 0;
-        padding: 10px;
+        padding: 14px;
         border-radius: 50px;
         background-color: #8FC158;
         border: none;
@@ -37,7 +37,7 @@
     .p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-up{
         height: 0;
         width: 0;
-        padding: 10px;
+        padding: 14px;
         border-radius: 50px;
         background-color: #8FC158;
         border: none;

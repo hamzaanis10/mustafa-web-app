@@ -4,14 +4,19 @@ import React from "react";
 import { Sidebar } from "primereact/sidebar";
 import { Checkbox } from "primereact/checkbox";
 import { useState } from "react";
-import { CART_LIST_ITEMS } from "../util/util";
+import { CART_LIST_ITEMS, getAllCartProducts } from "../util/util";
 import "./carts.list.sidebar.css";
 import AppCounterButton from "../app.counter.button/app.counter.button";
 import { useCartsList } from "@/app/hooks/fetch/cart";
+import CartListItem from "./cart.list.item";
+import { useProductDetails } from "@/app/hooks/fetch/products";
+import { useSystemConfig } from "@/app/hooks/fetch/app";
 
-const CartsListSidebar: React.FC<any> = (props:any) => {
+const CartsListSidebar: React.FC<any> = (props: any) => {
   const { isOpen } = props;
-  const { mutate: cartsMutate, data: cartsList, isLoading: isCartsLoading, error: cartsListError } = useCartsList();
+  const { mutate: cartsMutate, data: userCart, isLoading: isCartsLoading, error: cartsListError } = useCartsList();
+  const { data: systemConfig, isLoading: systemConfigLoading } =
+  useSystemConfig();
   const [checked, setChecked] = useState<boolean>(false);
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
 
@@ -25,6 +30,9 @@ const CartsListSidebar: React.FC<any> = (props:any) => {
     setCheckedItems(newCheckedItems);
   };
 
+  const cartProducts = getAllCartProducts(userCart && userCart.get('packages'));
+
+
   return (
     <Sidebar
       visible={isOpen}
@@ -34,7 +42,7 @@ const CartsListSidebar: React.FC<any> = (props:any) => {
       className="w-23rem md:w-30rem"
       id="cart-items">
       <div className="overflow-auto content-container" style={{ height: "80vh" }}>
-        <div
+        {/* <div
           className="flex justify-content-between  p-3 text-sm md:text-base"
           style={{ backgroundColor: "#FFF2E3", color: "#FFAD4C" }}>
           Buy €5.00 more to enjoy FREE Delivery!
@@ -45,80 +53,22 @@ const CartsListSidebar: React.FC<any> = (props:any) => {
           style={{ backgroundColor: "#E6FFED", color: "#009736" }}>
           Eligible to pick an add-on item
           <span className="underline font-semibold text-sm md:text-base">Pick</span>
-        </div>
+        </div> */}
+        {
+          cartProducts && cartProducts.map((product: any, index: number) => {
+            const prod = product && product.get('product');
+            const isAvailable = prod && prod.get('available');
+            return <CartListItem
+              {...props}
+              systemConfig={systemConfig}
+              key={index}
+              isAvailable={isAvailable}
+              cartProduct={product}
+            //productDetails={productDetails}
+            />
 
-        <div>
-          {CART_LIST_ITEMS.map((item) => (
-            <>
-              <div
-                className="flex align-items-center gap-2 p-3"
-                style={{ borderBottom: "1px solid #E9E9E9" }}
-              >
-                <Checkbox
-                 // onChange={(e) => setChecked(e.checked)}
-                  checked={checked}
-                ></Checkbox>{" "}
-                <p className="m-0 font-semibold">SG Department (2)</p>
-              </div>
-
-              <div
-                key={item.id}
-                className="item-container"
-                style={{ borderBottom: "1px solid #E9E9E9" }}>
-                <div className="flex align-items-center gap-2 p-3 flex-wrap lg:flex-nowrap">
-                  <Checkbox
-                    onChange={(e) => toggleItem(item.id)}
-                    checked={checkedItems.has(item.id)}
-                    // className="w-1rem lg:w-2rem"
-                    style={{ width: "fit-content" }}
-                  />
-                  <div className="w-3rem lg:w-4rem">
-                    <img
-                      src={`https://primefaces.org/cdn/primereact/images/product/${item.image}`}
-                      alt={item.name}
-                      className="dark:invert"
-                      width={54}
-                      height={54}
-                    />
-                  </div>
-                  <div className="w-10rem lg:w-15rem">
-                    <p className="m-0 font-medium text-sm">{item.name}</p>
-                    <p
-                      className="m-0 text-sm pt-1 pb-1"
-                      style={{ color: "#9D9D9D" }}
-                    >
-                      {item.description}
-                    </p>
-                    <p className="flex align-items-center gap-2 m-0">
-                      <span
-                        className="text-xl font-medium"
-                        style={{ color: "#009736" }}
-                      >
-                        ${item.discountedPrice}
-                      </span>
-                      <span className="text-xs" style={{ color: "#9D9D9D" }}>
-                        <del>${item.price}</del>
-                      </span>
-                    </p>
-                  </div>
-                  <AppCounterButton />
-                </div>
-                <div className="flex align-items-center gap-2 p-3 lg:pl-6 pr-5 pb-3 justify-content-between bg-white" >
-                  <p
-                    style={{ color: "#5A9429" }}
-                    className="border-1 text-xs p-1 pr-3 p-1 pl-3 border-round-lg m-0">
-                    Pick 1 more, get 20% off
-                  </p>
-                  <p
-                    style={{ color: "#4C70FF" }}
-                    className="underline text-xs m-0">
-                    View Details
-                  </p>
-                </div>
-              </div>
-            </>
-          ))}
-        </div>
+          })
+        }
       </div>
       <div className="flex p-3 justify-content-between align-items-center fixed bottom-0 w-23rem md:w-29rem xl:w-3">
         <div className="flex flex-column">
