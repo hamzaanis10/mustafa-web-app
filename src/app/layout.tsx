@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="icon" href="../../../assets/images/must-fav-icon-32-32.png" />
-      <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/images/must-fav-icon-180-180.png" />
+      <link rel="apple" sizes="180x180" href="../../../assets/images/must-fav-icon-180-180.png" />
       <body className={inter.className}>
         <RefToastProvider>
           <SWRProvider>
