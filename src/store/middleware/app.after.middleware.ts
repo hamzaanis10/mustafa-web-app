@@ -5,10 +5,24 @@ import { mutate } from "swr"
 const appAfterMiddleware = ({ dispatch }: any) => (next: any) => async (action: any) => {
   if (action.type.includes('SUCCESS')) {
     if (action.payload.baseType.includes('ADD_PRODUCT_TO_CART')) {
+      let payload = action.payload;
       action?.payload?.additionalData?.details?.mutationKeys?.forEach((key: any) => {
         if (key == 'v1/cart') {
           const ke = useKey(key)
-          mutate(ke,action?.payload?.response,true);
+          mutate(ke,payload?.response,true);
+        }
+        else {
+          const ke = useKey(key)
+          mutate(ke);
+        }
+      });
+    }
+    else if (action.payload.baseType.includes('UPDATE_PRODUCT')) {
+      let payload = action.payload;
+      action?.payload?.additionalData?.details?.mutationKeys?.forEach((key: any) => {
+        if (key == 'v1/cart') {
+          const ke = useKey(key)
+          mutate(ke,true);
         }
         else {
           const ke = useKey(key)
