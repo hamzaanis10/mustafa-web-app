@@ -65,7 +65,13 @@ function parseJSON(response: any) {
 */
 function checkStatus(response: any) {
   if (response.status >= 200 && response.status < 300) {
-    return response;
+    if (response && response.data) {
+      return response
+    }
+    else
+      return {
+        success: true
+      };
   }
   if (response.status === 500) {
     return response;
@@ -96,20 +102,20 @@ const PUBLIC_ACCESS_ACTIONS = [
   "LOGOUT",
   "GET_SYSTEM_CONFIG"
 ]
-var cancelSources:any = [];
+var cancelSources: any = [];
 const apiMiddleware = ({ dispatch }: any) => (next: any) => async (action: any) => {
   if (action.type === "CANCEL_REQUEST") {
     //const cancelSrc = cancelSources && cancelSources.find((source)=> source.type === action.payload.type);
     //cancelSrc && cancelSrc.cancelFunction && cancelSrc.cancelFunction();
-      const cancelSrces = cancelSources && cancelSources.filter((source:any) => source.type === action?.payload?.data?.type);
-      cancelSrces && cancelSrces.map((src:any) => {
-        src && src.cancelFunction && src.cancelFunction();
-      })
-      cancelSources = cancelSources && cancelSources.filter((source:any) => source.type !== action?.payload?.data?.type);
-      //cancelSrc && cancelSrc.cancelFunction && cancelSrc.cancelFunction();    
+    const cancelSrces = cancelSources && cancelSources.filter((source: any) => source.type === action?.payload?.data?.type);
+    cancelSrces && cancelSrces.map((src: any) => {
+      src && src.cancelFunction && src.cancelFunction();
+    })
+    cancelSources = cancelSources && cancelSources.filter((source: any) => source.type !== action?.payload?.data?.type);
+    //cancelSrc && cancelSrc.cancelFunction && cancelSrc.cancelFunction();    
   }
   if (action.type === "CANCEL_ALL_REQUEST") {
-    const cancelSrcesAl = cancelSources && cancelSources.filter((source:any) => {
+    const cancelSrcesAl = cancelSources && cancelSources.filter((source: any) => {
       if (PUBLIC_ACCESS_ACTIONS.indexOf(source.type) !== -1) {
 
       }
@@ -117,10 +123,10 @@ const apiMiddleware = ({ dispatch }: any) => (next: any) => async (action: any) 
         return true;
       }
     });
-    cancelSrcesAl && cancelSrcesAl.map((src:any) => {
+    cancelSrcesAl && cancelSrcesAl.map((src: any) => {
       src && src.cancelFunction && src.cancelFunction();
     })
-    cancelSources = cancelSources && cancelSources.filter((source:any) => {
+    cancelSources = cancelSources && cancelSources.filter((source: any) => {
       if (PUBLIC_ACCESS_ACTIONS.indexOf(source.type) !== -1) {
         return true;
       }
@@ -130,13 +136,13 @@ const apiMiddleware = ({ dispatch }: any) => (next: any) => async (action: any) 
     });
   }
   if (action.payload && action.payload.url) {
-    const cancelSrcesSameUrl = cancelSources && cancelSources.filter((source:any) => source.url === action.payload.url);
-    cancelSrcesSameUrl && cancelSrcesSameUrl.map((src:any) => {
+    const cancelSrcesSameUrl = cancelSources && cancelSources.filter((source: any) => source.url === action.payload.url);
+    cancelSrcesSameUrl && cancelSrcesSameUrl.map((src: any) => {
       src && src.cancelFunction && src.cancelFunction();
     })
     const CancelToken = axios.CancelToken;
     let tkn = new CancelToken(function executor(c) {
-      cancelSources = cancelSources && cancelSources.filter((source:any) => differenceBetweenDatesInMinutes(source.executionDate, new Date()) <= 4);
+      cancelSources = cancelSources && cancelSources.filter((source: any) => differenceBetweenDatesInMinutes(source.executionDate, new Date()) <= 4);
       //cancelSources = cancelSources && cancelSources.filter((source)=> source.type !== action.type);
       cancelSources.push({
         type: action.type,

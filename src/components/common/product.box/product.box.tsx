@@ -35,7 +35,6 @@ export default function ProductBox(props: any) {
         }
     }
     const cartProduct: any = findCartItem(userCart && userCart.get('packages'), product && product.id);
-
     return (
         <div id={`listitem-${index + 1}`}>
             {systemConfig && product ? (
@@ -97,7 +96,10 @@ export default function ProductBox(props: any) {
                     <div className="flex flex-column lg:flex-row align-items-center xl:align-items-center justify-content-center lg:flex-1 gap-4">
                         {
                             cartProduct && cartProduct.get('product') && cartProduct.get('product').get('productId') ?
-                                <AppCounterButton cartProduct={cartProduct} /> :
+                                <AppCounterButton
+                                    dispatch={dispatch}
+                                    product={product}
+                                    cartProduct={cartProduct} /> :
                                 isCartsLoading ? null :
                                     <div className="flex flex-row lg:flex-column align-items-center gap-4 lg:gap-2 ">
                                         {

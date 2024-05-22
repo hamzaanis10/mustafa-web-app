@@ -11,9 +11,11 @@ import { useCartsList } from "@/app/hooks/fetch/cart";
 import CartListItem from "./cart.list.item";
 import { useProductDetails } from "@/app/hooks/fetch/products";
 import { useSystemConfig } from "@/app/hooks/fetch/app";
+import { useAppDispatch } from "@/store/store";
 
 const CartsListSidebar: React.FC<any> = (props: any) => {
   const { isOpen } = props;
+  const dispatch = useAppDispatch();
   const { mutate: cartsMutate, data: userCart, isLoading: isCartsLoading, error: cartsListError } = useCartsList();
   const { data: systemConfig, isLoading: systemConfigLoading } =
   useSystemConfig();
@@ -62,6 +64,7 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
               {...props}
               systemConfig={systemConfig}
               key={index}
+              dispatch={dispatch}
               isAvailable={isAvailable}
               cartProduct={product}
             //productDetails={productDetails}
