@@ -36,6 +36,18 @@ const appAfterMiddleware = ({ dispatch }: any) => (next: any) => async (action: 
     }))
   }
   else if (action.type.includes('ERROR')) {
+    if (action.payload.baseType.includes('UPDATE_CART_')) {
+      action?.payload?.additionalData?.details?.mutationKeys?.forEach((key: any) => {
+        if (key == 'v1/cart') {
+          const ke = useKey(key)
+          mutate(ke,{},true);
+        }
+        else {
+          const ke = useKey(key)
+          mutate(ke);
+        }
+      });
+    }
     dispatch(addUpdateAppLoadersStatus({
       actionType: action.payload.baseType,
       type: action.type,

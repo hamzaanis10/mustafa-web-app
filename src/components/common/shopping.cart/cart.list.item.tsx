@@ -6,7 +6,7 @@ import { getLanguageBaseName } from "../util/util";
 import CartBarSkeleton from "@/skeletons/horizontal.bars.skeleton/cart.skeleton";
 
 export default function CartListItem(props: any) {
-  const { item, cartProduct, systemConfig, dispatch } = props;
+  const { item, cartProduct, systemConfig, userCart, dispatch } = props;
   const { data: productDetails, isLoading: isLoadingProductDetails } =
     useProductDetails(
       {
@@ -96,7 +96,7 @@ export default function CartListItem(props: any) {
               </p>
             </div>
             {
-              productDetails && <AppCounterButton dispatch={dispatch} product={productDetails && productDetails.toJS()} cartProduct={cartProduct} />
+              productDetails && <AppCounterButton userCart={userCart} dispatch={dispatch} product={productDetails && productDetails.toJS()} cartProduct={cartProduct} />
             }
           </div>
           {/* <div className="flex align-items-center gap-2 p-3 lg:pl-6 pr-5 pb-3 justify-content-between bg-white" >

@@ -99,6 +99,7 @@ export default function ProductBox(props: any) {
                                 <AppCounterButton
                                     dispatch={dispatch}
                                     product={product}
+                                    userCart={userCart}
                                     cartProduct={cartProduct} /> :
                                 isCartsLoading ? null :
                                     <div className="flex flex-row lg:flex-column align-items-center gap-4 lg:gap-2 ">

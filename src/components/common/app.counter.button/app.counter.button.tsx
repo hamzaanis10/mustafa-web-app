@@ -9,7 +9,7 @@ import { createAction } from "@reduxjs/toolkit";
 import { isActionLoading } from "../util/util";
 
 export default function AppCounterButton(props: any) {
-  const { cartProduct, product, dispatch } = props;
+  const { cartProduct, product, dispatch, userCart } = props;
   let cartQuantity = cartProduct && cartProduct.get('product') && Number(cartProduct.get('product').get('quantity')) || 0;
   const [currentValue,setCurrentValue] =useState(cartQuantity)
   const updateCart = useMemo(() => {
@@ -35,6 +35,7 @@ export default function AppCounterButton(props: any) {
               //userCart: userCart,
               productId: product && product.id,
               quantity: value,
+              userCart:  userCart && userCart.toJS(),
               //   cartsMutate: cartsMutate,
               mutationKeys: ['v1/cart/count', 'v1/cart']
             }))

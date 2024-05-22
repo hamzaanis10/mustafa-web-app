@@ -62,6 +62,7 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
             const isAvailable = prod && prod.get('available');
             return <CartListItem
               {...props}
+              userCart={userCart}
               systemConfig={systemConfig}
               key={index}
               dispatch={dispatch}
