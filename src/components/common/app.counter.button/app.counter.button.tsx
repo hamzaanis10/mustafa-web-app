@@ -14,6 +14,7 @@ export default function AppCounterButton(props: any) {
   const [currentValue, setCurrentValue] = useState(cartQuantity);
   const onDelete = () => {
     if (product && cartProduct) {
+      setCurrentValue(0)
       const updateTProductToCart = createAction(`UPDATE_CART_${product.id}`, (dataR: any = {}, dt: any = {}) => ({
         payload: {
           data: dataR,
