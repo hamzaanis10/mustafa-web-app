@@ -17,12 +17,12 @@ const appAfterMiddleware = ({ dispatch }: any) => (next: any) => async (action: 
         }
       });
     }
-    else if (action.payload.baseType.includes('UPDATE_PRODUCT')) {
+    else if (action.payload.baseType.includes('UPDATE_CART')) {
       let payload = action.payload;
       action?.payload?.additionalData?.details?.mutationKeys?.forEach((key: any) => {
         if (key == 'v1/cart') {
           const ke = useKey(key)
-          mutate(ke,true);
+          mutate(ke);
         }
         else {
           const ke = useKey(key)

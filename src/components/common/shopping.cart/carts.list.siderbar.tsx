@@ -6,17 +6,20 @@ import { Checkbox } from "primereact/checkbox";
 import { useState } from "react";
 import { CART_LIST_ITEMS, getAllCartProducts } from "../util/util";
 import "./carts.list.sidebar.css";
-import AppCounterButton from "../app.counter.button/app.counter.button";
-import { useCartsList } from "@/app/hooks/fetch/cart";
+// import AppCounterButton from "../app.counter.button/app.counter.button";
+import { useCartSummary, useCartsList } from "@/app/hooks/fetch/cart";
 import CartListItem from "./cart.list.item";
-import { useProductDetails } from "@/app/hooks/fetch/products";
 import { useSystemConfig } from "@/app/hooks/fetch/app";
 import { useAppDispatch } from "@/store/store";
+import ProductBarSkeleton from "@/skeletons/horizontal.bars.skeleton/product.bar.skeleton";
 
 const CartsListSidebar: React.FC<any> = (props: any) => {
   const { isOpen } = props;
   const dispatch = useAppDispatch();
   const { mutate: cartsMutate, data: userCart, isLoading: isCartsLoading, error: cartsListError } = useCartsList();
+  const { data: cartSummary, isLoading: isCartSummaryLoading } = useCartSummary({},{
+    revalidateIfStale : false
+  });
   const { data: systemConfig, isLoading: systemConfigLoading } =
   useSystemConfig();
   const [checked, setChecked] = useState<boolean>(false);
@@ -33,8 +36,6 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
   };
 
   const cartProducts = getAllCartProducts(userCart && userCart.get('packages'));
-
-
   return (
     <Sidebar
       visible={isOpen}
@@ -74,15 +75,20 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
           })
         }
       </div>
-      <div className="flex p-3 justify-content-between align-items-center fixed bottom-0 w-23rem md:w-29rem">
+      {
+        isCartSummaryLoading  ?
+        <ProductBarSkeleton /> :
+        <div className="flex p-3 justify-content-between align-items-center fixed bottom-0 w-23rem md:w-29rem">
         <div className="flex flex-column">
-          <p className="m-0 pb-2">Total: €999.99</p>
-          <p className="m-0" style={{ color: "#FF4C72" }}>
+          <p className="m-0 pb-2">{`Total ${cartSummary && cartSummary.get('currency')} ${cartSummary && cartSummary.get('orderFinalAmount')}`}</p>
+          {/* <p className="m-0" style={{ color: "#FF4C72" }}>
             Saved: €999.99
-          </p>
+          </p> */}
         </div>
         <button className="border-none border-round-3xl pt-3 pr-4 pb-3 pl-4 lg:pt-3 lg:pr-8 lg:pb-3 lg:pl-8 text-1xl text-50" style={{ backgroundColor: "#00CB56" }}>Check Out</button>
       </div>
+      }
+     
     </Sidebar>
   );
 };

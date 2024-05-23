@@ -32,7 +32,7 @@ export default function AppCounterButton(props: any) {
         quantity: 0,
         userCart: userCart && userCart.toJS(),
         //   cartsMutate: cartsMutate,
-        mutationKeys: ['v1/cart/count', 'v1/cart']
+        mutationKeys: ['v1/cart/count', 'v1/cart', 'v1/order/calculate-price']
       }))
     }
   }
@@ -70,7 +70,7 @@ export default function AppCounterButton(props: any) {
               quantity: value,
               userCart: userCart && userCart.toJS(),
               //   cartsMutate: cartsMutate,
-              mutationKeys: ['v1/cart/count', 'v1/cart']
+              mutationKeys: ['v1/cart/count', 'v1/cart', 'v1/order/calculate-price']
             }))
           }
         }

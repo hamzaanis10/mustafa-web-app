@@ -30,7 +30,7 @@ export default function ProductBox(props: any) {
                 productId: product && product.id,
                 quantity: 1,
                 cartsMutate: cartsMutate,
-                mutationKeys: ['v1/cart/count', 'v1/cart']
+                mutationKeys: ['v1/cart/count', 'v1/cart', 'v1/order/calculate-price']
             }))
         }
     }
