@@ -18,7 +18,7 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
   const dispatch = useAppDispatch();
   const { mutate: cartsMutate, data: userCart, isLoading: isCartsLoading, error: cartsListError } = useCartsList();
   const { data: cartSummary, isLoading: isCartSummaryLoading } = useCartSummary({},{
-    revalidateIfStale : false
+    revalidateIfStale : true
   });
   const { data: systemConfig, isLoading: systemConfigLoading } =
   useSystemConfig();
