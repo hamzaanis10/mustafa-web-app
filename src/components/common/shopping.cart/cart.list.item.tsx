@@ -74,7 +74,7 @@ export default function CartListItem(props: any) {
               </p>
               <p
                 className="m-0 line-clamp-3 text-sm pt-1 pb-1"
-                style={{ color: "#9D9D9D" }}
+                style={{ color: "#9D9D9D",maxHeight:"60px" }}
               >
                 {getLanguageBaseName(
                   productDetails && productDetails.get("description")

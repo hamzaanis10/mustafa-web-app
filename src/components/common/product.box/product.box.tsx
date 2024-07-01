@@ -36,11 +36,11 @@ export default function ProductBox(props: any) {
     }
     const cartProduct: any = findCartItem(userCart && userCart.get('packages'), product && product.id);
     return (
-        <div id={`listitem-${index + 1}`}>
+        <div id={`listitem-${index + 1}`}  className="border-round-3xl" style={{background:"#fff"}}>
             {systemConfig && product ? (
                 <Card
                     className="w-11rem sm:w-14rem md:w-14rem xl:w-15rem border-round-3xl shadow-none"
-                    style={{ height: "fit-content" }}
+                    // style={{ height: "fit-content" }}
                     key={product.id}
                 >
                     <img
