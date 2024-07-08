@@ -1,0 +1,37 @@
+.p-breadcrumb {
+    background: none;
+    border: none !important;
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+.p-breadcrumb ol {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    flex-wrap: nowrap;
+}
+
+.p-breadcrumb .p-menuitem-link {
+    text-decoration: none;
+}
+
+.p-breadcrumb .p-menuitem {
+    border-bottom: none !important;
+    font-size: 20px;
+    padding: 16px;
+}
+
+.p-breadcrumb .p-breadcrumb-list li.p-menuitem-separator {
+    margin: 0px 0.2rem 0 0.2rem !important;
+    color: #000000;
+}
+
+ @media only screen and (max-width:480px) {
+    .p-breadcrumb .p-menuitem { 
+        font-size: 9px; 
+        padding: 2px;
+    }
+ }
