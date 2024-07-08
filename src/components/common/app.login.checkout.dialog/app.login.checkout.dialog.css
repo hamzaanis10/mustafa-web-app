@@ -1,0 +1,31 @@
+.inputfield {
+    width: 14rem;
+}
+
+.inputfield .p-inputtext{
+    border: none !important;
+}
+
+.p-inputtext:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0 !important;
+    border-color:none !important;
+}
+.p-inputtext:enabled:hover {
+    border-color: none !important;
+}
+
+.p-dialog-header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+    color: #000000;
+    padding-top: 1.7rem !important;
+    padding-bottom: 10px;
+    padding-right: 32px;
+}
+
+.p-dialog-header-icon {
+   display: none;
+}

@@ -1,0 +1,11 @@
+#fullname {
+
+    .p-inputtext,
+    .p-component {
+        width: 18rem;
+    }
+
+    #firstName {
+        margin-right: 1rem;
+    }
+}

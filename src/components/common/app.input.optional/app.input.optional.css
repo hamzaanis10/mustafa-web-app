@@ -1,0 +1,11 @@
+#unit-number {
+
+    .p-inputtext,
+    .p-component {
+        width: 18rem;
+    }
+
+    #unit-number {
+        padding: 12px;
+    }
+}

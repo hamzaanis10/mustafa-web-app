@@ -62,6 +62,7 @@ const AppForgetPassword: React.FC<AppForgetPasswordProps> = (props: any) => {
           onChange={handleEmailChange}
           error={emailError}
           removeLabel={removeLabel}
+          placeholder="Email or Mobile number"
         />
         
         <label

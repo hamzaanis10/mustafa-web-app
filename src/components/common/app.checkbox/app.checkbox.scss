@@ -1,0 +1,19 @@
+#checkbox {
+    #loginCheckbox {
+        div.p-checkbox-box {
+            border-radius: 0 !important;
+            height: 16px;
+            width: 16px;
+            margin-top: 2.5px;
+            border: 1px solid rgba(157, 157, 157, 1);
+        }
+    }
+
+    label.p-checkbox-label {
+        color: rgba(157, 157, 157, 1);
+        margin-right: 0;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        font-size: 13px;
+    }
+}

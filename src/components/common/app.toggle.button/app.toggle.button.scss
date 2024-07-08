@@ -1,0 +1,57 @@
+#login-checkout {
+    .custom-select-button .p-button {
+        margin: 8px 0 5px 0;
+        white-space: nowrap;
+    }
+
+    .custom-select-button .p-button:first-child {
+        width: 9rem;
+        font-size: 12px;
+        padding: 15px 10px 15px 10px;
+    }
+
+    .custom-select-button .p-button:last-child {
+        width: 9rem;
+        font-size: 12px;
+        padding: 15px 25px;
+    }
+
+    .p-button.p-component.p-highlight {
+        background-color: #E6FFED;
+        color: #000000;
+    }
+
+    .p-button:focus {
+        box-shadow: none;
+    }
+}
+
+#couponSideBar-toggle {
+    .custom-select-button .p-button {
+        margin: 8px 0 5px 0;
+        white-space: nowrap;
+        margin-bottom: 12px;
+        margin-left: -10px;
+    }
+
+    .custom-select-button .p-button:first-child {
+        width: 11em;
+        font-size: 15px;
+        padding: 15px 10px 15px 10px;
+    }
+
+    .custom-select-button .p-button:last-child {
+        width: 11em;
+        font-size: 15px;
+        padding: 15px 25px;
+    }
+
+    .p-button.p-component.p-highlight {
+        background-color: #E6FFED;
+        color: #000000;
+    }
+
+    .p-button:focus {
+        box-shadow: none;
+    }
+}

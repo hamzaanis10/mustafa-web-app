@@ -1,10 +1,7 @@
 .p-dialog-header {
     text-align: center;
-    font-size: 24px;
-    font-weight: 400px;
     padding-top: 2.5rem;
     padding-bottom: 10px;
-    color: #000000;
 }
 
 .p-dialog-header-icon {
@@ -17,6 +14,9 @@
 
 .p-dialog .p-dialog-header .p-dialog-title {
     font-weight: 350;
+    font-size: 24px;
+    color: rgba(25, 25, 27, 1);
+    letter-spacing: 0.5px
 }
 
 .password-wrapper {

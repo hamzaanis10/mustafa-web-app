@@ -6,18 +6,22 @@ interface AppDialogProps extends DialogProps {
 }
 
 const AppDialog: React.FC<AppDialogProps> = (props: any) => {
-    const { header, visible, children, modal, className } = props;
+    const { header, visible, children, modal, className, id } = props;
 
     return (
-            <Dialog header={header}
+        <div id="MainDialog">           
+             <Dialog header={header}
                 visible={visible}
                 modal={modal}
                 onHide={props.onHide}
                 // style={{ width: '400px' }} 
                 contentStyle={{ overflow: 'hidden' }}
-                className={className}>
+                className={className}
+                id={id}>
                 {children}
             </Dialog>
+            </div>
+
     )
 }
 

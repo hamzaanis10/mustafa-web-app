@@ -93,6 +93,7 @@ const AppSignup: React.FC<AppSignupProps> = (props:any) => {
           onChange={handleEmailChange}
           removeLabel={removeLabel}
           error={emailError}
+          placeholder='Email or Mobile number'
         />
         <AppInputPhoneNumber
           value={phoneNumber}

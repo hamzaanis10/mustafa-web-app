@@ -1,0 +1,167 @@
+.coupon {
+    width: 100%;
+    max-width: 330px;
+    height: 95px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: auto;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.coupon::before,
+.coupon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 70%;
+    height: 100%;
+    z-index: -1;
+}
+
+.coupon::before {
+    left: 0;
+    background-image: radial-gradient(circle at 0 50%,
+            transparent 24px,
+            #FBFBFB 25px);
+}
+
+.coupon::after {
+    right: 0;
+    background-image: radial-gradient(circle at 100% 50%,
+            transparent 24px,
+            #FBFBFB 25px);
+}
+
+.coupon>div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 1em;
+}
+
+.left {
+    width: 35%;
+    /* border-right: 2px dashed rgba(0, 0, 0, 0.13); */
+    position: relative;
+}
+
+.left::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 10%;
+    bottom: 10%;
+    width: 2px;
+    background: repeating-linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.13),
+            rgba(0, 0, 0, 0.13) 5px,
+            transparent 5px,
+            transparent 10px);
+}
+
+.left div {
+    padding: 0 0 0 15px;
+    white-space: nowrap;
+    font-weight: 800;
+    font-size: 1.5em;
+    color: #E4002B;
+    text-transform: uppercase;
+}
+
+.center {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.center h2 {
+    margin: 0;
+    padding-bottom: 5px;
+    color: #000000;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.center h3 {
+    margin: 0;
+    padding-bottom: 12px;
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+.center small {
+    font-size: 0.625rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 600px){
+    .left {
+        width: 33%;
+    }
+
+    .left div {
+        padding: 0 0 0 25px;
+    }
+
+    .coupon>div {
+        padding-left: 0.75em;
+    }
+
+    .coupon::before,
+    .coupon::after {
+        width: 70%;
+    }
+}
+
+@media screen and (max-height: 800px)
+{
+    .coupon {
+        display: flex;
+        height: 98px;
+    }
+}
+
+@media screen and (min-height: 805px) and (max-height: 849px) {
+    .coupon {
+        display: flex;
+        height: 118px;
+    }
+}
+
+@media screen and (min-height: 850px) and (max-height: 950px) {
+    .coupon {
+        display: flex;
+        height: 105px;
+    }
+}
+
+@media screen and (min-height: 950px) {
+    .coupon {
+        display: flex;
+        height: 100px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .left {
+        width: 33%;
+    }
+
+    .left div {
+        padding: 0 0 0 25px;
+    }
+
+    .coupon>div {
+        padding-left: 0.75em;
+    }
+
+    .coupon::before,
+    .coupon::after {
+        width: 70%;
+    }
+}

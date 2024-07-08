@@ -1,0 +1,9 @@
+#CountryDropdown{
+    select {
+    padding: 0.75rem 0.75rem;
+    margin-bottom: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px ;
+    width: 100%;
+}
+}

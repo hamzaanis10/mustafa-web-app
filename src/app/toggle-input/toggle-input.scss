@@ -1,0 +1,20 @@
+span.p-dropdown-label.p-inputtext {
+    padding-right: 0;
+}
+
+.p-inputtext:enabled:focus {
+    padding-right: 30px;
+}
+
+.clear-icon {
+    position: absolute;
+    cursor: pointer;
+    right: 0.5rem; 
+    padding-left: 15px;
+    top: 1.3rem;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: gray;
+    z-index: 1;
+}

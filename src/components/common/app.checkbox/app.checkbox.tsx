@@ -1,24 +1,27 @@
 import React from 'react';
 import { Checkbox, CheckboxProps } from 'primereact/checkbox';
+import "./app.checkbox.scss"
 
 interface AppCheckboxProps extends CheckboxProps {
-    label: string;
+    label?: string;
     id?: string; 
 }
 
 const AppCheckBox: React.FC<AppCheckboxProps> = (props:any) => {
     const { label, checked, id } = props;
     return (
-        <div>
+        <div id="checkbox">
             <Checkbox
                 inputId={id}
                 checked={checked}
                 onChange={props.onChange}
-                className="mr-2 pt-1"
+                className="pt-1"
+                id={id}
             />
             <label
                 htmlFor={id}
-                className="p-checkbox-label cursor-pointer">
+                className="p-checkbox-label cursor-pointer"
+            >
                 {label}
             </label>
         </div>

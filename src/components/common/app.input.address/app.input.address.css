@@ -1,0 +1,11 @@
+#input-address {
+
+  .p-inputtext,
+  .p-component {
+    width: 18rem;
+  }
+
+  #input-address {
+    padding: 12px;
+  }
+}

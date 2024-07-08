@@ -1,0 +1,24 @@
+#CheckerBoard{
+
+    .checkerboard {
+        display: inline-block;
+      }
+      
+      .row {
+        display: flex;
+      }
+      
+      .cell {
+        width: 19px;
+        height: 19px; 
+      }
+      
+      .cell.black {
+        background-color: black;
+      }
+      
+      .cell.white {
+        background-color: white;
+      }
+      
+}

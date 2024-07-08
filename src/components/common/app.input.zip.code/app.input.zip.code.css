@@ -1,0 +1,37 @@
+#ZipCode{
+    .zipcode-container {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .zipcode-container::after {
+        content: "Post/Zip Code*";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #000000;
+        pointer-events: none;
+        opacity: 1;
+        transition: opacity 0.2s;
+        margin: 5px 0 0 12px;
+        padding-bottom: 5px;
+        font-size: 14px;
+    }
+    
+    .zipcode-container.has-value::after,
+    .zipcode-container input:focus + .zipcode-container::after {
+        opacity: 0;
+    }
+    
+    .text-sm, .placeholder-margin
+    {
+        padding-top: 20px;
+        padding-bottom: 5px;
+    }
+    
+    .zipcode-container input:focus + .placeholder-margin,
+    .text-sm:focus,
+    .placeholder-margin.has-value {
+        padding: 12px;
+    }
+}

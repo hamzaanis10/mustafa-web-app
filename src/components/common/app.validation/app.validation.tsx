@@ -4,6 +4,10 @@ export const nicknameSchema = z.string().min(4, {
   message: "Nickname must be atleast 4 characters long",
 });
 
+export const FullNameSchema = z.object({
+  firstName: z.string().min(1, 'First name cannot be empty').min(3, 'First name must be at least 3 characters'),
+  lastName: z.string().min(1, 'Last name cannot be empty').min(3, 'Last name must be at least 3 characters')
+});
 
 export const emailSchema = z.string().email({
   message: "Invalid email format"

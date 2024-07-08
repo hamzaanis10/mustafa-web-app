@@ -8,10 +8,11 @@ interface AppInputPasswordProps extends InputTextProps {
     placeholder?: string;
     removeLabel?: boolean;
     error?: string;
+    id?: string;
 }
 
 const AppInputPassword: React.FC<AppInputPasswordProps> = (props: any) => {
-    const { placeholder, value, removeLabel = false, error } = props;
+    const { placeholder, value, removeLabel = false, error, id } = props;
     const [passwordVisible, setPasswordVisible] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -19,7 +20,7 @@ const AppInputPassword: React.FC<AppInputPasswordProps> = (props: any) => {
     };
 
     return (
-        <div>
+        <div id={id}>
             {
                 removeLabel ?
                     <div className="mb-3">
