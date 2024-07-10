@@ -39,9 +39,9 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
       position="right"
       onHide={props.onHideSidebar} // Call parent function to hide the sidebar
       showCloseIcon={false}
-      className="w-23rem md:w-30rem "
+      className="w-23rem md:w-30rem"
       id="cart-items">
-      <div className="overflow-auto content-container " style={{ height: "80vh" }}>
+      <div className="overflow-auto content-container" style={{ height: "80vh" }}>
         {/* <div
           className="flex justify-content-between  p-3 text-sm md:text-base"
           style={{ backgroundColor: "#FFF2E3", color: "#FFAD4C" }}>

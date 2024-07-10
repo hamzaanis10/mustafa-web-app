@@ -12,7 +12,6 @@
       }
     .p-sidebar-header {
         display: none;
-        border-bottom: none ;
     }
 
     .p-sidebar-content {
@@ -23,32 +22,19 @@
         width: 100%;
         height: auto;
     }
-    
-    .p-sidebar-right.p-component-overlay-enter {
-        animation: none;
-    }
-
-   
-     
-    
-  
 }
 
-#cart-items{
-    position: fixed;
-    top: 76px;
-    z-index: 1;
+.p-sidebar-right {
+    top: 76px !important;
 }
 
+.p-sidebar-right.p-component-overlay-enter {
+    animation: none;
+}
 
 @media (min-width: 992px) {
 
-    #cart-items{
-        position: fixed;
-        top: 88px;
-        z-index: 1;
+    .p-sidebar-right {
+        top: 88px !important;
     }
 }
-
-
-

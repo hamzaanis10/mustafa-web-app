@@ -1,7 +1,7 @@
 "use client";
 import "./page.css";
-import React, {  useState } from "react";
-import {  ProductFilter } from "@/components/common/util/util";
+import React, { useEffect, useState } from "react";
+import { PRODUCT_lIST, ProductFilter } from "@/components/common/util/util";
 import AppButton from "@/components/common/app.button/app.button";
 import AppSideBar from "@/components/common/app.sidebar/app.side.bar";
 import AppCheckBox from "@/components/common/app.checkbox/app.checkbox";
