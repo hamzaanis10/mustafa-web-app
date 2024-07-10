@@ -29,6 +29,7 @@ const CartListView: React.FC<CartListViewProps> = ({
     }
     setCheckedItems(newCheckedItems);
   };
+
   return (
     <Sidebar
       visible={visibleRight}
@@ -38,7 +39,7 @@ const CartListView: React.FC<CartListViewProps> = ({
       className="w-23rem md:w-30rem"
       id="cart-items"
     >
-      <div className="overflow-auto" style={{height:"80vh"}}>
+      <div className="overflow-auto content-container" style={{ height: "80vh" }}>
         <div
           className="flex justify-content-between  p-3 text-sm md:text-base"
           style={{ backgroundColor: "#FFF2E3", color: "#FFAD4C" }}
@@ -72,14 +73,14 @@ const CartListView: React.FC<CartListViewProps> = ({
                 key={item.id}
                 className="item-container"
                 style={{ borderBottom: "1px solid #E9E9E9" }}
-                
+
               >
                 <div className="flex align-items-center gap-2 p-3 flex-wrap lg:flex-nowrap">
                   <Checkbox
                     onChange={(e) => toggleItem(item.id)}
                     checked={checkedItems.has(item.id)}
                     // className="w-1rem lg:w-2rem"
-                    style={{width:"fit-content"}}
+                    style={{ width: "fit-content" }}
                   />
                   <div className="w-3rem lg:w-4rem">
                     <img
@@ -112,7 +113,7 @@ const CartListView: React.FC<CartListViewProps> = ({
                   </div>
                   <AppCounterButton />
                 </div>
-                <div className="flex align-items-center gap-2 p-3 lg:pl-6 pr-5 pb-3 justify-content-between">
+                <div className="flex align-items-center gap-2 p-3 lg:pl-6 pr-5 pb-3 justify-content-between bg-white" >
                   <p
                     style={{ color: "#5A9429" }}
                     className="border-1 text-xs p-1 pr-3 p-1 pl-3 border-round-lg m-0"
@@ -138,7 +139,7 @@ const CartListView: React.FC<CartListViewProps> = ({
             Saved: €999.99
           </p>
         </div>
-        <button className="border-none border-round-3xl pt-3 pr-4 pb-3 pl-4 lg:pt-3 lg:pr-8 lg:pb-3 lg:pl-8 text-1xl text-50"  style={{backgroundColor:"#00CB56"}}>Check Out</button>
+        <button className="border-none border-round-3xl pt-3 pr-4 pb-3 pl-4 lg:pt-3 lg:pr-8 lg:pb-3 lg:pl-8 text-1xl text-50" style={{ backgroundColor: "#00CB56" }}>Check Out</button>
       </div>
     </Sidebar>
   );

@@ -1,6 +1,6 @@
 #home-banner {
     img {
-        object-fit: contain;
+        object-fit: fill;
         width: 100%;
     }
 

@@ -10,7 +10,7 @@ interface LoaderSkeletonProps {
 const ProductBarSkeleton: React.FC<LoaderSkeletonProps> = ({ count = 7 }) => {
   const skeletonItems = Array.from({ length: count }).map((_, index) => (
     <div
-      className="card md:w-14rem xl:w-15rem "
+      className="card w-11rem sm:w-14rem md:w-14rem xl:w-15rem"
       key={index}
     >
       <div className="border-round-3xl border-1 surface-border p-4 surface-card">
