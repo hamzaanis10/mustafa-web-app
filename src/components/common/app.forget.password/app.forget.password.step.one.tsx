@@ -6,11 +6,11 @@ import AppButton from "../app.button/app.button";
 import { emailSchema, passwordSchema, repeatPasswordSchema } from '../app.validation/app.validation';
 
 
-interface AppForgetPasswordProps {
+interface AppForgetPasswordStepOneProps {
   onContinue: () => void;
 }
 
-const AppForgetPassword: React.FC<AppForgetPasswordProps> = (props: any) => {
+const AppForgetPasswordStepOne: React.FC<AppForgetPasswordStepOneProps> = (props: any) => {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState("");
   const [repeatPassword , setRepeatPassword] = useState('');
@@ -106,4 +106,4 @@ const AppForgetPassword: React.FC<AppForgetPasswordProps> = (props: any) => {
   );
 };
 
-export default AppForgetPassword;
+export default AppForgetPasswordStepOne;

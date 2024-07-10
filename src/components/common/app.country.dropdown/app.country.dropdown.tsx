@@ -1,29 +1,32 @@
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-import "./app.country.dropdown.css";
-
+import './app.country.dropdown.css';
+ 
 interface AppCountryDropdownProps {
     country: string;
     region: string;
     onSelectCountry: (value: string) => void;
     onSelectRegion: (value: string) => void;
 }
-
+ 
 const AppCountryDropdown: React.FC<AppCountryDropdownProps> = (props:any) => {
   const { country, region } = props;
-  
+ 
   return (
-    <div id='CountryDropdown' className='flex flex-column gap-3'>
-      <CountryDropdown
+    <div className='flex flex-column justify-content-center align-items-center gap-3' id='CountryDropdown'>
+    
+      <CountryDropdown 
         value={country}
-        onChange={(val) => props.onSelectCountry(val)} 
-        classes='custom'
-        />
+        onChange={(val:any) => props.onSelectCountry(val)}
+         />
+     
+   
       <RegionDropdown
         country={country}
         value={region}
-        onChange={(val) => props.onSelectRegion(val)} />
+        onChange={(val:any) => props.onSelectRegion(val)} />
+     
     </div>
   );
 };
-
+ 
 export default AppCountryDropdown;

@@ -1,0 +1,67 @@
+#productFilter{
+   
+    .p-sidebar-content::-webkit-scrollbar{
+        width: 10px; 
+        height: 10px;
+    }
+
+    .p-sidebar-content::-webkit-scrollbar-track {
+        background-color: #f5f5f5; /* Color of the track */
+      }
+   
+    .p-sidebar-content::-webkit-scrollbar-thumb {
+        background-color: #c4c4c4; /* Color of the thumb */
+        border-radius: 10px; /* Rounded corners */
+      }
+
+    .p-button.p-button-rounded {
+        border-radius: 5px !important;
+    }
+
+    .badge {
+        background-color: #009736; /* Green color */
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .p-button{
+        width: 172px !important;
+        height: 40px !important;
+        padding: 8px, 24px, 8px, 24px !important;
+        text-align: left !important;
+        font-size: 16px !important;
+        font-weight: 600;
+        border: 1px solid #D9D9D9 !important;
+
+    }
+    .mainButtonCont{
+        width: 172px;
+        margin-top: 8px;
+        display: inline-flex;
+    }
+    .p-sidebar-header {
+        margin: 0px;
+        padding: 0 15px;
+        border-bottom: none ;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    
+    .p-sidebar-header .p-sidebar-close, .p-sidebar .p-sidebar-header .p-sidebar-icon {
+        width: 2rem;
+        height: 2rem;
+        color: #009736;
+        border: 0 none;
+        background: transparent;
+        border-radius: 50%;
+        transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    
+    
+}

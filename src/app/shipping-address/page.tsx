@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from 'react';
-import AppDialog from '@/components/common/app.dialog/app.dialog';
 import "./shipping-address.css";
 import AppInputFullname from '@/components/common/app.input.fullname/app.input.fullname';
 import { FullNameSchema } from '@/components/common/app.validation/app.validation';
@@ -8,14 +7,15 @@ import AppInputPhoneNumber from '@/components/common/app.input.phone.number/app.
 import { isValidPhoneNumber } from "react-phone-number-input";
 import AppCountryDropdown from '@/components/common/app.country.dropdown/app.country.dropdown';
 import AppInputZipCode from '@/components/common/app.input.zip.code/app.input.zip.code';
+import AppBillingAddress from '@/components/common/app.billing.addresss/app.billing.address';
 import AppInputOptional from '@/components/common/app.input.optional/app.input.optional';
 import AppInputAddress from '@/components/common/app.input.address/app.input.address';
 import AppButton from '@/components/common/app.button/app.button';
 import AppGoogleMap from '@/components/common/app.google.map/app.google.map';
+
+
  
- 
- 
-const Page = () => {
+const ShippingDialog = () => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [fullnameError, setFullnameError] = useState<{ firstName: string; lastName: string }>({ firstName: "", lastName: "" });
@@ -74,12 +74,12 @@ const Page = () => {
   const handleUnitNumberChange = (value: string) => {
     setUnitNumber(value);
   };
- 
+
   const handleAddressChange = (value: string) => {
     setAddress(value);
   };
- 
- 
+
+
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     e.target.placeholder = '';
   };
@@ -87,14 +87,11 @@ const Page = () => {
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     e.target.placeholder = originalPlaceholder;
   };
-  
- 
-  const closeForm = true;
  
   return (
  
     <div className='contentShipping'>
-       <AppDialog header="Shipping Address" visible={true} modal onHide={closeForm}  id='Shipping-Address-Page' >
+      
       <AppInputFullname
         firstName={firstName}
         lastName={lastName}
@@ -119,7 +116,6 @@ const Page = () => {
         originalPlaceholder={originalPlaceholder}
         onFocus={handleFocus}
         onBlur={handleBlur} />
- 
        <AppInputOptional
         value={unitNumber}
         setUnitNumber={handleUnitNumberChange}
@@ -131,15 +127,17 @@ const Page = () => {
             originalPlaceholder="House number, Building, Street name"
       />
        <AppGoogleMap/>
- 
-        <div>
+
+        <AppBillingAddress 
+          label='set as default address'
+           checked={false} />
+
+        {/* <div>
             <AppButton label='Save' />
             <AppButton label='Back' style={{ backgroundColor: "transparent" , color:'#00CB56' }}  />
-         </div>
- 
-    </AppDialog>
+         </div> */}
     </div>
   );
 };
  
-export default Page;
+export default ShippingDialog;

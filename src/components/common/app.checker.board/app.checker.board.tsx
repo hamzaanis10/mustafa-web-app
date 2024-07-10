@@ -1,5 +1,5 @@
 import React from 'react';
-import './app.checker.board.scss';
+import './app.checker.board.css';
 
 interface AppCheckerBoardProps{
     rows: number;

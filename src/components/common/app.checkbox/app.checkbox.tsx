@@ -5,7 +5,8 @@ import "./app.checkbox.scss"
 interface AppCheckboxProps extends CheckboxProps {
     label?: string;
     id?: string; 
-}
+  
+};
 
 const AppCheckBox: React.FC<AppCheckboxProps> = (props:any) => {
     const { label, checked, id } = props;

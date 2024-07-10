@@ -1,11 +1,10 @@
-#input-address {
+#input-address{ 
+    .p-inputtext, .p-component {
+    width: 100% !important;
+   } 
 
-  .p-inputtext,
-  .p-component {
-    width: 18rem;
-  }
-
-  #input-address {
-    padding: 12px;
-  }
+   .optional-container {
+    width: 100% !important;
+   }
 }
+

@@ -1,11 +1,12 @@
-#unit-number {
-
-    .p-inputtext,
-    .p-component {
-        width: 18rem;
+#OptionalInput{
+    .p-inputtext{
+        width: 100%;
     }
-
+     
     #unit-number {
         padding: 12px;
     }
 }
+
+
+ 

@@ -1,6 +1,6 @@
 "use client";
 import 'primeflex/primeflex.css';
-// import "./signup.css";
+import "./signup.css";
 import { useState } from 'react';
 import { AppVerificationMethod } from "../../components/common/app.verification.form.dialog.content/app.verification.form.dialog.content";
 import AppDialog from '@/components/common/app.dialog/app.dialog';
@@ -53,8 +53,8 @@ const goBackToSignupForm = () => {
 };
 
   return (
-    <>
-      <AppDialog header="Hi there, new friend!" visible={showForm} modal onHide={closeForm} className="sm: w-15rem md: w-20rem lg: w-25rem">
+    <div>
+      <AppDialog header="Hi there, new friend!" visible={showForm} modal onHide={closeForm} className="sm: w-15rem md: w-20rem lg: w-25rem" id='Signup-page' >
         <AppSignup onContinue={onSignupContinue} />
       </AppDialog>
 
@@ -70,7 +70,7 @@ const goBackToSignupForm = () => {
         <AppSuccessDialog label="Let's get started" title="Verified!" description="You have successfully verified the account. Now it’s time to start your MUST journey!"/>
       </AppDialog>
       {/* <OtpTwo /> */}
-    </>
+    </div>
   );
 };
 

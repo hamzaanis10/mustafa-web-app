@@ -16,7 +16,6 @@ const AppGoogleMap = () => {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const isLoaded = useGoogleMaps('AIzaSyBBILEr28gGiV7o6k7w0YBoNUXasm9ZRM0');
-
   useEffect(() => {
     if (isLoaded && mapRef.current && !mapInstanceRef.current) {
       if (window.google) {

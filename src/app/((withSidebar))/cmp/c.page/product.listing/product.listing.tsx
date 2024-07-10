@@ -5,8 +5,10 @@ import './product.listing.css';
 import { PRODUCTS_PAGE_SIZE } from "@/components/common/util/util";
 import { useProductList } from "@/app/hooks/fetch/products";
 import ProductBox from "@/components/common/product.box/product.box";
-import HorizontalBarSkeleton from "@/skeletons/horizontal.bars.skeleton/horizontal.bars.skeleton";
 import ProductBarSkeleton from "@/skeletons/horizontal.bars.skeleton/product.bar.skeleton";
+import { useSystemConfig } from "@/app/hooks/fetch/app";
+import { useAppDispatch } from "@/store/store";
+import { useCartsList } from "@/app/hooks/fetch/cart";
 
 interface Product {
   id: string;
@@ -40,6 +42,10 @@ export default function ProductListing() {
     //categoryId: "",
     categoryIds: [],// TODO to be user selec4ed cateogories
   });
+  const { mutate: cartsMutate, data: userCart, isLoading: isCartsLoading, error: cartsListError } = useCartsList();
+
+  //const cartProducts = getAllCartProducts(userCart && userCart.get('packages'));
+
   const pList: any = productsList ? [].concat(...productsList) : [];
   function isMultipleOfProductListingSize(number: any) {
     return number % PRODUCTS_PAGE_SIZE === 0;
@@ -49,6 +55,13 @@ export default function ProductListing() {
     return Math.floor(itemIndex / PRODUCTS_PAGE_SIZE) + 1;
   }
   const observerMap = useRef(new Map());
+
+  const { data: systemConfig, isLoading: systemConfigLoading } =
+    useSystemConfig();
+
+
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const observeElement = (elementId: any) => {
@@ -100,25 +113,34 @@ export default function ProductListing() {
 
   const itemTemplate = (product: Product, index: any) => {
     return (
-      <ProductBox product={product} index={index} />
+      <ProductBox
+        isCartsLoading={isCartsLoading}
+        userCart={userCart}
+        //cartProducts={cartProducts}
+        dispatch={dispatch}
+        cartsMutate={cartsMutate}
+        systemConfig={systemConfig}
+        systemConfigLoading={systemConfigLoading}
+        product={product}
+        index={index} />
     );
   };
 
-  const listTemplate = (items: Product[],layout:any): any => {
+  const listTemplate = (items: Product[], layout: any): any => {
     if (!items || items.length === 0) return null;
 
     let list = items.map((product, index) => {
       return itemTemplate(product, index);
     });
 
-    return <div className="grid grid-gutter column-gap-3 row-gap-5">{list}</div>;
+    return <div className="grid column-gap-3 row-gap-5 justify-content-center md:justify-content-start">{list}</div>;
   };
   const isLoadingMore = productsLoading || (size > 0 && productsList && typeof productsList[size - 1] === "undefined");
   return (
     <div id="product-container" className="flex flex-wrap gap-2">
       <DataView value={pList} listTemplate={listTemplate} />
       {
-        isLoadingMore === true ?  <ProductBarSkeleton /> : null
+        isLoadingMore === true ? <ProductBarSkeleton /> : null
       }
     </div>
   );

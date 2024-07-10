@@ -12,6 +12,10 @@
     margin-bottom: 16px;
 }
 
+.p-sidebar .p-sidebar-header {
+    border-bottom: none;
+}
+
 .coupon::before,
 .coupon::after {
     content: "";

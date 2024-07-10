@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} style={{backgroundColor:"#F5F5F5"}}>
         <RefToastProvider>
         <SWRProvider>
           <PrimeReactProvider>

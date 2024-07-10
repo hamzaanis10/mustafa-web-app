@@ -4,7 +4,7 @@ import AppCheckBox from '../app.checkbox/app.checkbox'
 const AppPaymentMethod = () => {
     const balance = 40
     return (
-        <div className="p-4 bg-white border-round" style={{ width: "100%", maxWidth: "50rem" }}>
+        <div className="p-4 bg-white border-round" style={{ width: "100%" }}>
             <div className='ml-2'>
                 <span className="text-2xl font-semibold">Payment Method</span>
                 <div className='flex mt-2'>

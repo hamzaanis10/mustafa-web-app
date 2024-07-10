@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import AppInputPhoneNumber from "../app.input.phone.number/app.input.phone.number";
+import AppInputPhoneNumber from "../../app.input.phone.number/app.input.phone.number";
 import { isValidPhoneNumber } from "react-phone-number-input";
-import AppInputPassword from "../app.input.password/app.input.password";
-import AppButton from "../app.button/app.button";
-import { passwordSchema, repeatPasswordSchema } from "../app.validation/app.validation";
+import AppInputPassword from "../../app.input.password/app.input.password";
+import AppButton from "../../app.button/app.button";
+import { passwordSchema, repeatPasswordSchema } from "../../app.validation/app.validation";
 
 const AppForgetPasswordNumber = (props: any) => {
     const [password, setPassword] = useState("");

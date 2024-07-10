@@ -1,9 +1,10 @@
 #ZipCode{
+    
     .zipcode-container {
         position: relative;
         display: inline-block;
     }
-    
+     
     .zipcode-container::after {
         content: "Post/Zip Code*";
         position: absolute;
@@ -22,13 +23,14 @@
     .zipcode-container input:focus + .zipcode-container::after {
         opacity: 0;
     }
-    
+     
     .text-sm, .placeholder-margin
     {
         padding-top: 20px;
         padding-bottom: 5px;
+        width: 100%;
     }
-    
+     
     .zipcode-container input:focus + .placeholder-margin,
     .text-sm:focus,
     .placeholder-margin.has-value {

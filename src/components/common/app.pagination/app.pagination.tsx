@@ -1,5 +1,5 @@
 import React from 'react';
-import './app.pagination.scss';
+import './app.pagination.css';
 import { Paginator, PaginatorProps } from 'primereact/paginator';
 
 

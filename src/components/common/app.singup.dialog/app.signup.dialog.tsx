@@ -88,6 +88,7 @@ const AppSignup: React.FC<AppSignupProps> = (props:any) => {
         <InputText id="nickname" type="text" placeholder="nickname" className="w-full mb-2 text-xs" value={nickname} onChange={handleNicknameChange} />
         {nicknameError && <p className="text-red-500 text-xs mt-0">{nicknameError}</p>}
 
+        <label htmlFor="email" className="block font-medium text-900 text-xs mb-1">Email/ Mobile number</label>
         <AppInputEmail
           value={email}
           onChange={handleEmailChange}

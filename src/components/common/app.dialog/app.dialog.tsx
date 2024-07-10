@@ -15,7 +15,7 @@ const AppDialog: React.FC<AppDialogProps> = (props: any) => {
                 modal={modal}
                 onHide={props.onHide}
                 // style={{ width: '400px' }} 
-                contentStyle={{ overflow: 'hidden' }}
+                // contentStyle={{ overflow: 'hidden' }}
                 className={className}
                 id={id}>
                 {children}

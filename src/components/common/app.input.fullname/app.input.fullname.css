@@ -1,11 +1,9 @@
-#fullname {
+#fullName{
+    .p-inputtext {
+        width: 100% !important;
+  }
+}
 
-    .p-inputtext,
-    .p-component {
-        width: 18rem;
-    }
-
-    #firstName {
-        margin-right: 1rem;
-    }
+#firstName {
+    margin-right: 1rem;
 }

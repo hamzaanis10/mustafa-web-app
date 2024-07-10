@@ -1,6 +1,6 @@
 import { InputText } from "primereact/inputtext";
 import "./app.input.zip.code.css"
-
+ 
 interface AppInputZipCodeProps {
     value: string;
     originalPlaceholder: string;
@@ -8,21 +8,21 @@ interface AppInputZipCodeProps {
     onFocus: () => void;
     onBlur: () => void;
 }
-
+ 
 const AppInputZipCode: React.FC<AppInputZipCodeProps> = (props:any) => {
     const { value, originalPlaceholder } = props;
-
+ 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         props.onChange(e.target.value);
     };
-
+ 
     return (
         <div className="card flex justify-content-center" id="ZipCode">
             <div className={`zipcode-container ${value.trim() !== '' ? 'has-value' : ''}`}>
-            <InputText 
+            <InputText
                 value={value}
-                onChange={handleInputChange} 
-                keyfilter="int" 
+                onChange={handleInputChange}
+                keyfilter="int"
                 placeholder={originalPlaceholder}
                 onFocus={props.onFocus}
                 onBlur={props.onBlur}
@@ -32,6 +32,5 @@ const AppInputZipCode: React.FC<AppInputZipCodeProps> = (props:any) => {
         </div>
     )
 }
-
+ 
 export default AppInputZipCode
-        

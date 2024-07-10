@@ -1,0 +1,15 @@
+#SideBar {
+     .p-sidebar-header{
+         margin: 0 !important;
+         padding: 0 15px;
+         border-bottom: none !important; 
+         justify-content: flex-start
+    }
+    .p-sidebar-content{
+        padding: 0px 5px !important;
+    }
+     
+   
+    
+} 
+

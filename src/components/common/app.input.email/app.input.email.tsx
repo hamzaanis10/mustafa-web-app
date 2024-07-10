@@ -34,7 +34,6 @@ const AppInputEmail: React.FC<AppInputEmailProps> = (props: any) => {
                 </div>
             ) : (
                 <>
-                    <label htmlFor="email" className="block font-medium text-900 text-xs mb-1">Email/ Mobile number</label>
                     <InputText
                         id="email"
                         type="email"
