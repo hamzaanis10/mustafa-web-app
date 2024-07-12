@@ -9,6 +9,7 @@ import ProductBarSkeleton from "@/skeletons/horizontal.bars.skeleton/product.bar
 import { useSystemConfig } from "@/app/hooks/fetch/app";
 import { useAppDispatch } from "@/store/store";
 import { useCartsList } from "@/app/hooks/fetch/cart";
+import { ConfirmDialog } from "primereact/confirmdialog";
 
 interface Product {
   id: string;
@@ -138,6 +139,7 @@ export default function ProductListing() {
   const isLoadingMore = productsLoading || (size > 0 && productsList && typeof productsList[size - 1] === "undefined");
   return (
     <div id="product-container" className="flex flex-wrap gap-2">
+      <ConfirmDialog />
       <DataView value={pList} listTemplate={listTemplate} />
       {
         isLoadingMore === true ? <ProductBarSkeleton /> : null

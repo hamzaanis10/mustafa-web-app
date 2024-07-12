@@ -24,7 +24,7 @@
     }
 }
 
-.p-sidebar-right {
+#cart-items {
     top: 76px !important;
 }
 
@@ -34,7 +34,7 @@
 
 @media (min-width: 992px) {
 
-    .p-sidebar-right {
+    #cart-items {
         top: 88px !important;
     }
 }

@@ -1,18 +1,15 @@
 //import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { PrimeReactProvider } from 'primereact/api';
-import './theme.css'
-//import 'primereact/resources/themes/lara-light-green/theme.css';
-//import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
-import 'primeflex/primeflex.css';
+import { PrimeReactProvider } from "primereact/api";
+import "./theme.css";
+import "primeicons/primeicons.css";
+import "primeflex/primeflex.css";
 import "./globals.css";
 import Header from "@/components/common/header/header";
 import { SWRProvider } from "./swr-provider";
 import { Metadata } from "next";
 import { RefToastProvider } from "./toast.wrapper";
 import AppClient from "./app.client";
-
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,15 +25,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className} style={{backgroundColor:"#F5F5F5"}}>
+      <link rel="icon" href="../../../assets/images/must-fav-icon-32-32.png" />
+      <link rel="apple" sizes="180x180" href="../../../assets/images/must-fav-icon-180-180.png" />
+      <body className={inter.className}>
         <RefToastProvider>
-        <SWRProvider>
-          <PrimeReactProvider>
-            <Header />
-            <AppClient />
-            {children}
-          </PrimeReactProvider>
-        </SWRProvider>
+          <SWRProvider>
+            <PrimeReactProvider>
+              <Header />
+              <AppClient />
+              {children}
+            </PrimeReactProvider>
+          </SWRProvider>
         </RefToastProvider>
       </body>
     </html>

@@ -5029,6 +5029,7 @@
   .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link {
     transition: box-shadow 0.2s;
     border-radius: 6px;
+    border-bottom: none;
   }
   .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link:focus-visible {
     outline: 0 none;
@@ -5043,7 +5044,7 @@
   }
   .p-breadcrumb .p-breadcrumb-list li.p-menuitem-separator {
     margin: 0 0.5rem 0 0.5rem;
-    color: #000000;
+    color: #00CB56;
   }
   .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
     color: #000000;
@@ -6572,7 +6573,7 @@
   }
   .p-galleria .p-galleria-thumbnail-container {
     background: rgba(0, 0, 0, 0.9);
-    padding: 1rem 0.25rem;
+    padding: 0rem 0.25rem;
   }
   .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-prev,
   .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-next {

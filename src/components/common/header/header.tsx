@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import SearchInput from "../serach/serach";
+import AppSearch from "../app.serach/app.serach";
 import MyCart from "../shopping.cart/shopping.cart";
 import Image from "next/image";
 import UserProfile from "../user.profile/user.profile";
@@ -60,7 +60,7 @@ const Header = () => {
             <UserProfile />
           </div>
         </ReduxProvider>
-        <SearchInput />
+        <AppSearch />
       </header>
     </>
   );

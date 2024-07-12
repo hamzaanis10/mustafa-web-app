@@ -45,7 +45,7 @@ const AppHomeBanner: React.FC = () => {
       const width = window.innerWidth;
       if (width >= 768) {
         setImageWidth(1920);
-        setImageHeight(230);
+        setImageHeight(400);
       } else {
         setImageWidth(375);
         setImageHeight(230);
@@ -86,7 +86,7 @@ const AppHomeBanner: React.FC = () => {
 
   return (
     <div id="home-banner" style={{ overflow: "hidden", background: "#e9f3e5" }}>
-      <div className="carousel-container w-full  md:w-9 m-auto">
+      <div className="carousel-container w-full  m-auto">
         {bannersLoading && systemConfigLoading ? (
           <BannerBarSkeleton />
         ) : (
@@ -102,6 +102,7 @@ const AppHomeBanner: React.FC = () => {
                 numScroll={1}
                 responsiveOptions={responsiveOptions}
                 showNavigators={false}
+                showIndicators={false}
                 autoplayInterval={3000}
               />
             ) : null}

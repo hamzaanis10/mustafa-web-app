@@ -505,21 +505,73 @@ export const CART_LIST_ITEMS = [
     rating: 3,
   },
 ];
-export const CATEGORY_ORDER_LIST1 = [
+
+
+export const SEARCH_TERMS = [
   {
-    id: "1000",
-    code: "f230fh0g3",
-    name: "Driscoll’sBlueberrieDriscoll’s BlueberrieDrisco...",
-    description: "125g | Morocco Valley ",
-    image: "bamboo-watch.jpg",
-    price: 65,
-    discountedPrice: 35,
-    category: "Accessories",
-    quantity: 24,
-    inventoryStatus: "INSTOCK",
-    rating: 5,
+    name:"Green Tea"
+  },
+  {
+    name:"Grapes"
+  },
+  {
+    name:"Greek Yogurt"
+  },
+  {
+    name:"Pokka Green Tea"
   },
 ];
+
+export const TRENDING_SEARCHES = [
+  {
+    name:"50 % Off"
+  },
+  {
+    name:"PWP"
+  },
+  {
+    name:"Tea"
+  },
+  {
+    name:"OTC Medicines"
+  },
+  {
+    name:"Shoes"
+  },
+  {
+    name:"Perfumes"
+  },
+  {
+    name:"Bags"
+  },
+  {
+    name:"Jewellery"
+  },
+  {
+    name:"Baby Products"
+  },
+  
+]
+
+
+export const USER_INFO_DETAILS =[
+  {
+    image:"/assets/icons/wish-list-icon.png",
+    name:"My Wishlist"
+  },
+  {
+    image:"/assets/icons/wallet-icon.png",
+    name:"My Wallet"
+  },
+  {
+    image:"/assets/icons/order-icon.png",
+    name:"My Orders"
+  },
+  {
+    image:"/assets/icons/setting-icon.png",
+    name:"Settings"
+  },
+]
 export const CATEGORY_ORDER_LIST = [
   {
     id: "1001",
@@ -548,22 +600,19 @@ export const CATEGORY_ORDER_LIST = [
     rating: 3,
   },
 ];
-
-export const ProductDetail_BreadCrumb = [
+export const CATEGORY_ORDER_LIST1 = [
   {
-    label: "Home",
-  },
-  {
-    label: "Category",
-  },
-  {
-    label: "Sub-Category",
-  },
-  {
-    label: "Category-Name",
-  },
-  {
-    label: "Product-Name",
+    id: "1000",
+    code: "f230fh0g3",
+    name: "Driscoll’sBlueberrieDriscoll’s BlueberrieDrisco...",
+    description: "125g | Morocco Valley ",
+    image: "bamboo-watch.jpg",
+    price: 65,
+    discountedPrice: 35,
+    category: "Accessories",
+    quantity: 24,
+    inventoryStatus: "INSTOCK",
+    rating: 5,
   },
 ];
 
@@ -629,18 +678,76 @@ export const PhotoService = {
   },
 };
 
-export const OrderInfo_BreadCrumb = [
+export const ReviewTag = [
+  { name: "with pic" },
+  { name: "All(493)" },
+  { name: "Good quality" },
+  { name: "Good quality" },
   {
-    label: "Cart",
+    name: "5",
+    star: <AppProductStarRating value={1} stars={1} />,
   },
   {
-    label: "Order Information",
+    name: "4",
+    star: <AppProductStarRating value={1} stars={1} />,
   },
   {
-    label: "Pay",
+    name: "3",
+    star: <AppProductStarRating value={1} stars={1} />,
   },
   {
-    label: "Order Complete",
+    name: "2",
+    star: <AppProductStarRating value={1} stars={1} />,
+  },
+  {
+    name: "1",
+    star: <AppProductStarRating value={1} stars={1} />,
+  },
+];
+
+export const ProductReview = [
+  {
+    id: "01",
+    name: "UserName",
+    rating: 5,
+    date: "10 may 2023",
+    comment:
+      "Excellent Product！I buy this for our daily breakfast with yogurt and jam. Love the taste. Not too sweet like HL but still makes my yogurt palatable.",
+  },
+  {
+    id: "02",
+    name: "UserName",
+    image: [
+      {
+        img: "black-watch.jpg",
+      },
+      {
+        img: "black-watch.jpg",
+      },
+      {
+        img: "black-watch.jpg",
+      },
+    ],
+    rating: 4,
+    date: "10 may 2023",
+    comment:
+      "Excellent Product！I buy this for our daily breakfast with yogurt and jam. Love the taste. Not too sweet like HL but still makes my yogurt palatable.",
+  },
+  {
+    id: "03",
+    name: "UserName",
+    rating: 2,
+    date: "10 may 2023",
+    comment:
+      "Excellent Product！I buy this for our daily breakfast with yogurt and jam. Love the taste. Not too sweet like HL but still makes my yogurt palatable.",
+  },
+  {
+    id: "04",
+    name: "UserName",
+    rating: 3,
+    date: "10 may 2023",
+    comment:
+      "Excellent Product！I buy this for our daily breakfast with yogurt and jam. Love the taste. Not too sweet like HL but still makes my yogurt palatable.",
   },
 ];
 
@@ -772,77 +879,3 @@ export const ProductFilter = [
     ],
   },
 ];
-
-export const ReviewTag = [
-  { name: "with pic" },
-  { name: "All(493)" },
-  { name: "Good quality" },
-  { name: "Good quality" },
-  {
-    name: "5",
-    star: <AppProductStarRating value={1} stars={1} />,
-  },
-  {
-    name: "4",
-    star: <AppProductStarRating value={1} stars={1} />,
-  },
-  {
-    name: "3",
-    star: <AppProductStarRating value={1} stars={1} />,
-  },
-  {
-    name: "2",
-    star: <AppProductStarRating value={1} stars={1} />,
-  },
-  {
-    name: "1",
-    star: <AppProductStarRating value={1} stars={1} />,
-  },
-];
-
-export const ProductReview = [
-  {
-    id: "01",
-    name: "UserName",
-    rating: 5,
-    date: "10 may 2023",
-    comment:
-      "Excellent Product！I buy this for our daily breakfast with yogurt and jam. Love the taste. Not too sweet like HL but still makes my yogurt palatable.",
-  },
-  {
-    id: "02",
-    name: "UserName",
-    image: [
-      {
-        img: "black-watch.jpg",
-      },
-      {
-        img: "black-watch.jpg",
-      },
-      {
-        img: "black-watch.jpg",
-      },
-    ],
-    rating: 4,
-    date: "10 may 2023",
-    comment:
-      "Excellent Product！I buy this for our daily breakfast with yogurt and jam. Love the taste. Not too sweet like HL but still makes my yogurt palatable.",
-  },
-  {
-    id: "03",
-    name: "UserName",
-    rating: 2,
-    date: "10 may 2023",
-    comment:
-      "Excellent Product！I buy this for our daily breakfast with yogurt and jam. Love the taste. Not too sweet like HL but still makes my yogurt palatable.",
-  },
-  {
-    id: "04",
-    name: "UserName",
-    rating: 3,
-    date: "10 may 2023",
-    comment:
-      "Excellent Product！I buy this for our daily breakfast with yogurt and jam. Love the taste. Not too sweet like HL but still makes my yogurt palatable.",
-  },
-];
-

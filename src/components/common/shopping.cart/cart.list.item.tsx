@@ -6,7 +6,7 @@ import { getLanguageBaseName } from "../util/util";
 import CartBarSkeleton from "@/skeletons/horizontal.bars.skeleton/cart.skeleton";
 
 export default function CartListItem(props: any) {
-  const { item, cartProduct, systemConfig } = props;
+  const { item, cartProduct, systemConfig, userCart, dispatch } = props;
   const { data: productDetails, isLoading: isLoadingProductDetails } =
     useProductDetails(
       {
@@ -37,7 +37,7 @@ export default function CartListItem(props: any) {
         </div> */}
 
       {isLoadingProductDetails ? (
-        <CartBarSkeleton  count={5}/>
+        <CartBarSkeleton count={5} />
       ) : (
         <div
           key={item?.id}
@@ -54,12 +54,11 @@ export default function CartListItem(props: any) {
             <div className="w-3rem lg:w-4rem">
               {productDetails ? (
                 <img
-                  src={`${
-                    systemConfig &&
+                  src={`${systemConfig &&
                     productDetails &&
                     systemConfig.get("fileUploadBaseUrl") &&
                     systemConfig.get("fileUploadBaseUrl")
-                  }${productDetails.get("thumbnailImage")}`}
+                    }${productDetails.get("thumbnailImage")}`}
                   alt={item?.name}
                   className="dark:invert"
                   width={54}
@@ -75,7 +74,7 @@ export default function CartListItem(props: any) {
               </p>
               <p
                 className="m-0 line-clamp-3 text-sm pt-1 pb-1"
-                style={{ color: "#9D9D9D" }}
+                style={{ color: "#9D9D9D",maxHeight:"60px" }}
               >
                 {getLanguageBaseName(
                   productDetails && productDetails.get("description")
@@ -96,7 +95,9 @@ export default function CartListItem(props: any) {
                 </span>
               </p>
             </div>
-            <AppCounterButton cartProduct={cartProduct} />
+            {
+              productDetails && <AppCounterButton userCart={userCart} dispatch={dispatch} product={productDetails && productDetails.toJS()} cartProduct={cartProduct} />
+            }
           </div>
           {/* <div className="flex align-items-center gap-2 p-3 lg:pl-6 pr-5 pb-3 justify-content-between bg-white" >
                 <p
