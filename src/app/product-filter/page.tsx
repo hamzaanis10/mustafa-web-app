@@ -1,7 +1,7 @@
 "use client";
 import "./page.css";
-import React, { useEffect, useState } from "react";
-import { PRODUCT_lIST, ProductFilter } from "@/components/common/util/util";
+import React, {  useState } from "react";
+import {  ProductFilter } from "@/components/common/util/util";
 import AppButton from "@/components/common/app.button/app.button";
 import AppSideBar from "@/components/common/app.sidebar/app.side.bar";
 import AppCheckBox from "@/components/common/app.checkbox/app.checkbox";
@@ -9,12 +9,13 @@ import ProductListing from "../((withSidebar))/cmp/c.page/product.listing/produc
 import ReduxProvider from "@/store/redux-provider";
 import AppCategories from "../((withsidebar))/cmp/c.layout/menu.category/menu.catrgory";
 import { ScrollTop } from "primereact/scrolltop";
+import CategoryListing from "../((withSidebar))/cmp/c.page/category.listing/category.listing";
 
 function page() {
   const [visibleRight, setVisibleRight] = useState<boolean>(false);
   const [checkedItem, setCheckedItem] =useState<{ [key: string]: boolean }>({});
   const [filterCount, setFilterCount] = useState(0);
-
+  
   const handleCheckBoxChange = (key: string, isChecked: boolean) => {
     setCheckedItem(prev => ({
       ...prev,
@@ -22,15 +23,19 @@ function page() {
     }));
     setFilterCount(prev => isChecked ? prev + 1 : prev - 1);
   };
+  
 
   return (
     <ReduxProvider>
-      <div id="productFilter" className="flex">
+      <div id="productFilter" className="block md:flex" style={{backgroundColor:"#F5F5F5"}}>
       <div className="hidden lg:flex w-9 lg:w-3 lg:relative z-2 menu-container">
         <AppCategories />
       </div>
-    <div className="flex flex-column w-9 xl:w-12 p-5">
-    <div className="mainButtonCont" style={{ position: "relative" }}>
+    <div className="flex flex-column w-12 sm:w-12 md:w-12 lg:w-9 xl:w-9 p-5">
+       <div>
+           <CategoryListing/> 
+       </div>
+      <div className="mainButtonCont" style={{ position: "relative" }}>
         <AppButton
           label="Filter"
           style={{
