@@ -3,9 +3,11 @@ import React, { useState, useEffect } from "react";
 import "./app.login.step.one.css";
 import AppInputPassword from "../../app.input.password/app.input.password";
 import AppButton from "../../app.button/app.button";
-import AppInputEmail from "../../app.input.email/app.input.email";
 import AppCheckBox from "../../app.checkbox/app.checkbox";
 import { emailSchema, passwordSchema } from '../../app.validation/app.validation';
+import AppEmailOrPhoneInput from "../../app.toggle.input/app.toggle.input";
+import { fetchCountryCodes } from "../../util/util";
+import { Country } from "../../util/util";
 
 interface AppLoginStepOneProps {
   checkout?: boolean;
@@ -29,8 +31,46 @@ const AppLoginStepOne: React.FC<AppLoginStepOneProps> = (props: any) => {
     setPasswordError(password ? (passwordValidation.success ? "" : passwordValidation.error.issues[0].message) : "");
   }, [email, password]);
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+  const [value, setValue] = useState<string>('');
+  const [isEmail, setIsEmail] = useState<boolean>(true);
+  const [countryCodes, setCountryCodes] = useState<Country[]>([]);
+  const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+
+  useEffect(() => {
+    const loadCountryCodes = async () => {
+        try {
+            const countries = await fetchCountryCodes();
+            setCountryCodes(countries);
+            setSelectedCountry(countries[0]);
+        } catch (error) {
+            console.error('Error loading country codes:', error);
+        }
+    };
+
+    loadCountryCodes();
+}, []);
+
+useEffect(() => {
+  if (value === "") {
+    setIsEmail(true);
+  }
+}, [value]);
+
+  const handleToggleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    setValue(inputValue);
+
+    setIsEmail(inputValue.includes('@') || /[^\d]/.test(inputValue));
+
+    if (inputValue.includes('@')) {
+      setSelectedCountry(null);
+    }
+  };
+
+  const handleToggleInputClear = () => {
+    setValue('');
+    setIsEmail(true);
+    setSelectedCountry(countryCodes[0]);
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,16 +85,19 @@ const AppLoginStepOne: React.FC<AppLoginStepOneProps> = (props: any) => {
 
   return (
     <div>
-      <div className="inputfield w-19rem mb-5 mt-4 px-3">
-        <AppInputEmail
-          value={email}
-          onChange={handleEmailChange}
-          error={emailError}
-          removeLabel={removeLabel}
-          placeholder="Email/ Mobile number"
+      <div className="flex flex-column gap-3 w-19rem mb-5 mt-4 px-3 ">
+      <AppEmailOrPhoneInput
+          value={value}
+          page={"login"}
+          isEmail={isEmail}
+          countryCodes={countryCodes}
+          selectedCountry={selectedCountry}
+          onChange={handleToggleInputChange}
+          onClear={handleToggleInputClear}
+          onCountryChange={(country: Country) => setSelectedCountry(country)}
           id="login"
         />
-
+        
         <AppInputPassword
           value={password}
           onChange={handlePasswordChange}
@@ -74,7 +117,7 @@ const AppLoginStepOne: React.FC<AppLoginStepOneProps> = (props: any) => {
           <div className="mt-1">
             <a
               className="underline cursor-pointer"
-              style={{ color: "#4C70FF", letterSpacing: "0.5px",fontWeight: "550",fontSize: "13px" }}
+              style={{ color: "#4C70FF", letterSpacing: "0.5px", fontWeight: "550", fontSize: "13px" }}
             >
               Forgot password?
             </a>
@@ -114,7 +157,7 @@ const AppLoginStepOne: React.FC<AppLoginStepOneProps> = (props: any) => {
       }
 
       <div className="text-center mb-2 mt-3">
-        <span className="line-height-3" style={{ fontSize: "13px",letterSpacing: "0.5px",color: "rgba(123, 123, 123, 1)" }}>
+        <span className="line-height-3" style={{ fontSize: "13px", letterSpacing: "0.5px", color: "rgba(123, 123, 123, 1)" }}>
           No account yet?
         </span>
         <a

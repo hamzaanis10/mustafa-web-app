@@ -11,7 +11,7 @@ interface AppCheckboxProps extends CheckboxProps {
 const AppCheckBox: React.FC<AppCheckboxProps> = (props:any) => {
     const { label, checked, id } = props;
     return (
-        <div id="checkbox">
+        <div id="checkbox" className=''>
             <Checkbox
                 inputId={id}
                 checked={checked}
@@ -21,7 +21,7 @@ const AppCheckBox: React.FC<AppCheckboxProps> = (props:any) => {
             />
             <label
                 htmlFor={id}
-                className="p-checkbox-label cursor-pointer"
+                className="p-checkbox-label cursor-pointer ml-1"
             >
                 {label}
             </label>

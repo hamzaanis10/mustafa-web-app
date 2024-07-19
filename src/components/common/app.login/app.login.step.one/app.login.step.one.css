@@ -45,8 +45,11 @@
     box-shadow: 0 0 0 0;
 }
 
-.inputfield .p-inputtext{
+/* .inputfield .p-inputtext{
     border: none !important;
+} */
+.p-inputtext{
+    height: 40px;
 }
 
 .p-inputtext:enabled:focus {
@@ -57,4 +60,12 @@
 }
 .p-inputtext:enabled:hover {
     border-color: none !important;
+}
+
+.pi-icon{
+    position:absolute;
+}
+
+div#loginCheckbox {
+    padding-top: 2px !important;
 }

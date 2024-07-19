@@ -10,10 +10,14 @@
     }
 
     label.p-checkbox-label {
-        color: rgba(157, 157, 157, 1);
+        color:#434343;
         margin-right: 0;
         font-weight: 500;
         letter-spacing: 0.5px;
         font-size: 13px;
+        text-align: center;
+    }
+    div#agreement {
+        padding-top: 3px !important;
     }
 }

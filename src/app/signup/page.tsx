@@ -54,7 +54,7 @@ const goBackToSignupForm = () => {
 
   return (
     <div>
-      <AppDialog header="Hi there, new friend!" visible={showForm} modal onHide={closeForm} className="sm: w-15rem md: w-20rem lg: w-25rem" id='Signup-page' >
+      <AppDialog header="Hi there, new friend!" visible={showForm} modal onHide={closeForm} className="sm: w-15rem md: w-20rem lg: w-20rem" id='Signup-page' >
         <AppSignup onContinue={onSignupContinue} />
       </AppDialog>
 

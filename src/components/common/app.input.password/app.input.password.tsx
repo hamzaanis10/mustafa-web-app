@@ -23,9 +23,9 @@ const AppInputPassword: React.FC<AppInputPasswordProps> = (props: any) => {
         <div id={id}>
             {
                 removeLabel ?
-                    <div className="mb-3">
-                        <div className='border-1 border-round flex align-items-center relative' style={{ borderColor: "#C4C4C4" }}>
-                            <i className='pi pi-lock pl-1' style={{ fontSize: 15 }} />
+                    <div>
+                        <div className='flex align-items-center relative' style={{ borderColor: "#C4C4C4" }}>
+                            <i className='pi pi-lock pl-1' style={{ fontSize: 15, position:"absolute" }} />
                             <InputText
                                 type={passwordVisible ? 'text' : 'password'}
                                 value={value}
@@ -46,7 +46,7 @@ const AppInputPassword: React.FC<AppInputPasswordProps> = (props: any) => {
                             type={passwordVisible ? 'text' : 'password'}
                             value={value}
                             onChange={props.onChange}
-                            className={classNames('w-full mb-2 text-xs password-input', { 'p-invalid': error })}
+                            className={classNames('w-full  text-xs password-input', { 'p-invalid': error })}
                             placeholder={placeholder}
                         />
                         <i className={classNames('pi', { 'pi-eye': passwordVisible, 'pi-eye-slash': !passwordVisible }, 'eye-icon')}

@@ -1,6 +1,7 @@
 import { appLoaderStatusSelector } from "@/store/selectors/app.selectors";
 import { fromJS } from "immutable";
 import AppProductStarRating from "../app.product.star.rating/app.product.star.rating";
+import axios from "axios";
 
 export const differenceBetweenDatesInMinutes = (
   startDate: any,
@@ -879,6 +880,31 @@ export const ProductFilter = [
     ],
   },
 ];
+
+export interface Country {
+  name: string;
+  code: string;
+  flag: string;
+}
+
+export const fetchCountryCodes = async (): Promise<Country[]> => {
+  try {
+    const response = await axios.get('https://restcountries.com/v3.1/all');
+    const countries: Country[] = response.data
+      .map((country: any) => ({
+        name: country.name.common,
+        code: country.idd?.root + (country.idd?.suffixes?.[0] || ''),
+        flag: country.flags?.svg || country.flags?.png,
+      }))
+      .filter((country: Country) => country.code);
+
+    console.log('Country codes:', countries);
+    return countries;
+  } catch (error) {
+    console.error('Error fetching country codes:', error);
+    throw error;
+  }
+};
 
 export const CATEGORY_lIST = [
   {

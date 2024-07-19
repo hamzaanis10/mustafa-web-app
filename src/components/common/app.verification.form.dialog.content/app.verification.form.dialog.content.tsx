@@ -12,9 +12,9 @@ export const AppVerificationMethod: React.FC<AppVerificationMethodProps> = (prop
             <p className="text-sm font-normal w-auto text-center pb-4" style={{color: '#7B7B7B'}}>Please choose your preferred verification method.</p>
         </div>
         <AppButton disabled={false} label="Send via Whatsapp" onClick={props.onOpenOtpForm} />
-        <div className='flex justify-content-center align-items-center pt-2 pb-4' style={{color: '#7B7B7B'}}>
+        <div className='flex justify-content-center align-items-center pt-2 pb-4' style={{color: '#C4C4C4',width:"255px", margin:"0 auto"}}>
             <hr className='flex-grow-1 bg-gray-1' />
-            <span className="px-2">or</span>
+            <span className="px-2 pb-1">or</span>
             <hr className='flex-grow-1 bg-gray-1' />
         </div>
         <AppButton disabled={false} style={{ backgroundColor: 'transparent', color: "#00CB56" }} label="Send via Sms" onClick={props.onOpenOtpForm} />
