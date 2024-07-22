@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import "./app.login.step.one.css";
 import AppInputPassword from "../../app.input.password/app.input.password";
 import AppButton from "../../app.button/app.button";
@@ -104,7 +104,7 @@ useEffect(() => {
           onChange={handlePasswordChange}
           error={passwordError}
           removeLabel={removeLabel}
-          placeholder="Your password"
+          placeholder="Your Password"
           id="login"
         />
 

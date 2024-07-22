@@ -114,6 +114,7 @@ const AppEmailOrPhoneInput: React.FC<AppEmailOrPhoneInputProps> = ({
             style={{
               paddingRight: value ? "30px" : "10px",
               paddingLeft: isEmail? "37px" : "10px",
+              
             }}
           />
 

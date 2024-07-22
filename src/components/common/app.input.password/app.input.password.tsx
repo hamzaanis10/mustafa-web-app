@@ -35,7 +35,7 @@ const AppInputPassword: React.FC<AppInputPasswordProps> = (props: any) => {
                                 type={passwordVisible ? 'text' : 'password'}
                                 value={value}
                                 onChange={props.onChange}
-                                className={classNames('w-full text-xs password-input', { 'p-invalid': error })}
+                                className={classNames('w-full  password-input', { 'p-invalid': error })}
                                 placeholder={placeholder}
                                 onFocus={handleFocus}
                                 style={{
