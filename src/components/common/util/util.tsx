@@ -1,6 +1,5 @@
 import { appLoaderStatusSelector } from "@/store/selectors/app.selectors";
 import { fromJS } from "immutable";
-import AppProductStarRating from "../app.product.star.rating/app.product.star.rating";
 
 export const differenceBetweenDatesInMinutes = (
   startDate: any,
@@ -461,32 +460,7 @@ export const ProductFilter = [
   },
 ];
 
-export const ReviewTag = [
-  { name: "with pic" },
-  { name: "All(493)" },
-  { name: "Good quality" },
-  { name: "Good quality" },
-  {
-    name: "5",
-    star: <AppProductStarRating value={1} stars={1} />,
-  },
-  {
-    name: "4",
-    star: <AppProductStarRating value={1} stars={1} />,
-  },
-  {
-    name: "3",
-    star: <AppProductStarRating value={1} stars={1} />,
-  },
-  {
-    name: "2",
-    star: <AppProductStarRating value={1} stars={1} />,
-  },
-  {
-    name: "1",
-    star: <AppProductStarRating value={1} stars={1} />,
-  },
-];
+
 
 export const ProductReview = [
   {
