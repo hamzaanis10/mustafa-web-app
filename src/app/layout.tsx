@@ -1,5 +1,5 @@
 //import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import { PrimeReactProvider } from "primereact/api";
 import "./theme.css";
 import "primeicons/primeicons.css";
@@ -11,7 +11,7 @@ import { Metadata } from "next";
 import { RefToastProvider } from "./toast.wrapper";
 import AppClient from "./app.client";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Mustafa App",
@@ -26,17 +26,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="icon" href="../../../assets/images/must-fav-icon-32-32.png" />
-      <link rel="apple" sizes="180x180" href="../../../assets/images/must-fav-icon-180-180.png" />
-      <body className={inter.className}>
-        <RefToastProvider>
-          <SWRProvider>
-            <PrimeReactProvider>
-              <Header />
-              <AppClient />
-              {children}
-            </PrimeReactProvider>
-          </SWRProvider>
-        </RefToastProvider>
+      <link
+        rel="apple"
+        sizes="180x180"
+        href="../../../assets/images/must-fav-icon-180-180.png"
+      />
+      <body>
+        <PrimeReactProvider>
+          <AppClient />
+          {children}
+        </PrimeReactProvider>
       </body>
     </html>
   );

@@ -7,6 +7,7 @@ import "primeflex/primeflex.css";
 import "../globals.css";
 import { Metadata } from "next";
 import AppCategories from "./cmp/c.layout/menu.category/menu.catrgory";
+import Header from "@/components/common/header/header";
 // const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -22,14 +23,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-          <PrimeReactProvider>
-            <div className="flex" style={{ backgroundColor: "#F5F5F5" }}>
-              <div className="hidden lg:flex w-9 lg:w-3 lg:relative xl:w-25rem z-2 menu-container">
-                <AppCategories />
-              </div>
-              {children}
+        <PrimeReactProvider>
+          <Header />
+          <div className="flex" style={{ backgroundColor: "#F5F5F5" }}>
+            <div className="hidden lg:flex w-9 lg:w-3 lg:relative xl:w-25rem z-2 menu-container">
+              <AppCategories />
             </div>
-          </PrimeReactProvider>
+            {children}
+          </div>
+        </PrimeReactProvider>
       </body>
     </html>
   );

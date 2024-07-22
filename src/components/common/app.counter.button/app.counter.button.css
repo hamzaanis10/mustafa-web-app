@@ -1,3 +1,9 @@
+
+main#ProductDetail-Page div#add-more-item{
+    justify-content: flex-start !important;
+    margin: 0 !important;
+}
+
 #add-more-item {
     .p-inputnumber{
         display: flex;

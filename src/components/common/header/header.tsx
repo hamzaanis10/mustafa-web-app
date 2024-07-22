@@ -8,9 +8,14 @@ import { Sidebar } from "primereact/sidebar";
 import AppCategories from "@/app/((withsidebar))/cmp/c.layout/menu.category/menu.catrgory";
 import ReduxProvider from "@/store/redux-provider";
 import { useTotalCartItems } from "@/app/hooks/fetch/cart";
+import Link from "next/link";
 
 const Header = () => {
-  const { mutate: totalCartItemsMutate, data: totalCartItems, isLoading: isLoadingTotalCartItems } = useTotalCartItems();
+  const {
+    mutate: totalCartItemsMutate,
+    data: totalCartItems,
+    isLoading: isLoadingTotalCartItems,
+  } = useTotalCartItems();
 
   const [isCategoryMenuVisible, setIsCategoryMenuVisible] =
     useState<boolean>(false);
@@ -42,21 +47,22 @@ const Header = () => {
           <i className="pi pi-bars"></i>
         </div>
         <div className="flex-initial lg:flex-1">
-          <Image
-            src="/assets/images/must-logo.png"
-            alt="Must Logo"
-            className="dark:invert"
-            width={81}
-            height={48}
-            priority
-          />
+          <Link href='/'>
+            <Image
+              src="/assets/images/must-logo.png"
+              alt="Must Logo"
+              className="dark:invert"
+              width={81}
+              height={48}
+              priority
+            />
+          </Link>
         </div>
         <ReduxProvider>
           <div className="flex flex-initial align-items-center pl-2 gap-4 text-sm font-medium lg:flex-order-4 lg:text-base lg:pl-4">
-            {
-              totalCartItems && totalCartItems.get('count') > 0 ?
-                <MyCart totalCartItems={totalCartItems} /> : null
-            }
+            {totalCartItems && totalCartItems.get("count") > 0 ? (
+              <MyCart totalCartItems={totalCartItems} />
+            ) : null}
             <UserProfile />
           </div>
         </ReduxProvider>
