@@ -84,7 +84,7 @@ useEffect(() => {
   const canLogin = email && password && !passwordError && !emailError;
 
   return (
-    <div>
+    <div >
       <div className="flex flex-column gap-3 w-19rem mb-5 mt-4 px-3 ">
       <AppEmailOrPhoneInput
           value={value}
@@ -96,6 +96,7 @@ useEffect(() => {
           onClear={handleToggleInputClear}
           onCountryChange={(country: Country) => setSelectedCountry(country)}
           id="login"
+          
         />
         
         <AppInputPassword

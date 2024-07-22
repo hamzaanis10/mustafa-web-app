@@ -14,6 +14,11 @@ interface AppInputPasswordProps extends InputTextProps {
 const AppInputPassword: React.FC<AppInputPasswordProps> = (props: any) => {
     const { placeholder, value, removeLabel = false, error, id } = props;
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [isFocused, setIsFocused] = useState(false);
+
+    const handleFocus = () => {
+        setIsFocused(true);
+    };
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
@@ -32,6 +37,11 @@ const AppInputPassword: React.FC<AppInputPasswordProps> = (props: any) => {
                                 onChange={props.onChange}
                                 className={classNames('w-full text-xs password-input', { 'p-invalid': error })}
                                 placeholder={placeholder}
+                                onFocus={handleFocus}
+                                style={{
+                                    paddingRight: isFocused ? "30px" : "10px",
+                                    paddingLeft: "37PX",
+                                  }}
                             />
                             <i className={classNames('pi', { 'pi-eye': passwordVisible, 'pi-eye-slash': !passwordVisible }, 'eye-icon')}
                                 onClick={togglePasswordVisibility}></i>

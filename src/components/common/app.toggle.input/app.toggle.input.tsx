@@ -23,6 +23,7 @@ interface AppEmailOrPhoneInputProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onClear: () => void;
   onCountryChange: (country: Country) => void;
+  className?: string
 }
 
 const AppEmailOrPhoneInput: React.FC<AppEmailOrPhoneInputProps> = ({
@@ -35,6 +36,7 @@ const AppEmailOrPhoneInput: React.FC<AppEmailOrPhoneInputProps> = ({
   onChange,
   onClear,
   onCountryChange,
+  className
 }) => {
   const countryTemplate = (option: Country) => {
     return (
@@ -75,7 +77,7 @@ const AppEmailOrPhoneInput: React.FC<AppEmailOrPhoneInputProps> = ({
   return (
     <div className="p-field" id="toggleInput">
       {/* <label htmlFor="emailOrPhone">{isEmail ? 'Email' : 'Phone Number'}</label> */}
-      <div className={`p-inputgroup relative  ${isEmail ? "full-width " : ""}`}>
+      <div className={`p-inputgroup relative  ${isEmail ? "full-width " : " flex gap-1"}`}>
         <div>
           {!isEmail && (
             <Dropdown
