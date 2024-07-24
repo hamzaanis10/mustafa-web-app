@@ -1,105 +1,57 @@
-import { Card } from "primereact/card";
+"use client";
 import React from "react";
-import "./category.css";
-import { CATEGORY_lIST } from "../util/util";
-import { Carousel, CarouselProps, CarouselResponsiveOption } from "primereact/carousel";
+import { Button } from "primereact/button";
+import { Rating } from "primereact/rating";
+import { Tag } from "primereact/tag";
+import { Card } from "primereact/card";
+import {
+  findCartItem,
+  getLanguageBaseName,
+  isActionLoading,
+} from "../util/util";
+import AppCounterButton from "../app.counter.button/app.counter.button";
+//import { addProductToCart } from "@/store/actions/cart.actions";
+import { createAction } from "@reduxjs/toolkit";
+import { ProgressBar } from "primereact/progressbar";
 
-interface CategoryBoxProps extends CarouselProps{
+export default function CategoryBox(props: any) {
+  const {  product, index, systemConfig, } = props;
 
-}
-
-const CategoryBox: React.FC<CategoryBoxProps> = (props: any) => {
-  const responsiveOptions: CarouselResponsiveOption[] = [
-    {
-      breakpoint: "1400px",
-      numVisible: 6,
-      numScroll: 1,
-    },
-    {
-      breakpoint: "1199px",
-      numVisible: 5,
-      numScroll: 1,
-    },
-    {
-      breakpoint: "767px",
-      numVisible: 4,
-      numScroll: 1,
-    },
-    {
-      breakpoint: "575px",
-      numVisible: 1,
-      numScroll: 1,
-    },
-  ];
-
-  const itemTemplate = (CATEGORY_lIST: any) => {
-    return (
-      <Card
-      className="w-8rem sm:w-8rem md:w-8rem xl:w-8rem shadow-none "
-      style={{ height: "180px" , margin:"auto" }}
+  const dataToPars = product;
+  console.log(dataToPars,'dataToPars')
+  
+  return (
+    <Card
+    className="w-10rem sm:w-10rem md:w-10rem xl:w10rem shadow-none  "
+    style={{ height: "180px", margin:"auto"}}  
+      key={product.id}
     >
-      <div className="flex justify-content-center">
-        {CATEGORY_lIST.image ? (
-          <img
-            className="block border-circle xl:block  "
-            src={`https://primefaces.org/cdn/primereact/images/product/${CATEGORY_lIST.image}`}
-            // src={`${systemConfig &&
-            //     systemConfig.get("fileUploadBaseUrl") &&
-            //     systemConfig.get("fileUploadBaseUrl")
-            //     }${product.thumbnailImage}`}
-            alt={"Category name"}
+     
+      {dataToPars ? (
+        <div>
+              <div className="flex justify-content-center">
+            <img
+            className="block border-circle xl:block"
+            src={`${
+              systemConfig &&
+              systemConfig.get("fileUploadBaseUrl") &&
+              systemConfig.get("fileUploadBaseUrl")
+            }${dataToPars.thumbnailImage}`}
+            //alt={product.name}
             width="90px"
             height="90px"
           />
-        ) : (
-          <div>
-            <img
-              className="block border-circle xl:block  "
-              width="90px"
-              height="90px"
-              style={{ backgroundColor: "#D9D9D9" }}
-            />
-          </div>
-        )}
-      </div>
-      <div className="flex flex-column align-items-center gap-1 mt-2">
-        {CATEGORY_lIST.name ? (
-          <div
-            className="text-xs md:text-sm font-medium pt-1 pb-1"
-            style={{ color: "#000000" }}
-          >
-            {CATEGORY_lIST.name}
-          </div>
-        ) : (
-          <div>
-            <span
-              className="text-xs md:text-sm font-medium pt-1 pb-1"
-              style={{ color: "#000000" }}
-            >
-              Category Name
-            </span>
-          </div>
-        )}
-      </div>
+        </div>
+            <div className="flex flex-column align-items-center gap-1">
+              <div
+                className="text-xs md:text-sm font-medium pt-1 pb-1"
+                style={{ color: "#000000" }}
+              >
+                {getLanguageBaseName(dataToPars.name)}
+              </div>
+            </div>
+        </div>
+      ) : null}
     </Card>
-    );
-  };
-
-  return (
-    <div className="card w-full">
-      <Carousel
-        value={CATEGORY_lIST}
-        numScroll={1}
-        numVisible={1}
-        responsiveOptions={responsiveOptions}
-        itemTemplate={itemTemplate}
-        showIndicators={false}
-        // className="custom-circular"
-        id="CategoryMenu"
-       
-      />
-    </div>
   );
-};
-
-export default CategoryBox;
+}

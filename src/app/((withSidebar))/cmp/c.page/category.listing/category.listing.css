@@ -1,0 +1,22 @@
+#categoryListing{
+    .p-dataview .p-dataview-content{
+        background: transparent;
+    }
+
+    .p-datascroller .p-datascroller-content {
+      background: transparent;
+      padding: 0;
+    }
+
+    .p-carousel .p-carousel-content .p-carousel-prev, .p-carousel .p-carousel-content .p-carousel-next {
+      width: 2rem;
+      height: 2rem;
+      color: #6c757d;
+      border: 0 none;
+      background: transparent;
+      border-radius: 50%;
+      transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+      margin: 0rem;
+  }
+  
+}

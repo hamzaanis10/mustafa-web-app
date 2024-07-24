@@ -10,6 +10,8 @@ import ReduxProvider from "@/store/redux-provider";
 import AppCategories from "../((withsidebar))/cmp/c.layout/menu.category/menu.catrgory";
 import { ScrollTop } from "primereact/scrolltop";
 import CategoryListing from "../((withSidebar))/cmp/c.page/category.listing/category.listing";
+import CategoryBarSkeleton from "@/skeletons/horizontal.bars.skeleton/category.bar.skeleton";
+
 
 function page() {
   const [visibleRight, setVisibleRight] = useState<boolean>(false);
@@ -31,7 +33,7 @@ function page() {
       <div className="hidden lg:flex w-9 lg:w-3 lg:relative z-2 menu-container">
         <AppCategories />
       </div>
-    <div className="flex flex-column w-12 sm:w-12 md:w-12 lg:w-9 xl:w-9 p-5">
+    <div className="flex flex-column w-12 sm:w-12 md:w-12 lg:w-9 xl:w-9 p-3">
        <div>
            <CategoryListing/> 
        </div>
