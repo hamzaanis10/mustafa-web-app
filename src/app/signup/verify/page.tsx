@@ -4,9 +4,9 @@ import "../signup.css";
 import { useState } from 'react';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
-import { VerificationMethodDialogContent } from '@/app/components/common/verification.form.dialog.content/verification.form.dialog.content';
-import { OtpDialogContent } from '@/app/components/common/otp.dialog.content/otp.dialog.content';
-import { SuccessDialogContent } from '@/app/components/common/success.dialog.content/success.dialog.content';
+// import { VerificationMethodDialogContent } from '@/app/components/common/verification.form.dialog.content/verification.form.dialog.content';
+// import { OtpDialogContent } from '@/app/components/common/otp.dialog.content/otp.dialog.content';
+// import { SuccessDialogContent } from '@/app/components/common/success.dialog.content/success.dialog.content';
 // import { InputOtp } from 'primereact/inputotp';
 
 const Verify: React.FC = () => {
@@ -51,15 +51,15 @@ const Verify: React.FC = () => {
         <>
             <Button label="Open Dialog" onClick={openVerificationMethodForm} />
             <Dialog header="Verify your number." visible={showVerificationMethodForm} modal style={{ width: '350px' }} onHide={closeVerificationMethodForm} contentStyle={{ overflow: 'hidden' }}>
-                <VerificationMethodDialogContent onOpenOtpForm={openOtpForm} />
+                {/* <VerificationMethodDialogContent onOpenOtpForm={openOtpForm} /> */}
             </Dialog>
 
             <Dialog header="Verification Started." visible={showOtpForm} modal style={{ width: '350px' }} onHide={closeOtpForm}>
-                <OtpDialogContent otp={otp} onHandleOtpChange={handleOtpChange} onVerifyOtp={verifyOtp} isOtpComplete={isOtpComplete} />
+                {/* <OtpDialogContent otp={otp} onHandleOtpChange={handleOtpChange} onVerifyOtp={verifyOtp} isOtpComplete={isOtpComplete} /> */}
             </Dialog>
 
             <Dialog header="" visible={showSuccessDialog} modal style={{ width: '350px', textAlign: 'center' }} onHide={() => setShowSuccessDialog(false)}>
-                <SuccessDialogContent />
+                {/* <SuccessDialogContent /> */}
             </Dialog>
         </>
     );

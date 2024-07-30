@@ -5,10 +5,10 @@ import MyCart from "../shopping.cart/shopping.cart";
 import Image from "next/image";
 import UserProfile from "../user.profile/user.profile";
 import { Sidebar } from "primereact/sidebar";
-import AppCategories from "@/app/((withsidebar))/cmp/c.layout/menu.category/menu.catrgory";
 import ReduxProvider from "@/store/redux-provider";
 import { useTotalCartItems } from "@/app/hooks/fetch/cart";
 import Link from "next/link";
+import AppCategories from "@/app/((withSidebar))/cmp/c.layout/menu.category/menu.catrgory";
 
 const Header = () => {
   const {
