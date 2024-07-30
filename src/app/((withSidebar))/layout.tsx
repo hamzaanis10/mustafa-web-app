@@ -1,3 +1,5 @@
+"use client";
+
 import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 import "../theme.css";
 //import 'primereact/resources/themes/lara-light-green/theme.css';
@@ -8,12 +10,13 @@ import "../globals.css";
 import { Metadata } from "next";
 import AppCategories from "./cmp/c.layout/menu.category/menu.catrgory";
 import Header from "@/components/common/header/header";
+import ReduxProvider from "@/store/redux-provider";
 // const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Mustafa Web App",
-  description: "Mustafa Web App",
-};
+// export const metadata: Metadata = {
+//   title: "Mustafa Web App",
+//   description: "Mustafa Web App",
+// };
 
 export default function RootLayout({
   children,
@@ -23,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <ReduxProvider>
         <PrimeReactProvider>
           <Header />
           <div className="flex" style={{ backgroundColor: "#F5F5F5" }}>
@@ -32,6 +36,7 @@ export default function RootLayout({
             {children}
           </div>
         </PrimeReactProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

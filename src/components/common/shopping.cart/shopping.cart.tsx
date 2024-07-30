@@ -1,6 +1,6 @@
 // components/MyCart.tsx
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CartsListSidebar from "./carts.list.siderbar";
 import { Badge } from "primereact/badge";
 
@@ -11,8 +11,16 @@ export default function MyCart(props: any) {
     setIsOpen(false);
   };
   const toggleSidebar = () => {
-    setIsOpen(!isOpen);
+    if (totalCartItems && totalCartItems.get("count") > 0) {
+      setIsOpen(!isOpen);
+    }
   }
+
+  useEffect(() => {
+    if (totalCartItems && totalCartItems.get("count") === 0) {
+      setIsOpen(false);
+    }
+  }, [totalCartItems]);
   return (
     <>
       <div

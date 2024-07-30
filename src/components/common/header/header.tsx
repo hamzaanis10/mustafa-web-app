@@ -60,9 +60,10 @@ const Header = () => {
         </div>
         <ReduxProvider>
           <div className="flex flex-initial align-items-center pl-2 gap-4 text-sm font-medium lg:flex-order-4 lg:text-base lg:pl-4">
-            {totalCartItems && totalCartItems.get("count") > 0 ? (
+            {/* {totalCartItems && totalCartItems.get("count") > 0 ? (
               <MyCart totalCartItems={totalCartItems} />
-            ) : null}
+            ) : null} */}
+             <MyCart totalCartItems={totalCartItems} />
             <UserProfile />
           </div>
         </ReduxProvider>
