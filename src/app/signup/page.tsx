@@ -7,8 +7,13 @@ import AppDialog from '@/components/common/app.dialog/app.dialog';
 import AppSuccessDialog from '@/components/common/app.success.dialog.content/app.success.dialog.content';
 import AppOtpDialog from '../../components/common/app.otp.dialog.content/app.otp.dialog.content';
 import AppSignup from '../../components/common/app.singup.dialog/app.signup.dialog';
+import ReduxProvider from '@/store/redux-provider';
+import { useSignUpMutation } from '@/store/apis/signupAPI';
+import { SignUpDetails } from '@/types/api-types';
 
 const Page: React.FC = () => {
+  const [signUp] = useSignUpMutation();
+  const [details, setDetails] = useState<SignUpDetails>({ step: 'SEND_OTP' });
   const [showForm, setShowForm] = useState<boolean>(true);
   const [showVerificationMethodForm, setShowVerificationMethodForm] = useState<boolean>(false);
   const [showSuccessDialog, setShowSuccessDialog] = useState<boolean>(false);
@@ -28,10 +33,36 @@ const Page: React.FC = () => {
     setShowVerificationMethodForm(false);
   };
 
-  const openOtpForm = () => {
-    setShowVerificationMethodForm(false);
-    setShowOtpForm(true);
+  const handleOpenOtpForm = async (method: 'WHATSAPP' | 'SMS' | 'EMAIL') => {
+    try {
+      const data = {
+        type: method,
+      email: "asad@gmail.com",
+      phoneCountryCode: "+92",
+      phoneNumber: "3341106810"
+    }
+
+      const response = await signUp({ data, details }).unwrap();
+
+      if (method === 'WHATSAPP') {
+        // Handle redirect to OTP page for WhatsApp
+        console.log('Redirecting to OTP page for WhatsApp:', response.message);
+      } else if (method === 'SMS') {
+        // Handle redirect to OTP page for SMS
+        console.log('Redirecting to OTP page for SMS:', response.message);
+      }
+
+      // Redirect to the OTP page or handle OTP input
+      // e.g., navigate('/otp-page');
+
+    } catch (error) {
+      console.error('Error sending OTP:', error);
+    }
   };
+  // const openOtpForm = () => {
+  //   setShowVerificationMethodForm(false);
+  //   setShowOtpForm(true);
+  // };
 
   const closeOtpForm = () => {
     setShowOtpForm(false);
@@ -41,36 +72,36 @@ const Page: React.FC = () => {
     setShowOtpForm(false);
     setShowSuccessDialog(true);
   };
-  
+
   const goBackToVerificationMethodDialog = () => {
     setShowOtpForm(false);
     setShowVerificationMethodForm(true);
-};
+  };
 
-const goBackToSignupForm = () => {
-  setShowVerificationMethodForm(false);
-  setShowForm(true)
-};
+  const goBackToSignupForm = () => {
+    setShowVerificationMethodForm(false);
+    setShowForm(true)
+  };
 
   return (
-    <div>
-      <AppDialog header="Hi there, new friend!" visible={showForm} modal onHide={closeForm} className="sm: w-15rem md: w-20rem lg: w-20rem" id='Signup-page' >
-        <AppSignup onContinue={onSignupContinue} />
-      </AppDialog>
+      <div>
+        <AppDialog header="Hi there, new friend!" visible={showForm} modal onHide={closeForm} className="sm: w-15rem md: w-20rem lg: w-20rem" id='Signup-page' >
+          <AppSignup onContinue={onSignupContinue} />
+        </AppDialog>
 
-      <AppDialog header="Verify your number." visible={showVerificationMethodForm} modal onHide={closeVerificationMethodForm} className='relative sm: w-15rem md: w-20rem lg: w-22rem'>
-        <AppVerificationMethod onOpenOtpForm={openOtpForm} onGoBack={goBackToSignupForm}/>
-      </AppDialog>
+        <AppDialog header="Verify your number." visible={showVerificationMethodForm} modal onHide={closeVerificationMethodForm} className='relative sm: w-15rem md: w-20rem lg: w-22rem'>
+          <AppVerificationMethod onOpenOtpForm={handleOpenOtpForm} onGoBack={goBackToSignupForm} />
+        </AppDialog>
 
-      <AppDialog header="Verification Started." visible={showOtpForm} modal onHide={closeOtpForm} className='relative sm: w-15rem md: w-20rem lg: w-22rem'>
-        <AppOtpDialog label="Verify" description="Please enter the verification code we just sent to your phone number. " otp={otp} setOtp={setOtp} length={5} onVerifyOtp={verifyOtp} onGoBack={goBackToVerificationMethodDialog} />
-      </AppDialog>
+        <AppDialog header="Verification Started." visible={showOtpForm} modal onHide={closeOtpForm} className='relative sm: w-15rem md: w-20rem lg: w-22rem'>
+          <AppOtpDialog label="Verify" description="Please enter the verification code we just sent to your phone number. " otp={otp} setOtp={setOtp} length={5} onVerifyOtp={verifyOtp} onGoBack={goBackToVerificationMethodDialog} />
+        </AppDialog>
 
-      <AppDialog header="" visible={showSuccessDialog} modal onHide={() => setShowSuccessDialog(false)} className='relative sm: w-15rem md: w-20rem lg: w-22rem'>
-        <AppSuccessDialog label="Let's get started" title="Verified!" description="You have successfully verified the account. Now it’s time to start your MUST journey!"/>
-      </AppDialog>
-      {/* <OtpTwo /> */}
-    </div>
+        <AppDialog header="" visible={showSuccessDialog} modal onHide={() => setShowSuccessDialog(false)} className='relative sm: w-15rem md: w-20rem lg: w-22rem'>
+          <AppSuccessDialog label="Let's get started" title="Verified!" description="You have successfully verified the account. Now it’s time to start your MUST journey!" />
+        </AppDialog>
+        {/* <OtpTwo /> */}
+      </div>
   );
 };
 

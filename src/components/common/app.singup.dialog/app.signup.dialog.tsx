@@ -5,8 +5,6 @@ import { useState, useEffect } from "react";
 import { InputText } from "primereact/inputtext";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import AppButton from "../app.button/app.button";
-import AppInputEmail from "../app.input.email/app.input.email";
-import AppInputPhoneNumber from "../app.input.phone.number/app.input.phone.number";
 import AppCheckBox from "../app.checkbox/app.checkbox";
 import AppInputPassword from "../app.input.password/app.input.password";
 import {
@@ -18,12 +16,15 @@ import {
 import { fetchCountryCodes } from "../util/util";
 import { Country } from "../util/util";
 import AppEmailOrPhoneInput from "../app.toggle.input/app.toggle.input";
+import { useSignUpMutation, SignUpDetails, SignUpData } from "@/store/apis/signupAPI";
 
 interface AppSignupProps {
   onContinue: () => void;
 }
 
 const AppSignup: React.FC<AppSignupProps> = (props: any) => {
+  const [signUp, { isLoading, isError, data, error }] = useSignUpMutation();
+  const [details, setDetails] = useState<SignUpDetails>({ step: 'VALIDATION' });
   const [nickname, setNickname] = useState("");
   const [nicknameError, setNicknameError] = useState("");
   const [password, setPassword] = useState("");
@@ -51,12 +52,47 @@ const AppSignup: React.FC<AppSignupProps> = (props: any) => {
         setCountryCodes(countries);
         setSelectedCountry(countries[0]);
       } catch (error) {
-        console.error("Error loading country codes:", error);
+        if (typeof error === 'object' && error !== null && 'status' in error) {
+          console.error(`Failed to sign up: Status ${error.status}`);
+        } else {
+          console.error('Failed to sign up:', error);
+        }
       }
     };
 
     loadCountryCodes();
   }, []);
+
+  const handleSignUp = async () => {
+    let signUpData: SignUpData;
+
+    if (isEmail) {
+      signUpData = {
+        displayName: nickname,
+        email: value,
+        // phoneCountryCode: '',
+        // phoneFlagCode: '',
+        password,
+        // otp: '',
+      };
+    } else {
+      signUpData = {
+        displayName: nickname,
+        phoneNumber: value,
+        phoneCountryCode: selectedCountry ? selectedCountry.code : '',
+        // phoneFlagCode: selectedCountry ? selectedCountry.flagCode : '',
+        password,
+        // otp: '',
+      };
+    }
+    try {
+      await signUp({ data: signUpData, details }).unwrap();
+      props.onContinue();
+      // Handle success, e.g., navigate to the next step or show a success message
+    } catch (err) {
+      console.error('Failed to sign up:', err);
+    }
+  };
 
   const handleToggleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -156,6 +192,15 @@ const AppSignup: React.FC<AppSignupProps> = (props: any) => {
     );
   };
 
+  const getErrorMessage = (error: any) => {
+    if (error?.data && typeof error.data === 'object' && 'message' in error.data) {
+      return (error.data as { message?: string }).message;
+    } else if (error?.message) {
+      return error.message;
+    }
+    return 'An unknown error occurred.';
+  };
+
   return (
     <>
       <div className="px-3" id="SignUp">
@@ -244,9 +289,11 @@ const AppSignup: React.FC<AppSignupProps> = (props: any) => {
 
       <AppButton
         label="Continue"
-        onClick={props.onContinue}
-        disabled={!isFormValid()}
+        onClick={handleSignUp}
+        // onClick={props.onContinue}
+        disabled={isLoading}
       />
+      {isError && <p>Error: {getErrorMessage(error)}</p>}
       <div className="text-center">
         <span className="text-600 text-xs line-height-3">
           Already have account?
