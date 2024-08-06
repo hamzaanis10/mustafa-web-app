@@ -16,15 +16,19 @@ import {
 import { fetchCountryCodes } from "../util/util";
 import { Country } from "../util/util";
 import AppEmailOrPhoneInput from "../app.toggle.input/app.toggle.input";
-import { useSignUpMutation, SignUpDetails, SignUpData } from "@/store/apis/signupAPI";
+import { SignUpData, SignUpDetails } from "@/types/api-types";
+import { useValidateSignUpMutation } from "@/store/apis/signupAPI";
+import { useDispatch } from "react-redux";
+import { updateSignUpData } from "@/store/reducers/signUpSlice";
+import { AppVerificationMethod } from "../app.verification.form.dialog.content/app.verification.form.dialog.content";
 
 interface AppSignupProps {
   onContinue: () => void;
 }
 
 const AppSignup: React.FC<AppSignupProps> = (props: any) => {
-  const [signUp, { isLoading, isError, data, error }] = useSignUpMutation();
-  const [details, setDetails] = useState<SignUpDetails>({ step: 'VALIDATION' });
+  const dispatch = useDispatch();
+  const [signUp, { isLoading, isError, data, error }] = useValidateSignUpMutation();
   const [nickname, setNickname] = useState("");
   const [nicknameError, setNicknameError] = useState("");
   const [password, setPassword] = useState("");
@@ -42,6 +46,7 @@ const AppSignup: React.FC<AppSignupProps> = (props: any) => {
   const [isEmail, setIsEmail] = useState<boolean>(false);
   const [countryCodes, setCountryCodes] = useState<Country[]>([]);
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+  const [method, setMethod] = useState<string>("");
 
   const removeLabel = false;
 
@@ -75,6 +80,7 @@ const AppSignup: React.FC<AppSignupProps> = (props: any) => {
         password,
         // otp: '',
       };
+      setMethod("email");
     } else {
       signUpData = {
         displayName: nickname,
@@ -84,9 +90,12 @@ const AppSignup: React.FC<AppSignupProps> = (props: any) => {
         password,
         // otp: '',
       };
+      setMethod("phone");
     }
+
     try {
-      await signUp({ data: signUpData, details }).unwrap();
+      await signUp(signUpData).unwrap();
+      dispatch(updateSignUpData(signUpData));
       props.onContinue();
       // Handle success, e.g., navigate to the next step or show a success message
     } catch (err) {
@@ -99,6 +108,10 @@ const AppSignup: React.FC<AppSignupProps> = (props: any) => {
     setValue(inputValue);
 
     setIsEmail(inputValue.includes("@") || /[^\d]/.test(inputValue));
+
+    const method = isEmail ? "email" : "phone";
+    setMethod(method);
+    dispatch(updateSignUpData({ method }));
 
     if (inputValue.includes("@")) {
       setSelectedCountry(null);

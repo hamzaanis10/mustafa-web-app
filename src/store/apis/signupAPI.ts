@@ -1,34 +1,32 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { MessageResponse, SignUpData, SignUpDetails } from '@/types/api-types';
+import { MessageResponse, SignUpData } from '@/types/api-types';
 
 export const signupApi = createApi({
     reducerPath: 'signupApi',
     baseQuery: fetchBaseQuery({ baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/v1/` }),
     endpoints: (builder) => ({
-        signUp: builder.mutation<MessageResponse, { data: SignUpData; details: SignUpDetails }>({
-            query: ({ data, details }) => {
-                let url = '';
-                switch (details.step) {
-                    case 'VALIDATION':
-                        url = 'auth/signup/validate';
-                        break;
-                    case 'SEND_OTP':
-                        url = 'otp/send';
-                        break;
-                    case 'CONFIRM_SIGN_UP':
-                        url = 'signup/confirm';
-                        break;
-                    default:
-                        throw new Error('Invalid step');
-                }
-                return {
-                    url,
-                    method: 'POST',
-                    body: { ...data, ...details },
-                };
-            },
+        validateSignUp: builder.mutation<MessageResponse, SignUpData>({
+            query: (data) => ({
+                url: 'auth/signup/validate',
+                method: 'POST',
+                body: data,
+            }),
+        }),
+        sendOtp: builder.mutation<MessageResponse, { data: SignUpData; method: 'SMS' | 'WhatsApp' | 'Email' }>({
+            query: ({ data }) => ({
+                url: 'otp/send',
+                method: 'POST',
+                body: data,
+            }),
+        }),
+        confirmSignUp: builder.mutation<MessageResponse, SignUpData>({
+            query: (data) => ({
+                url: 'auth/signup/confirm',
+                method: 'POST',
+                body: data,
+            }),
         }),
     }),
 });
 
-export const { useSignUpMutation } = signupApi;
+export const { useValidateSignUpMutation, useSendOtpMutation, useConfirmSignUpMutation } = signupApi;
