@@ -62,7 +62,7 @@ export function useProductList(params: any = {}) {
 
 export function useCategoryProductList(params: any = {}) {
     // const key = useKey(`v1/product/list`);
-    const key = useKey(`v1/product/list?categoryId=${params.categoryIds}`);
+    const key = useKey(`v1/product/list?categoryId=${params.categoryIds}&brandId=${params.brandIds}`);
 
     const appToastRef = useRefToastContext();
     //appToastRef.current?.show({ severity: 'error', summary: '', detail: 'test', life: 3000 });

@@ -26,9 +26,10 @@ interface Product {
 
 interface CategoryProductListingProps {
   categoryIds: string[];
+  brandIds: string[];
 }
 
-export default function CategoryProductListing({ categoryIds }: CategoryProductListingProps) {
+export default function CategoryProductListing({ categoryIds,brandIds }: CategoryProductListingProps) {
   const {
     mutate,
     data: productsList,
@@ -41,6 +42,8 @@ export default function CategoryProductListing({ categoryIds }: CategoryProductL
     sortBy: "total_sale_count",
     sortDir: "desc",
     categoryIds: categoryIds,
+    brandIds: brandIds, 
+
   });
 
   const { mutate: cartsMutate, data: userCart, isLoading: isCartsLoading, error: cartsListError } = useCartsList();
@@ -117,6 +120,7 @@ export default function CategoryProductListing({ categoryIds }: CategoryProductL
         systemConfigLoading={systemConfigLoading}
         product={product}
         categoryId={categoryIds}
+        brandId={brandIds}
         index={index}
       />
     );

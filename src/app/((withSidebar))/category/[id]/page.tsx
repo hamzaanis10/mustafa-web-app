@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   getLanguageBaseName,
   PRODUCTS_PAGE_SIZE,
@@ -10,6 +10,11 @@ import { Carousel, CarouselResponsiveOption } from "primereact/carousel";
 import CategoryListView from "@/components/common/category.list.view/category.list.view";
 import CategoryBarSkeleton from "@/skeletons/horizontal.bars.skeleton/category.bar.skeleton";
 import CategoryProductListing from "../../cmp/c.page/category.product.listing/category.product.listing";
+import { useBrandList } from "@/app/hooks/fetch/brand";
+import AppSideBar from "@/components/common/app.sidebar/app.side.bar";
+import { Checkbox } from "primereact/checkbox";
+import "./categories.css";
+import { Button } from "primereact/button";
 
 interface Product {
   id: string;
@@ -40,7 +45,12 @@ interface Category {
 }
 
 export default function CategoryListing({ params }: Product, props: any) {
+  const [visibleRight, setVisibleRight] = useState<boolean>(false);
+  const [checkedItem, setCheckedItem] = useState<{ [key: string]: boolean }>(
+    {}
+  );
   const categoryId = params.id;
+
   const {
     data: categoryList,
     isLoading: productsLoading,
@@ -51,8 +61,14 @@ export default function CategoryListing({ params }: Product, props: any) {
     sortDir: "desc",
   });
 
-  const pList: Category[] = categoryList ? categoryList.toJS() : [];
+  const {
+    data: brandList,
+    error: brandError,
+    isLoading,
+  } = useBrandList({ categoryId });
+  const brandListItems = brandList?.toJS();
 
+  const pList: Category[] = categoryList ? categoryList.toJS() : [];
   const { data: systemConfig, isLoading: systemConfigLoading } =
     useSystemConfig();
 
@@ -79,9 +95,10 @@ export default function CategoryListing({ params }: Product, props: any) {
     },
   ];
 
-  
-
-  const getCategoryById = (id: string, categories: Category[]): Category | undefined => {
+  const getCategoryById = (
+    id: string,
+    categories: Category[]
+  ): Category | undefined => {
     for (let category of categories) {
       if (category.id === id) {
         return category;
@@ -95,33 +112,43 @@ export default function CategoryListing({ params }: Product, props: any) {
     }
     return undefined;
   };
-  
 
   const category = getCategoryById(categoryId, pList);
 
   // Helper function to extract all child IDs recursively
   const getAllSubLevelCategoryIds = (category: Category): string[] => {
     let ids: string[] = [];
-  
+
     ids.push(category.id);
     if (category.children && category.children.length > 0) {
       for (let child of category.children) {
         ids = ids.concat(getAllSubLevelCategoryIds(child));
       }
     }
-  
+
     return ids;
   };
 
   const childCategoryIds = category ? getAllSubLevelCategoryIds(category) : [];
+  const categoryName = category ? getLanguageBaseName(category.name) : "";
 
-  const categoryName = category
-    ? getLanguageBaseName(category.name)
-    : '';
+  const itemTemplate = (product: Product) => {
+    return <CategoryListView product={product} systemConfig={systemConfig} />;
+  };
 
-    const itemTemplate = (product: Product) => {
-      return <CategoryListView product={product} systemConfig={systemConfig}  />;
-    };
+  const handleCheckBoxChange = (id: string, checked: boolean) => {
+    setCheckedItem((prev) => {
+      const updated = { ...prev, [id]: checked };
+      return updated;
+    });
+  };
+
+  // Get selected brand IDs
+  const selectedBrandIds = Object.keys(checkedItem).filter(
+    (key) => checkedItem[key]
+  );
+
+  console.log("selectedBrandIds", selectedBrandIds);
 
   return (
     <>
@@ -130,7 +157,7 @@ export default function CategoryListing({ params }: Product, props: any) {
       ) : (
         <div
           id="categoryListing "
-          className="overflow-hidden lg:w-9 xl:w-12  pb-8 pt-3"
+          className="overflow-hidden lg:w-9 xl:w-12 pb-8 pt-3"
         >
           <div
             className="text-2xl mb-5 pr-1 pl-4 "
@@ -138,6 +165,57 @@ export default function CategoryListing({ params }: Product, props: any) {
           >
             {categoryName}
           </div>
+
+          <AppSideBar
+            visible={visibleRight}
+            onHide={() => setVisibleRight(false)}
+            position="right"
+            className="w-18rem"
+            id="productFilter"
+          >
+            <div className="content-container" style={{ height: "100vh" }}>
+              <div
+                className="p-2 mb-1"
+                style={{ borderBottom: "1px solid #D9D9D9" }}
+              >
+                <div className="my-2">
+                  <span
+                    className="text-base font-semibold"
+                    style={{ color: "#000000" }}
+                  >
+                    Brand
+                  </span>
+                </div>
+                {brandListItems &&
+                  brandListItems.map((item: any) => {
+                    const key = item.id; // Use a unique identifier like item.id
+                    return (
+                      <div
+                        className="flex align-items-center gap-2 mb-3"
+                        key={key}
+                      >
+                        <Checkbox
+                          checked={!!checkedItem[key]} // Ensure it defaults to false
+                          onChange={(e) =>
+                            handleCheckBoxChange(key, e.target.checked ?? false)
+                          }
+                          style={{ borderColor: "#E0E0E0" }}
+                        />
+                        <span
+                          className="pt-2 text-base font-normal"
+                          style={{ color: "#434343" }}
+                        >
+                          {getLanguageBaseName(item.name)}
+                        </span>
+                        <span className="pt-2" style={{ color: "#9D9D9D" }}>
+                          {/* ({item.quantity}) */}
+                        </span>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          </AppSideBar>
           <div>
             <div className="carousel-list-view">
               <Carousel
@@ -150,9 +228,41 @@ export default function CategoryListing({ params }: Product, props: any) {
               />
             </div>
           </div>
+          <Button
+            label={
+              <>
+                Filter
+                {selectedBrandIds.length > 0 && (
+                  <span
+                    style={{
+                      backgroundColor: "#00cb56", // Change to desired background color
+                      borderRadius: "50px",
+                      padding: "5px 11px",
+                      marginLeft: "15px",
+                      color: "#fff", // Text color
+                    }}
+                  >
+                    {selectedBrandIds.length}
+                  </span>
+                )}
+              </>
+            }
+            style={{
+              backgroundColor: "#fff",
+              color: "#000",
+              borderRadius: "none",
+              width: "10%",
+              margin: "30px 0 0 20px",
+              padding: "10px 0 10px 10px",
+              textAlign: "left",
+              border:"none"
+            }}
+            onClick={() => setVisibleRight(true)}
+          />
           <div className="md:p-5 md:pb-8 pb-8 pt-3 pr-1 pl-4 ">
-            <CategoryProductListing 
-            categoryIds={childCategoryIds}
+            <CategoryProductListing
+              categoryIds={childCategoryIds}
+              brandIds={selectedBrandIds} // Pass selected brand IDs to CategoryProductListing
             />
           </div>
         </div>
