@@ -1,6 +1,6 @@
 .phone-input-container {
     position: relative;
-    max-width: 320px;
+    width: 100%;
     margin: auto;
 }
 
@@ -13,6 +13,9 @@
     border: 1px solid lightgray;
     border-radius: 4px;
     outline: none;
+}
+.phone-input-field{
+    margin-bottom: 0.25rem;
 }
 
 .phone-input-field.invalid {

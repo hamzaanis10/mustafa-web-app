@@ -5,10 +5,12 @@ import AppInputPassword from "../../app.input.password/app.input.password";
 import AppButton from "../../app.button/app.button";
 import AppCheckBox from "../../app.checkbox/app.checkbox";
 import { emailSchema, passwordSchema } from '../../app.validation/app.validation';
+import AppEmailOrPhoneInput from "../../app.toggle.input/app.toggle.input";
 import { fetchCountryCodes } from "../../util/util";
 import { Country } from "../../util/util";
 import { useLoginMutation } from "@/store/apis/loginAPI";
-import AppEmailOrPhoneInput from "../../app.toggle.input/app.toggle.input";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/store/reducers/loginSlice";
 
 interface AppLoginStepOneProps {
   checkout?: boolean;
@@ -17,6 +19,7 @@ interface AppLoginStepOneProps {
 
 const AppLoginStepOne: React.FC<AppLoginStepOneProps> = (props: any) => {
   const [login, { isLoading, isError, error }] = useLoginMutation(); 
+  const dispatch = useDispatch()
   const { checkout } = props
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -91,6 +94,7 @@ useEffect(() => {
       };
 
       await login(loginData).unwrap();
+      dispatch(setUser(loginData));
       props.onContinue()
     } catch (err) {
       console.error('Login failed:', err);

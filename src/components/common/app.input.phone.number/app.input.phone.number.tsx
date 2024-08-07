@@ -12,9 +12,9 @@ const AppInputPhoneNumber: React.FC<AppInputPhoneNumberProps>= (props:any) => {
     const { value, isValid } = props;
 
     return (
-        <div className="phone-input-container mt-1">
+        <div className="phone-input-container mt-1 w-100">
         <PhoneInput
-            className={`phone-input-field mb-2 ${isValid === false ? 'invalid' : ''}`}
+            className={`phone-input-field  ${isValid === false ? 'invalid' : ''}`}
             defaultCountry="SG"
             placeholder="Enter Number (e.g. +123456789)"
             value={value}

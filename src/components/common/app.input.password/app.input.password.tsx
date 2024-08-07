@@ -8,29 +8,40 @@ interface AppInputPasswordProps extends InputTextProps {
     placeholder?: string;
     removeLabel?: boolean;
     error?: string;
+    id?: string;
 }
 
 const AppInputPassword: React.FC<AppInputPasswordProps> = (props: any) => {
-    const { placeholder, value, removeLabel = false, error } = props;
+    const { placeholder, value, removeLabel = false, error, id } = props;
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [isFocused, setIsFocused] = useState(false);
+
+    const handleFocus = () => {
+        setIsFocused(true);
+    };
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
 
     return (
-        <div>
+        <div id={id}>
             {
                 removeLabel ?
-                    <div className="mb-3">
-                        <div className='border-1 border-round flex align-items-center relative' style={{ borderColor: "#C4C4C4" }}>
-                            <i className='pi pi-lock pl-1' style={{ fontSize: 15 }} />
+                    <div>
+                        <div className='flex align-items-center relative' style={{ borderColor: "#C4C4C4" }}>
+                            <i className='pi pi-lock pl-1' style={{ fontSize: 15, position:"absolute" }} />
                             <InputText
                                 type={passwordVisible ? 'text' : 'password'}
                                 value={value}
                                 onChange={props.onChange}
-                                className={classNames('w-full text-xs password-input', { 'p-invalid': error })}
+                                className={classNames('w-full  password-input', { 'p-invalid': error })}
                                 placeholder={placeholder}
+                                onFocus={handleFocus}
+                                style={{
+                                    paddingRight: isFocused ? "30px" : "10px",
+                                    paddingLeft: "37PX",
+                                  }}
                             />
                             <i className={classNames('pi', { 'pi-eye': passwordVisible, 'pi-eye-slash': !passwordVisible }, 'eye-icon')}
                                 onClick={togglePasswordVisibility}></i>
@@ -45,7 +56,7 @@ const AppInputPassword: React.FC<AppInputPasswordProps> = (props: any) => {
                             type={passwordVisible ? 'text' : 'password'}
                             value={value}
                             onChange={props.onChange}
-                            className={classNames('w-full mb-2 text-xs password-input', { 'p-invalid': error })}
+                            className={classNames('w-full  text-xs password-input', { 'p-invalid': error })}
                             placeholder={placeholder}
                         />
                         <i className={classNames('pi', { 'pi-eye': passwordVisible, 'pi-eye-slash': !passwordVisible }, 'eye-icon')}

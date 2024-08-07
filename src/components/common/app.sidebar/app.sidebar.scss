@@ -1,0 +1,36 @@
+.p-sidebar-header {
+    margin: 0 !important;
+    padding: 0 15px;
+    border-bottom: none !important;
+    justify-content: flex-start
+}
+
+#SideBar {
+    .p-sidebar-content {
+        padding: 0px 5px !important;
+    }
+}
+
+#couponSideBar {
+    .p-sidebar-content {
+        padding: 0 16px;
+    }
+}
+
+@media (min-width: 992px) {
+    #couponSideBar {
+        .psidebar.p-sidebar-right {
+            top: 118px !important;
+        }
+    }
+
+}
+
+@media (max-width: 991px) {
+    #couponSideBar {
+        .psidebar.p-sidebar-right {
+            top: 20px !important;
+        }
+    }
+
+}

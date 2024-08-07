@@ -86,7 +86,6 @@ export const getLanguageBaseName = (name: any, language = "en") => {
   } else return "";
 };
 
-
 export interface Country {
   name: string;
   code: string;
@@ -112,8 +111,6 @@ export const fetchCountryCodes = async (): Promise<Country[]> => {
   }
 };
 
-
-
 export const USER_INFO_DETAILS =[
   {
     image:"/assets/icons/wish-list-icon.png",
@@ -132,68 +129,6 @@ export const USER_INFO_DETAILS =[
     name:"Settings"
   },
 ]
-
-export const CATEGORY_ORDER_LIST1 = [
-  {
-    id: "1000",
-    code: "f230fh0g3",
-    name: "Driscoll’sBlueberrieDriscoll’s BlueberrieDrisco...",
-    description: "125g | Morocco Valley ",
-    image: "bamboo-watch.jpg",
-    price: 65,
-    discountedPrice: 35,
-    category: "Accessories",
-    quantity: 24,
-    inventoryStatus: "INSTOCK",
-    rating: 5,
-  },
-];
-export const CATEGORY_ORDER_LIST = [
-  {
-    id: "1001",
-    code: "nvklal433",
-    name: "Driscoll’sBlueberrieDriscoll’s BlueberrieDrisco...",
-    description: "125g | Morocco Valley ",
-    image: "black-watch.jpg",
-    price: 72,
-    discountedPrice: 35,
-    category: "Accessories",
-    quantity: 61,
-    inventoryStatus: "INSTOCK",
-    rating: 4,
-  },
-  {
-    id: "1002",
-    code: "zz21cz3c1",
-    name: "Driscoll’sBlueberrieDriscoll’s BlueberrieDrisco...",
-    description: "125g | Morocco Valley ",
-    image: "blue-band.jpg",
-    price: 79,
-    discountedPrice: 35,
-    category: "Fitness",
-    quantity: 2,
-    inventoryStatus: "LOWSTOCK",
-    rating: 3,
-  },
-];
-
-export const ProductDetail_BreadCrumb = [
-  {
-    label: "Home",
-  },
-  {
-    label: "Category",
-  },
-  {
-    label: "Sub-Category",
-  },
-  {
-    label: "Category-Name",
-  },
-  {
-    label: "Product-Name",
-  },
-];
 
 export const colors = [
   { code: "#ff0000", name: "Red" },
@@ -257,152 +192,6 @@ export const PhotoService = {
   },
 };
 
-export const OrderInfo_BreadCrumb = [
-  {
-    label: "Cart",
-  },
-  {
-    label: "Order Information",
-  },
-  {
-    label: "Pay",
-  },
-  {
-    label: "Order Complete",
-  },
-];
-
-export const ProductFilter = [
-  {
-    brand: [
-      {
-        id: "02",
-        name: "Master Grocer",
-        quantity: "92",
-        checked: false,
-      },
-      {
-        id: "03",
-        name: "The Cellar Door ",
-        quantity: "62",
-        checked: false,
-      },
-      {
-        id: "04",
-        name: "The Cellar Door ",
-        quantity: "62",
-        checked: false,
-      },
-      {
-        id: "05",
-        name: "The Cellar Door ",
-        quantity: "62",
-        checked: false,
-      },
-      {
-        id: "06",
-        name: "The Cellar Door ",
-        quantity: "62",
-        checked: false,
-      },
-      {
-        id: "07",
-        name: "The Cellar Door ",
-        quantity: "62",
-        checked: false,
-      },
-      {
-        id: "08",
-        name: "The Cellar Door ",
-        quantity: "62",
-        checked: false,
-      },
-      {
-        id: "09",
-        name: "The Cellar Door ",
-        quantity: "62",
-        checked: false,
-      },
-    ],
-    Dietary_attributes: [
-      {
-        id: "01",
-        name: "Master Grocer",
-        checked: false,
-        quantity:'92',
-      },
-      {
-        id: "02",
-        name: "The Cellar Door ",
-        checked: false,
-         quantity:'62',
-      },
-      {
-        id: "03",
-        name: "The Cellar Door ",
-        checked: false,
-         quantity:'62',
-      },
-      {
-        id: "04",
-        name: "The Cellar Door ",
-        checked: false,
-         quantity:'62',
-      },
-      {
-        id: "05",
-        name: "The Cellar Door ",
-        checked: false,
-         quantity:'62',
-      },
-      {
-        id: "06",
-        name: "The Cellar Door ",
-        checked: false,
-         quantity:'62',
-      },
-      {
-        id: "07",
-        name: "The Cellar Door ",
-        checked: false,
-         quantity:'62',
-      },
-      {
-        id: "08",
-        name: "The Cellar Door ",
-        checked: false,
-         quantity:'62',
-      },
-      {
-        id: "09",
-        name: "The Cellar Door ",
-        checked: false,
-         quantity:'62',
-      },
-      {
-        id: "10",
-        name: "The Cellar Door ",
-        checked: false,
-         quantity:'62',
-      },
-      {
-        id: "11",
-        name: "The Cellar Door ",
-        checked: false,
-         quantity:'62',
-      },
-      {
-        id: "12",
-        name: "The Cellar Door ",
-        checked: false,
-         quantity:'62',
-      },
-    ],
-  },
-];
-
-
-
 export const ProductReview = [
   {
     id: "01",
@@ -448,4 +237,5 @@ export const ProductReview = [
       "Excellent Product！I buy this for our daily breakfast with yogurt and jam. Love the taste. Not too sweet like HL but still makes my yogurt palatable.",
   },
 ];
+
 

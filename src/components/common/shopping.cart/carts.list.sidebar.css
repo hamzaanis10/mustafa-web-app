@@ -28,6 +28,10 @@
     }
 }
 
+#cart-items {
+    top: 76px !important;
+}
+
 .p-sidebar-right.p-component-overlay-enter {
     animation: none;
 }

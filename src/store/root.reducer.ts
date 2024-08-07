@@ -1,13 +1,15 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { authReducer } from './reducers/auth.reducer';
 import { appReducer } from './reducers/app.reducer';
-import signUpSlice from './reducers/signUpSlice';
 import { signupApi } from './apis/signupAPI';
+import signUpSlice from './reducers/signUpSlice';
+import loginSlice from './reducers/loginSlice';
+import { loginApi } from './apis/loginAPI';
 
 const rootReducer = combineReducers({
     auth: authReducer,
     app: appReducer,
-    signUp: signUpSlice,
-    [signupApi.reducerPath]: signupApi.reducer,
+    login: loginSlice,
+    [loginApi.reducerPath]: loginApi.reducer,
 });
-export default rootReducer;
+

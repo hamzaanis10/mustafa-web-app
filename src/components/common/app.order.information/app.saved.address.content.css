@@ -1,0 +1,21 @@
+#Saved-Address{
+    .p-dialog .p-dialog-content {
+        background: #ffffff;
+        color: #000000;
+        padding:0;
+    }
+    
+    .p-dialog-header {
+        text-align: center;
+        font-size: 24px;
+        font-weight: 400;
+        color: #000000;
+        padding-top: 1.5rem !important;
+        padding-bottom: 10px;
+    }
+    
+    .p-dialog .p-dialog-header .p-dialog-title {
+        font-weight: 600 !important;
+        font-size: 24px !important;
+    }
+}

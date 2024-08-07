@@ -1,0 +1,13 @@
+.p-dialog-header {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 400;
+    color: #000000;
+    padding-top: 1.7rem !important;
+    padding-bottom: 10px;
+    padding-right: 32px;
+}
+
+.p-dialog-header-icon {
+   display: none;
+}

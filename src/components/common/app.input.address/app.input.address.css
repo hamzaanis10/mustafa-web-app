@@ -1,0 +1,10 @@
+#input-address{ 
+    .p-inputtext, .p-component {
+    width: 100% !important;
+   } 
+
+   .optional-container {
+    width: 100% !important;
+   }
+}
+

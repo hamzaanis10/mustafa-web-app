@@ -1,8 +1,3 @@
-
-
-
-
-
 import { createAction } from "@reduxjs/toolkit";
 
 export const addProductToCart = createAction('ADD_PRODUCT_TO_CART', (data: any = {}, additionalData: any = {}) => ({

@@ -1,7 +1,7 @@
 import 'primeflex/primeflex.css';
 import AppDialog from '../app.dialog/app.dialog';
-import AppLoginSuccessStepTwo from './app.login.success.step.two';
 import AppLoginStepOne from './app.login.step.one/app.login.step.one';
+import AppLoginSuccessStepTwo from './app.login.success.step.two';
 
 interface AppLoginDialogProps {
   showLoginForm: boolean;
