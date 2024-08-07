@@ -4,7 +4,7 @@ import React from "react";
 import { Sidebar } from "primereact/sidebar";
 import { Checkbox } from "primereact/checkbox";
 import { useState } from "react";
-import { CART_LIST_ITEMS, getAllCartProducts } from "../util/util";
+import { getAllCartProducts } from "../util/util";
 import "./carts.list.sidebar.css";
 // import AppCounterButton from "../app.counter.button/app.counter.button";
 import { useCartSummary, useCartsList } from "@/app/hooks/fetch/cart";
@@ -69,6 +69,7 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
               dispatch={dispatch}
               isAvailable={isAvailable}
               cartProduct={product}
+              showCounterButton={true}
             //productDetails={productDetails}
             />
 

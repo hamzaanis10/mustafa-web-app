@@ -2,7 +2,6 @@
 import './order-information.scss';
 import AppBreadCrumb from "@/components/common/app.breadcrumb/app.breadcrumb";
 import React, { useState, useEffect } from "react";
-import { OrderInfo_BreadCrumb } from "@/components/common/util/util";
 import { MenuItem } from "primereact/menuitem";
 import AppShippingAddress from "@/components/common/app.shipping.address/app.shipping.address";
 import AppPriceDetail from "@/components/common/app.price.detail/app.price.detail";
@@ -25,7 +24,7 @@ const page = () => {
   const [openAddressForm, setOpenAddressForm] = useState<boolean>(false);
   const [openNewAddressForm, setOpenNewAddressForm] = useState<boolean>(false);
   const [openBillingForm, setOpenBillingForm] = useState<boolean>(false);
-  const items: MenuItem[] = OrderInfo_BreadCrumb;
+  // const items: MenuItem[] = OrderInfo_BreadCrumb;
   const [visibleRight, setVisibleRight] = useState<boolean>(false);
   const [availibility, setAvailibilty] = useState<string>("Available");
 
@@ -69,7 +68,7 @@ const page = () => {
   return (
     <div id="Order_Information">
       <div className="flex justify-content-center align-items-center bg-white fixed w-full z-1">
-        <AppBreadCrumb model={items} />
+        {/* <AppBreadCrumb model={items} /> */}
       </div>
       <div className="grid">
         <div className="col-12  sm:col-12 md:col-8 lg:col-8">
