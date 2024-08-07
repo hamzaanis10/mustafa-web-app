@@ -2,7 +2,7 @@
 import AppCheckerBoard from "@/components/common/app.checker.board/app.checker.board";
 import { MyOrder, Step_Menu } from "@/components/common/util/util";
 import React, { useState } from "react";
-import "./page.scss";
+import "./page.css";
 import AppPagination from "@/components/common/app.pagination/app.pagination";
 import { PaginatorPageChangeEvent } from "primereact/paginator";
 import AppStepMenu from "@/components/common/app.step.menu/app.step.menu";
@@ -15,10 +15,8 @@ function page() {
   const [rows, setRows] = useState<number>(10);
   const [currentState, setCurrentState] = useState<string>("To deliver");
 
-
-  
   const handleStateChange = (label: string) => {
-      setCurrentState(label);
+    setCurrentState(label);
   };
 
   const items: MenuItem[] = Step_Menu(handleStateChange);
@@ -57,35 +55,44 @@ function page() {
   };
   return (
     <div id="My_order" className="flex">
-        <div className="hidden lg:flex lg:w-3 lg:relative  z-2 menu-container">
-              <AppCategories />
-        </div>
+      <div className="hidden lg:flex lg:w-3 lg:relative  z-2 menu-container">
+        <AppCategories />
+      </div>
       <div className="pt-6  m-auto flex flex-column align-items-center">
-        <div className="text-center">
+        <div className="text-center mb-3">
           <span className="text-4xl font-semibold"> My Orders </span>
         </div>
-        <div className="flex md:m-auto my-5 Card">
-          <AppStepMenu model={items} />
+        <div className="flex md:m-auto my-3 Card">
+          <AppStepMenu model={items}/>
         </div>
         <div className="Card">
           {MyOrder.map((item, index) => {
             return (
-              <div className="bg-white p-2 my-2">
-                <div className="flex justify-content-between  ">
+              <div className="bg-white p-2 my-2" key={index}>
+                <div className="flex justify-content-between">
                   <div className="flex gap-1">
                     <span
                       className="border-circle m-auto"
                       style={{
-                        width: 10,
-                        height: 10,
-                        backgroundColor: currentState ==="Completed" || currentState === "Refund" && item.orderStatus === "Completed"  ? "#00CB56" : "#FFAD4C" ,
+                        width: 8,
+                        height: 8,
+                        backgroundColor:
+                          currentState === "Completed" ||
+                          (currentState === "Refund" &&
+                            item.orderStatus === "Completed")
+                            ? "#00CB56"
+                            : "#FFAD4C",
                       }}
                     ></span>
                     <span
                       className="text-base font-semibold "
                       style={{ color: "#000000" }}
-                    >  
-                      {currentState === "To deliver" || currentState === "Delivering" || currentState === "Completed"  ? currentState : item.orderStatus}
+                    >
+                      {currentState === "To deliver" ||
+                      currentState === "Delivering" ||
+                      currentState === "Completed"
+                        ? currentState
+                        : item.orderStatus}
                     </span>
                   </div>
                   <span
@@ -150,8 +157,8 @@ function page() {
                           26 July 8 - 12 am
                         </span>
                       </>
-                    ): null} 
-                    {currentState === "Completed" &&(
+                    ) : null}
+                    {currentState === "Completed" && (
                       <div className="flex gap-1">
                         <AppButton
                           label="Review"
@@ -168,8 +175,9 @@ function page() {
                           }}
                         />
                       </div>
-                    )} 
-                    {currentState === "Refund" &&  item.orderStatus  === "Pending" ? (
+                    )}
+                    {currentState === "Refund" &&
+                    item.orderStatus === "Pending" ? (
                       <div>
                         <AppButton
                           label="Cancel Refund"
@@ -179,7 +187,7 @@ function page() {
                           }}
                         />
                       </div>
-                    ): null}
+                    ) : null}
                   </div>
                 </div>
               </div>
@@ -187,14 +195,14 @@ function page() {
           })}
         </div>
         <div className="Card">
-        <AppPagination
-          first={first}
-          rows={rows}
-          totalRecords={120}
-          onPageChange={onPageChange}
-          template={customTemplate}
-        />
-      </div>
+          <AppPagination
+            first={first}
+            rows={rows}
+            totalRecords={120}
+            onPageChange={onPageChange}
+            template={customTemplate}
+          />
+        </div>
       </div>
     </div>
   );
