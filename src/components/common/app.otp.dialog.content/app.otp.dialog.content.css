@@ -1,4 +1,10 @@
-.p-inputotp-input {
-    width: 45px;
-    height: 45px;
+#Otp {
+    .p-inputotp-input {
+        width: 40px;
+        height: 40px;
+    }
+    .p-inputtext.p-invalid.p-component {
+        border-color: rgba(255, 76, 114, 1) !important;
+        color: rgba(255, 76, 114, 1);
+    }
 }

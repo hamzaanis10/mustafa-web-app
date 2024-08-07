@@ -1,5 +1,6 @@
 //import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
+"use client"
 import { PrimeReactProvider } from "primereact/api";
 import "./theme.css";
 import "primeicons/primeicons.css";
@@ -10,13 +11,14 @@ import { SWRProvider } from "./swr-provider";
 import { Metadata } from "next";
 import { RefToastProvider } from "./toast.wrapper";
 import AppClient from "./app.client";
+import ReduxProvider from "@/store/redux-provider";
 
 // const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Mustafa App",
-  description: "Mustafa Web app",
-};
+// export const metadata: Metadata = {
+//   title: "Mustafa App",
+//   description: "Mustafa Web app",
+// };
 
 export default function RootLayout({
   children,
@@ -32,10 +34,12 @@ export default function RootLayout({
         href="../../../assets/images/must-fav-icon-180-180.png"
       />
       <body>
+      <ReduxProvider>
         <PrimeReactProvider>
           <AppClient />
           {children}
         </PrimeReactProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

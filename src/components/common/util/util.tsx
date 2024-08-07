@@ -1,4 +1,5 @@
 import { appLoaderStatusSelector } from "@/store/selectors/app.selectors";
+import axios from "axios";
 import { fromJS } from "immutable";
 
 export const differenceBetweenDatesInMinutes = (
@@ -85,93 +86,32 @@ export const getLanguageBaseName = (name: any, language = "en") => {
   } else return "";
 };
 
-export const CART_LIST_ITEMS = [
-  {
-    id: "1000",
-    code: "f230fh0g3",
-    name: "Driscoll’sBlueberrieDriscoll’s BlueberrieDrisco...",
-    description: "125g | Morocco Valley ",
-    image: "bamboo-watch.jpg",
-    price: 65,
-    discountedPrice: 35,
-    category: "Accessories",
-    quantity: 24,
-    inventoryStatus: "INSTOCK",
-    rating: 5,
-  },
-  {
-    id: "1001",
-    code: "nvklal433",
-    name: "Driscoll’sBlueberrieDriscoll’s BlueberrieDrisco...",
-    description: "125g | Morocco Valley ",
-    image: "black-watch.jpg",
-    price: 72,
-    discountedPrice: 35,
-    category: "Accessories",
-    quantity: 61,
-    inventoryStatus: "INSTOCK",
-    rating: 4,
-  },
-  {
-    id: "1002",
-    code: "zz21cz3c1",
-    name: "Driscoll’sBlueberrieDriscoll’s BlueberrieDrisco...",
-    description: "125g | Morocco Valley ",
-    image: "blue-band.jpg",
-    price: 79,
-    discountedPrice: 35,
-    category: "Fitness",
-    quantity: 2,
-    inventoryStatus: "LOWSTOCK",
-    rating: 3,
-  },
-];
 
-export const SEARCH_TERMS = [
-  {
-    name:"Green Tea"
-  },
-  {
-    name:"Grapes"
-  },
-  {
-    name:"Greek Yogurt"
-  },
-  {
-    name:"Pokka Green Tea"
-  },
-];
+export interface Country {
+  name: string;
+  code: string;
+  flag: string;
+}
 
-export const TRENDING_SEARCHES = [
-  {
-    name:"50 % Off"
-  },
-  {
-    name:"PWP"
-  },
-  {
-    name:"Tea"
-  },
-  {
-    name:"OTC Medicines"
-  },
-  {
-    name:"Shoes"
-  },
-  {
-    name:"Perfumes"
-  },
-  {
-    name:"Bags"
-  },
-  {
-    name:"Jewellery"
-  },
-  {
-    name:"Baby Products"
-  },
-  
-]
+export const fetchCountryCodes = async (): Promise<Country[]> => {
+  try {
+    const response = await axios.get('https://restcountries.com/v3.1/all');
+    const countries: Country[] = response.data
+      .map((country: any) => ({
+        name: country.name.common,
+        code: country.idd?.root + (country.idd?.suffixes?.[0] || ''),
+        flag: country.flags?.svg || country.flags?.png,
+      }))
+      .filter((country: Country) => country.code);
+
+    console.log('Country codes:', countries);
+    return countries;
+  } catch (error) {
+    console.error('Error fetching country codes:', error);
+    throw error;
+  }
+};
+
 
 
 export const USER_INFO_DETAILS =[
@@ -192,6 +132,7 @@ export const USER_INFO_DETAILS =[
     name:"Settings"
   },
 ]
+
 export const CATEGORY_ORDER_LIST1 = [
   {
     id: "1000",

@@ -1,14 +1,16 @@
 import AppButton from "../app.button/app.button";
 
 interface AppSuccessDialogProps {
-    title: string;
-    description: string;
-    label: string;
+    title?: string;
+    description?: string;
+    label?: string;
+    style?:React.CSSProperties;
+    onClick?: ()=> void
 
 }
 
 const AppSuccessDialog: React.FC<AppSuccessDialogProps> = (props: any) => {
-    const { title, description, label } = props;
+    const { title, description, label, style } = props;
 
     return (
         <div className="flex flex-column align-items-center text-center">
@@ -16,7 +18,7 @@ const AppSuccessDialog: React.FC<AppSuccessDialogProps> = (props: any) => {
             <h2 className="text-center line-height-2 font-normal mb-1" style={{ fontSize: '24px', color: "#000000" }}> {title} </h2>
             <p className="text-sm text-center line-height-3 font-normal mb-4" style={{ fontSize: '16px', color: '#7B7B7B' }}> {description} </p>
             <div className="w-full">
-                <AppButton label={label} disabled={false} />
+                <AppButton label={label} disabled={false} style={style} onClick={props.onClick}/>
             </div>
         </div>
     )
