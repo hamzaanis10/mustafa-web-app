@@ -13,7 +13,7 @@ const AppShippingAddress: React.FC<AppShippingAddressProps> = (props:any) => {
   const {label,description,iconImage,removeIcon} = props
   return (
     
-      <div className={removeIcon ? `flex align-items-center justify-content-between border-1 border-green-400 mt-4 px-0 sm:px-3 md:px-2 lg:px-3`: `flex align-items-center border-1 border-gray-300 border-round pt-1 pr-1 pb-1 pl-0 m-4`} onClick={props.onClick}>
+      <div className={removeIcon ? `flex align-items-center justify-content-between border-1 border-green-400 mt-4 px-0 sm:px-3 md:px-2 lg:px-3 cursor-pointer`: `flex align-items-center border-1 border-gray-300 border-round pt-1 pr-1 pb-1 pl-0 m-4 cursor-pointer`} onClick={props.onClick}>
 
         <div className={removeIcon ? "flex align-items-center" : "flex align-items-center px-2"}>
           {iconImage ? <i
