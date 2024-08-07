@@ -11,5 +11,8 @@ const rootReducer = combineReducers({
     app: appReducer,
     login: loginSlice,
     [loginApi.reducerPath]: loginApi.reducer,
+    signUp: signUpSlice,
+    [signupApi.reducerPath]: signupApi.reducer,
 });
 
+export default rootReducer;

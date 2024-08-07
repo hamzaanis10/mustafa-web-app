@@ -45,17 +45,17 @@ export default function RootLayout({
       <link rel="apple" sizes="180x180" href="../../../assets/images/must-fav-icon-180-180.png" />
       <body>
         <ReduxProvider>
-        <RefToastProvider>
+        {/* <RefToastProvider> */}
           <AppInitializer>
           {/* <SWRProvider> */}
             <PrimeReactProvider>
-              <Header />
+              {/* <Header /> */}
               <AppClient />
               {children}
             </PrimeReactProvider>
           {/* </SWRProvider> */}
           </AppInitializer>
-        </RefToastProvider>
+        {/* </RefToastProvider> */}
         </ReduxProvider>
       </body>
     </html>

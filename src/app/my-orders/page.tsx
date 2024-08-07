@@ -1,5 +1,4 @@
 "use client";
-import AppCheckerBoard from "@/components/common/app.checker.board/app.checker.board";
 import { MyOrder, Step_Menu } from "@/components/common/util/util";
 import React, { useState } from "react";
 import "./page.css";
@@ -8,7 +7,7 @@ import { PaginatorPageChangeEvent } from "primereact/paginator";
 import AppStepMenu from "@/components/common/app.step.menu/app.step.menu";
 import { MenuItem } from "primereact/menuitem";
 import AppButton from "@/components/common/app.button/app.button";
-import AppCategories from "../((withsidebar))/cmp/c.layout/menu.category/menu.catrgory";
+import AppCategories from "../((withSidebar))/cmp/c.layout/menu.category/menu.catrgory";
 
 function page() {
   const [first, setFirst] = useState<number>(0);
@@ -115,11 +114,7 @@ function page() {
                         />
                       ) : (
                         <div>
-                          <AppCheckerBoard
-                            className="cell shadow-1"
-                            rows={4}
-                            cols={4}
-                          />
+                          <p>Checkbox</p>
                         </div>
                       )}
                     </div>
