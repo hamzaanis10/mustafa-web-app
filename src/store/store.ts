@@ -6,12 +6,13 @@ import loggerMiddleware from "./middleware/logger.middleware";
 import appAfterMiddleware from "./middleware/app.after.middleware";
 import appBeforeMiddleware from "./middleware/app.before.middleware";
 import { signupApi } from "./apis/signupAPI";
+import { loginApi } from "./apis/loginAPI";
 
 export const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({ immutableCheck: false, serializableCheck: false }).concat(
-            [loggerMiddleware, appBeforeMiddleware, apiMiddleware, appAfterMiddleware, signupApi.middleware]
+            [loggerMiddleware, appBeforeMiddleware, apiMiddleware, appAfterMiddleware, loginApi.middleware ,signupApi.middleware]
         )
 });
 

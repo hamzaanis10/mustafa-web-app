@@ -12,6 +12,10 @@ import { Metadata } from "next";
 import { RefToastProvider } from "./toast.wrapper";
 import AppClient from "./app.client";
 import ReduxProvider from "@/store/redux-provider";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/store";
+import { loadUser } from "@/store/reducers/loginSlice";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +23,16 @@ const inter = Inter({ subsets: ["latin"] });
 //   title: "Mustafa App",
 //   description: "Mustafa Web app",
 // };
+
+const AppInitializer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
+
+  return <>{children}</>;
+};
 
 export default function RootLayout({
   children,
@@ -32,6 +46,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ReduxProvider>
         <RefToastProvider>
+          <AppInitializer>
           <SWRProvider>
             <PrimeReactProvider>
               <Header />
@@ -39,6 +54,7 @@ export default function RootLayout({
               {children}
             </PrimeReactProvider>
           </SWRProvider>
+          </AppInitializer>
         </RefToastProvider>
         </ReduxProvider>
       </body>
