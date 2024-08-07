@@ -5,7 +5,6 @@ import React, { useState, useEffect } from "react";
 import { OrderInfo_BreadCrumb } from "@/components/common/util/util";
 import { MenuItem } from "primereact/menuitem";
 import AppShippingAddress from "@/components/common/app.shipping.address/app.shipping.address";
-import AppOrderDetail from "@/components/common/app.order.detail/app.orderdetail";
 import AppPriceDetail from "@/components/common/app.price.detail/app.price.detail";
 import AppPaymentMethod from "@/components/common/app.payment.method/app.payment.method";
 import AppDialog from "@/components/common/app.dialog/app.dialog";
@@ -13,11 +12,12 @@ import AppBillingAddress from "@/components/common/app.billing.addresss/app.bill
 import AppSavedContent from "@/components/common/app.order.information/app.saved.address.content";
 import AppShippingAddressForm from "@/components/common/app.order.information/app.shipping.address.form";
 import AppNewShippingAddressForm from "@/components/common/app.order.information/app.new.shipping.address.form";
-import AppBillingAddressForm from '../../components/common/app.order.information/app.billing.address.form';
+import AppBillingAddressForm from '../../../components/common/app.order.information/app.billing.address.form';
 import AppButton from '@/components/common/app.button/app.button';
 import AppCouponCard from '@/components/common/app.coupon.card/app.coupon.card';
 import AppToggleButton from '@/components/common/app.toggle.button/app.toggle.button';
 import AppSideBar from '@/components/common/app.sidebar/app.side.bar';
+import AppOrderDetail from '@/components/common/app.order.detail/app.order.detail';
 
 
 const page = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import AppDeliveryMethod from "../app.delivery.method/app.delivery.method";
-import { CATEGORY_ORDER_LIST, CATEGORY_ORDER_LIST1 } from "../util/util";
+// import { CATEGORY_ORDER_LIST, CATEGORY_ORDER_LIST1 } from "../util/util";
 
 interface AppOrderDetailProps {
   AppDeliveryAddress?: boolean;
@@ -22,7 +22,7 @@ const AppOrderDetail: React.FC<AppOrderDetailProps> = (props: any) => {
           SG Department (2)
         </p>
       </div>
-      {CATEGORY_ORDER_LIST1.map((item) => (
+      {/* {CATEGORY_ORDER_LIST1.map((item) => (
         <>
           <div
             key={item.id}
@@ -71,7 +71,7 @@ const AppOrderDetail: React.FC<AppOrderDetailProps> = (props: any) => {
           </div>
 
         </>
-      ))}
+      ))} */}
       <div className="flex align-items-center gap-2 p-3">
         <p
           className="m-0 font-semibold border-round w-full px-2 py-2"
@@ -80,7 +80,7 @@ const AppOrderDetail: React.FC<AppOrderDetailProps> = (props: any) => {
           MY Department (2)
         </p>
       </div>
-      {CATEGORY_ORDER_LIST.map((item) => (
+      {/* {CATEGORY_ORDER_LIST.map((item) => (
         <>
           <div
             key={item.id}
@@ -128,7 +128,7 @@ const AppOrderDetail: React.FC<AppOrderDetailProps> = (props: any) => {
             </div>
           </div>
         </>
-      ))}
+      ))} */}
 
       {AppDeliveryAddress ? (
         <div className="mt-4">
