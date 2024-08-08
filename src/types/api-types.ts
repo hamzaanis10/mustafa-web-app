@@ -15,7 +15,7 @@ export interface SignUpData {
     // phoneFlagCode: string,
     phoneNumber?: string,
     otp?: string
-    method?: "email" | "phone"; 
+    method?: "email" | "phone";
     type?: 'EMAIL' | 'SMS' | 'WHATSAPP';
 }
 
@@ -24,6 +24,10 @@ export interface SignUpState {
     details: SignUpDetails;
     otpMethod: 'SMS' | 'WhatsApp' | 'Email' | null;
     currentStep: 'VALIDATION' | 'OTP' | 'SIGNUP';
+}
+
+export interface LoginResponse {
+    accessToken: string;
 }
 
 export interface LoginData {

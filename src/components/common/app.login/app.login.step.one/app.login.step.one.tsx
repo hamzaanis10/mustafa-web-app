@@ -93,8 +93,8 @@ useEffect(() => {
         password
       };
 
-      await login(loginData).unwrap();
-      dispatch(setUser(loginData));
+      const response = await login(loginData).unwrap();
+      dispatch(setUser({ userInfo: loginData, accessToken: response.accessToken }));
       props.onContinue()
     } catch (err) {
       console.error('Login failed:', err);
