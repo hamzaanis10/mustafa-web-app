@@ -1,12 +1,12 @@
  "use client"
 import React, { useState } from 'react';
 import './page.css';
-import AppCategories from '../((withsidebar))/cmp/c.layout/menu.category/menu.catrgory';
 import AppSetting from '@/components/common/app.setting/setting';
 import Nickname from '@/components/common/app.setting/nickname';
 import AppAccountSetting from '@/components/common/app.setting/account.setting';
 import Email from '@/components/common/app.setting/email';
 import PasswordChange from '@/components/common/app.setting/password.changes';
+import AppCategories from '../cmp/c.layout/menu.category/menu.catrgory';
 
 export default function page() {
     const [Setting, setSetting] = useState<boolean>(true)
@@ -48,10 +48,8 @@ export default function page() {
     }
 
   return (
-    <div id='Setting' className='flex' style={{backgroundColor:"#F5F5F5"}}>
-         <div className="hidden lg:flex lg:w-3 lg:relative z-2 menu-container">
-            <AppCategories/>
-         </div>
+    <div id='Setting' style={{backgroundColor:"#F5F5F5", width:"100%"}}>
+         
 
         {Setting  && (
              <AppSetting openAccountSetting={goAccountSetting} />  

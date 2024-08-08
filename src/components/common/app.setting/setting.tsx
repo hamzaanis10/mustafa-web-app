@@ -11,8 +11,8 @@ const AppSetting: React.FC<AppSettingProps> = (props:any) => {
     const {openAccountSetting, goBack} = props
 
   return (
-    <div className="pt-6 flex flex-column align-items-center" style={{margin:"0 auto"}}>
-             <div className="flex align-items-center  justify-content-center pb-4">
+    <div className="pt-6 flex flex-column align-items-center">
+             <div className="flex align-items-center justify-content-center pb-4">
              <i className="pi pi-angle-left text-5xl text-900 cursor-pointer mr-4" onClick={goBack} />
                <span className="text-4xl font-semibold"> Settings </span>
              </div>

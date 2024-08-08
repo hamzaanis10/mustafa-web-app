@@ -8,15 +8,15 @@ interface AppPasswordChangeProps {
 };
 
 const PasswordChange: React.FC<AppPasswordChangeProps> = (props:any) => {
-    const {goBack} = props  
+    const { goBack } = props  
   return (
-    <div id="PasswordChange" className="pt-6 flex flex-column align-items-center relative" style={{margin:"0 auto"}}>
+    <div id="PasswordChange" className="pt-6 flex flex-column align-items-center relative" >
     <div className="flex align-items-center justify-content-center pb-4">
     <i className="pi pi-angle-left text-5xl text-900 cursor-pointer mr-4" onClick={goBack} />
       <span className="text-4xl font-semibold"> Change Password </span>
     </div>
     <div className='pt-5 container'>
-    <div className=" flex flex-column gap-3">
+    <div className="flex flex-column align-items-center gap-3">
       <Password placeholder='Old Password' toggleMask  />
       <Password placeholder='New Password' toggleMask />
       <Password placeholder='Confirm Password' toggleMask />

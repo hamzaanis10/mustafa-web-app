@@ -93,7 +93,7 @@ const page = () => {
               />
             </div>
             <div className="mt-3">
-              <AppOrderDetail />
+              <AppOrderDetail AppDeliveryAddress={true} />
             </div>
 
             <div

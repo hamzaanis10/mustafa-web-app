@@ -1,12 +1,13 @@
-#Setting {
-    .pi {
-       color: #C5C5C5;
-       font-size: 1.3rem;
-    }
-    
+#Email{
     .container{
         width: 800px;
      }
+
+     .closeIcon{
+        right: 4px;
+        top: 68%;
+        transform: translateY(-50%);  
+ }
 
     @media screen and (max-width:567px) {
         .container{

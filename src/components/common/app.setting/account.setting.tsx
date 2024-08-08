@@ -1,4 +1,5 @@
 import React from "react";
+import './account.setting.css';
 
 interface AppAccountSettingProps{
   openNickName?: () => void
@@ -9,10 +10,7 @@ interface AppAccountSettingProps{
 const AppAccountSetting: React.FC<AppAccountSettingProps> = (props: any) => {
   const {openNickName, goBack, openEmailVerify, openPasswordChange} = props
   return (
-    <div
-      className="pt-6 flex flex-column align-items-center"
-      style={{ margin: "0 auto" }}
-    >
+    <div id="AccountSetting" className="pt-6 flex flex-column align-items-center">
       <div className="flex align-items-center  justify-content-center pb-4">
       <i className="pi pi-angle-left text-5xl text-900 cursor-pointer mr-4" onClick={goBack} />
         <span className="text-4xl font-semibold"> Account Setting </span>
@@ -43,7 +41,7 @@ const AppAccountSetting: React.FC<AppAccountSettingProps> = (props: any) => {
           style={{ color: "#000000", borderBottom: "1px solid #C5C5C5" }}
         >
           <span>Phone Number</span>
-          <span style={{ display: "flex", justifyContent: "center" }}>
+          <span style={{ display: "flex", justifyContent: "center", color:"#FF4C72" }}>
             Add
             <i className="pi pi-angle-right ml-2" onClick={props.onClick}></i>
           </span>
