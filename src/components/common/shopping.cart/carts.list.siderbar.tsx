@@ -10,13 +10,15 @@ import "./carts.list.sidebar.css";
 import { useCartSummary, useCartsList } from "@/app/hooks/fetch/cart";
 import CartListItem from "./cart.list.item";
 import { useSystemConfig } from "@/app/hooks/fetch/app";
-import { useAppDispatch } from "@/store/store";
+import { useAppDispatch, useAppSelector } from "@/store/store";
 import ProductBarSkeleton from "@/skeletons/horizontal.bars.skeleton/product.bar.skeleton";
 import Link from "next/link";
 
 const CartsListSidebar: React.FC<any> = (props: any) => {
   const { isOpen } = props;
   const dispatch = useAppDispatch();
+
+  const isAuthenticated = useAppSelector((state) => state.login.isAuthenticated);
   const { mutate: cartsMutate, data: userCart, isLoading: isCartsLoading, error: cartsListError } = useCartsList();
   const { data: cartSummary, isLoading: isCartSummaryLoading } = useCartSummary({},{
     revalidateIfStale : true
@@ -25,6 +27,8 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
   useSystemConfig();
   const [checked, setChecked] = useState<boolean>(false);
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
+
+  const checkoutLink = isAuthenticated ? '/order-information' : '/checkout'
 
   const toggleItem = (itemId: string) => {
     const newCheckedItems = new Set(checkedItems);
@@ -48,18 +52,6 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
       className="w-23rem md:w-30rem"
       id="cart-items">
       <div className="overflow-auto content-container" style={{ height: "80vh" }}>
-        {/* <div
-          className="flex justify-content-between  p-3 text-sm md:text-base"
-          style={{ backgroundColor: "#FFF2E3", color: "#FFAD4C" }}>
-          Buy €5.00 more to enjoy FREE Delivery!
-          <span className="underline font-semibold text-sm md:text-base">Add more</span>
-        </div>
-        <div
-          className="flex justify-content-between p-3 text-sm md:text-base"
-          style={{ backgroundColor: "#E6FFED", color: "#009736" }}>
-          Eligible to pick an add-on item
-          <span className="underline font-semibold text-sm md:text-base">Pick</span>
-        </div> */}
         {
           cartProducts && cartProducts.map((product: any, index: number) => {
             const prod = product && product.get('product');
@@ -74,7 +66,6 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
               cartProduct={product}
               showCounterButton={true}
               quantityShow={false}
-            //productDetails={productDetails}
             />
 
           })
@@ -86,11 +77,15 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
         <div className="flex p-3 justify-content-between align-items-center fixed bottom-0 w-23rem md:w-29rem">
         <div className="flex flex-column">
           <p className="m-0 pb-2">{`Total ${cartSummary && cartSummary.get('currency')} ${cartSummary && cartSummary.get('orderFinalAmount')}`}</p>
-          {/* <p className="m-0" style={{ color: "#FF4C72" }}>
-            Saved: €999.99
-          </p> */}
         </div>
-        <Link href='/order-information' style={{cursor:"pointer"}}><button  className="border-none border-round-3xl pt-3 pr-4 pb-3 pl-4 lg:pt-3 lg:pr-8 lg:pb-3 lg:pl-8 text-1xl text-50" style={{ backgroundColor: "#00CB56", cursor:"pointer" }}>Check Out</button></Link>
+        <Link href={checkoutLink} passHref>
+            <button
+              className="border-none border-round-3xl pt-3 pr-4 pb-3 pl-4 lg:pt-3 lg:pr-8 lg:pb-3 lg:pl-8 text-1xl text-50"
+              style={{ backgroundColor: '#00CB56', cursor: 'pointer' }}
+            >
+              Check Out
+            </button>
+          </Link>
       </div>
       }
      
