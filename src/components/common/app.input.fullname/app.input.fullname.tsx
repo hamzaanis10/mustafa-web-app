@@ -12,10 +12,10 @@ interface AppInputFullnameProps {
 const AppInputFullname: React.FC<AppInputFullnameProps> = (props: any) => {
   const { firstName, lastName, fullnameError } = props;
   return (
-    <div className="card flex flex-column gap-3 md:flex-row md:gap-0  lg:flex-row lg:gap-0  justify-content-center" id="fullName">
-      <div className="flex flex-column">
+    <div className="card flex flex-column gap-3 md:flex-row lg:flex-row" id="fullName">
+      <div className="flex flex-column w-full">
         <FloatLabel>
-          <InputText id="firstName" value={firstName} onChange={(e) => props.setFirstName(e.target.value)} />
+          <InputText id="firstName" value={firstName} onChange={(e) => props.setFirstName(e.target.value)} className="w-full"/>
           <label htmlFor="firstName">First name*</label>
         </FloatLabel>
         <div>
@@ -23,9 +23,9 @@ const AppInputFullname: React.FC<AppInputFullnameProps> = (props: any) => {
         </div>
       </div>
 
-      <div className="flex flex-column">
+      <div className="flex flex-column w-full">
         <FloatLabel>
-          <InputText id="lastName" value={lastName} onChange={(e) => props.setLastName(e.target.value)} />
+          <InputText id="lastName" value={lastName} onChange={(e) => props.setLastName(e.target.value)}className="w-full"/>
           <label htmlFor="lastName">Last name*</label>
         </FloatLabel>
         <div>

@@ -12,6 +12,7 @@ import CartListItem from "./cart.list.item";
 import { useSystemConfig } from "@/app/hooks/fetch/app";
 import { useAppDispatch } from "@/store/store";
 import ProductBarSkeleton from "@/skeletons/horizontal.bars.skeleton/product.bar.skeleton";
+import Link from "next/link";
 
 const CartsListSidebar: React.FC<any> = (props: any) => {
   const { isOpen } = props;
@@ -36,6 +37,8 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
   };
 
   const cartProducts = getAllCartProducts(userCart && userCart.get('packages'));
+
+  console.log('cartSummary', cartSummary?.toJS())
   return (
     <Sidebar
       visible={isOpen}
@@ -70,6 +73,7 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
               isAvailable={isAvailable}
               cartProduct={product}
               showCounterButton={true}
+              quantityShow={false}
             //productDetails={productDetails}
             />
 
@@ -86,7 +90,7 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
             Saved: €999.99
           </p> */}
         </div>
-        <button className="border-none border-round-3xl pt-3 pr-4 pb-3 pl-4 lg:pt-3 lg:pr-8 lg:pb-3 lg:pl-8 text-1xl text-50" style={{ backgroundColor: "#00CB56" }}>Check Out</button>
+        <Link href='/order-information' style={{cursor:"pointer"}}><button  className="border-none border-round-3xl pt-3 pr-4 pb-3 pl-4 lg:pt-3 lg:pr-8 lg:pb-3 lg:pl-8 text-1xl text-50" style={{ backgroundColor: "#00CB56", cursor:"pointer" }}>Check Out</button></Link>
       </div>
       }
      

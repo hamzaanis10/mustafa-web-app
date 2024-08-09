@@ -18,6 +18,7 @@ const AppCheckBox: React.FC<AppCheckboxProps> = (props:any) => {
                 onChange={props.onChange}
                 className="pt-1"
                 id={id}
+                style={{height:"auto"}}
             />
             <label
                 htmlFor={id}
