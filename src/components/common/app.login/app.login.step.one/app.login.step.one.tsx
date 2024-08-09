@@ -154,7 +154,7 @@ useEffect(() => {
             <AppButton
               disabled={!canLogin}
               label="Log In"
-              onClick={props.onContinue}
+              onClick={handleLogin}
             />
           </div>
 
