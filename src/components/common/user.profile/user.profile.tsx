@@ -28,6 +28,12 @@ const UserProfile: React.FC = () => {
     initializeAuth();
   }, [dispatch]);
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      setShowLoginForm(false); 
+    }
+  }, [isAuthenticated]);
+
   const identifier = isAuthenticated ? data?.displayName : "My Account";
   if (isLoading) return <div>Loading...</div>;
 
