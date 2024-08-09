@@ -18,12 +18,18 @@ const AppLoginCheckoutDialog: React.FC = () => {
         setEmailError(email ? (emailValidation.success ? "" : emailValidation.error.errors[0].message) : "");
     }, [email]);
 
-    const handleEmailChange = (e : any) => {
+    const handleEmailChange = (e: any) => {
         setEmail(e.target.value);
     };
 
     const handleOptionChange = (newValue: string) => {
         setAccountType(newValue);
+    };
+
+    const handleContinueAsGuest = () => {
+        sessionStorage.setItem("guestEmail", email);
+        console.log('Guest email saved in session storage:', email);
+        // Continue with any other logic, e.g., navigate to another page or display a success message
     };
 
     const headerText = showCheckoutDialog ? "Choose how you want to proceed" : "";
@@ -33,7 +39,7 @@ const AppLoginCheckoutDialog: React.FC = () => {
     return (
         <AppDialog header={headerText} visible={showCheckoutDialog} modal onHide={() => setShowCheckoutDialog(false)} className='relative sm: w-15rem md: w-20rem lg: w-22rem'>
             <div className="flex flex-column align-items-center text-center">
-                <AppToggleButton selectedValue={accountType} onOptionChange={handleOptionChange} options={toggleOptions} id="login-checkout"/>
+                <AppToggleButton selectedValue={accountType} onOptionChange={handleOptionChange} options={toggleOptions} id="login-checkout" />
 
                 {
                     accountType === "Guest checkout" ?
@@ -42,11 +48,13 @@ const AppLoginCheckoutDialog: React.FC = () => {
                                 email={email}
                                 emailError={emailError}
                                 onEmailChange={handleEmailChange}
+                                onContinueAsGuest={handleContinueAsGuest}
                                 continueAsGuestLabel="Continue as Guest"
                                 backAsGuestLabel="Back"
-                                text="You can create account later" />
+                                text="You can create account later"
+                            />
                         </> :
-                        <AppLoginStepOne checkout={true}/>
+                        <AppLoginStepOne checkout={true} />
                 }
             </div>
         </AppDialog>

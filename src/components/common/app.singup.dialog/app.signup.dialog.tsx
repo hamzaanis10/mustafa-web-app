@@ -97,7 +97,6 @@ const AppSignup: React.FC<AppSignupProps> = (props: any) => {
       await signUp(signUpData).unwrap();
       dispatch(updateSignUpData(signUpData));
       props.onContinue();
-      // Handle success, e.g., navigate to the next step or show a success message
     } catch (err) {
       console.error('Failed to sign up:', err);
     }
