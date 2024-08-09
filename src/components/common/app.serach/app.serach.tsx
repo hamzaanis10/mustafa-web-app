@@ -5,7 +5,6 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import {
   PRODUCTS_PAGE_SIZE,
-  TRENDING_SEARCHES,
 } from "../util/util";
 import { useProductList } from "@/app/hooks/fetch/products";
 import { useRouter } from "next/navigation";
@@ -123,7 +122,7 @@ const AppSearch: React.FC = () => {
           <div>
             <p className="pl-3">Trending Searches</p>
             <div className="flex gap-2 align-items-center flex-wrap pr-3 pb-4 pl-3">
-              {TRENDING_SEARCHES.map((item, index) => (
+              {/* {TRENDING_SEARCHES.map((item, index) => (
                 <div
                   key={index}
                   className="pt-1 pr-3 pb-1 pl-3 border-round-3xl"
@@ -131,7 +130,7 @@ const AppSearch: React.FC = () => {
                 >
                   {item.name}
                 </div>
-              ))}
+              ))} */}
             </div>
           </div>
         </div>

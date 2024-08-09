@@ -76,15 +76,11 @@
 .dialogwidth{
       width: 25rem;        
 }
-.price-detail{
-    margin-top: 0rem;
-}
+
 
 @media(min-width: 768px) {
 
-    .price-detail{
-       margin-top: 6rem;
-    }
+  
     .dialogwidth{
         width: 40rem;        
   }
@@ -166,3 +162,13 @@ p.coupon-heading {
         max-height: 700px;
     }
 }
+@media screen and (min-width: 1400px){
+    .order-information{
+        width: 66% !important;
+    }
+
+    .price-detail{
+        width: 28.5% !important;
+    }
+}
+

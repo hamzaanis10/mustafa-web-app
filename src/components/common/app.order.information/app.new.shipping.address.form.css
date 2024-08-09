@@ -1,71 +1,64 @@
-#New-Address-Page{
+#New-Address-Page {
     .p-dialog-contents {
         display: flex !important;
         flex-direction: column !important;
         gap: 20px !important;
-        max-height: 100% !important;   
+        max-height: 100% !important;
     }
-      
+
     .phone-input-container {
         /* margin-top: 2rem; */
         max-width: 38rem !important;
     }
-     
-    .PhoneInput {
-        /* margin-top: 1rem; */
-    }
-     
-    .text-sm, .placeholder-margin {
+
+    .text-sm,
+    .placeholder-margin {
         width: 22rem !important;
     }
-    
+
     .optional-container {
         margin-top: 0.25rem;
     }
-    .contentShipping{
+
+    .contentShipping {
         height: 100vh !important;
     }
-    #OptionalInput{
+
+    #OptionalInput {
         .p-inputtext {
             width: 22rem !important;
         }
     }
 
-    #fullName {
-        .p-inputtext {
-            width: 100% !important;
-        }
-    }
-    
+   
+
     @media (min-width: 992px) {
-        #fullName{
-            .p-inputtext {
-                width: 18rem !important;
-        }
-      } 
-        .text-sm, .placeholder-margin {
+       
+
+        .text-sm,
+        .placeholder-margin {
             width: 36rem !important;
         }
-        #OptionalInput{
+
+        #OptionalInput {
             .p-inputtext {
                 width: 36rem !important;
             }
         }
     }
-    
+
     @media (min-width: 1100px) {
-        #fullName{
-            .p-inputtext {
-                width: 17.5rem !important;
-        }
-    }
-    .text-sm, .placeholder-margin {
-        width: 36rem !important;
-    }
-    #OptionalInput{
-        .p-inputtext {
+       
+
+        .text-sm,
+        .placeholder-margin {
             width: 36rem !important;
         }
-    }
+
+        #OptionalInput {
+            .p-inputtext {
+                width: 36rem !important;
+            }
+        }
     }
 }

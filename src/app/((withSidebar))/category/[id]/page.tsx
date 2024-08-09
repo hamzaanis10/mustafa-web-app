@@ -148,7 +148,6 @@ export default function CategoryListing({ params }: Product, props: any) {
     (key) => checkedItem[key]
   );
 
-  console.log("selectedBrandIds", selectedBrandIds);
 
   return (
     <>

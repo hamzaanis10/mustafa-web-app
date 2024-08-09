@@ -1,31 +1,13 @@
-#Billing-Address{
+#Billing-Address {
     .p-dialog-contentS {
         display: flex !important;
         flex-direction: column !important;
         gap: 20px !important;
-        
-    }  
 
-}
-
-#fullName{
-    .p-inputtext{
-        width: 100% !important;
     }
-  }
 
-@media (min-width: 992px) {
-    #fullName{
-        .p-inputtext {
-            width: 15.75rem !important;
-    }
-}
 }
 
-@media (min-width: 1100px) {
-    #fullName{
-        .p-inputtext {
-            width: 22rem !important;
-    }
-}
-}
+
+
+
