@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from "react";
 import { Dropdown, DropdownProps } from 'primereact/dropdown';
-import { sortProductList, PRODUCT_lIST } from '../../../components/common/util/util';
 import "./app.sort.products.css"
 
 
@@ -12,7 +11,7 @@ interface sortProducts extends DropdownProps {
 
 const sortProducts = () => {
     const [selectedSortOption, setSelectedSortOption] = useState<sortProducts | null>({ name: "Recommend", code: "RM"});
-    const [productList, setProductList] = useState(PRODUCT_lIST);
+    // const [productList, setProductList] = useState(PRODUCT_lIST);
     const sort: sortProducts[] = [
         { name: 'Recommend', code: 'RM' },
         { name: 'Newest', code: 'NW' },
@@ -26,35 +25,35 @@ const sortProducts = () => {
         }
     };
 
-    const onSortChange = (e: { value: sortProducts }) => {
-        setSelectedSortOption(e.value);
-        const sortedProducts = sortProductList(e.value.code);
-        setProductList(sortedProducts); 
-        console.log("sorted",productList)
-      };
+    // const onSortChange = (e: { value: sortProducts }) => {
+    //     setSelectedSortOption(e.value);
+    //     const sortedProducts = sortProductList(e.value.code);
+    //     setProductList(sortedProducts); 
+    //     console.log("sorted",productList)
+    //   };
 
-      const renderProductList = () => {
-        return productList.map((product) => (
-            <div key={product.id} className="product-item">
-                <img src={`/${product.image}`} alt={product.name} />
-                <div className="product-details">
-                    <h3>{product.name}</h3>
-                    <p>{product.description}</p>
-                    <p>{`$${product.price.toFixed(2)}`}</p>
-                </div>
-            </div>
-        ));
-    };
+    //   const renderProductList = () => {
+    //     return productList.map((product) => (
+    //         <div key={product.id} className="product-item">
+    //             <img src={`/${product.image}`} alt={product.name} />
+    //             <div className="product-details">
+    //                 <h3>{product.name}</h3>
+    //                 <p>{product.description}</p>
+    //                 <p>{`$${product.price.toFixed(2)}`}</p>
+    //             </div>
+    //         </div>
+    //     ));
+    // };
 
     return (
         <div className="card flex justify-content-start">
-            <div>
-            <Dropdown onChange={onSortChange} valueTemplate={sortOptionTemplate} checkmark value={selectedSortOption} options={sort} optionLabel="name" 
+           
+            {/* <Dropdown onChange={onSortChange} valueTemplate={sortOptionTemplate} checkmark value={selectedSortOption} options={sort} optionLabel="name" 
                 placeholder="Select a Sort Option" className="w-18rem" />
                 </div>
                 <div className="product-list">
                 {renderProductList()}
-            </div>
+            </div> */}
                 
         </div>
     )

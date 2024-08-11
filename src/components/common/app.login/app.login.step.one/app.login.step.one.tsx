@@ -88,7 +88,7 @@ useEffect(() => {
 
   const handleLogin = async () => {
     try {
-      const loginData = {
+      const loginData:any = {
         identifier: isEmail ? value : value,
         password
       };

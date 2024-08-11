@@ -4,7 +4,7 @@ import React from "react";
 import { Sidebar } from "primereact/sidebar";
 import { Checkbox } from "primereact/checkbox";
 import { useState } from "react";
-import { CART_LIST_ITEMS } from "../util/util";
+// import { CART_LIST_ITEMS } from "../util/util";
 import "./app.cart.item.css";
 import AppCounterButton from "../app.counter.button/app.counter.button";
 
@@ -55,7 +55,7 @@ const CartListView: React.FC<CartListViewProps> = ({
           <span className="underline font-semibold text-sm md:text-base">Pick</span>
         </div>
 
-        <div>
+        {/* <div>
           {CART_LIST_ITEMS.map((item) => (
             <>
               <div
@@ -129,8 +129,8 @@ const CartListView: React.FC<CartListViewProps> = ({
                 </div>
               </div>
             </>
-          ))}
-        </div>
+          ))} */}
+        {/* </div> */}
       </div>
       <div className="flex p-3 justify-content-between align-items-center fixed bottom-0 w-23rem md:w-29rem xl:w-3">
         <div className="flex flex-column">

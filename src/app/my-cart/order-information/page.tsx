@@ -35,7 +35,7 @@ function page() {
                     }
                 </div>
                 <div className="Card bg-white p-4">
-                    <AppShippingAddress title='Shipping Address' label='Yan Zhang' description='No 17, Jalan MH 1, Taman Muzaffar Heights, 75450 Ayer Keroh,Melaka, Malaysiass' removeIcon={false} />
+                    <AppShippingAddress  label='Yan Zhang' description='No 17, Jalan MH 1, Taman Muzaffar Heights, 75450 Ayer Keroh,Melaka, Malaysiass' removeIcon={false} />
                 </div>
                 <div className="Card mt-2">
                     <AppOrderSummaryStatus currentState={currentState} />

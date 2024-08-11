@@ -102,7 +102,7 @@ const AppSignup: React.FC<AppSignupProps> = (props: any) => {
     }
   };
 
-  const handleToggleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleToggleInputChange = (e: any) => {
     const inputValue = e.target.value;
     setValue(inputValue);
 

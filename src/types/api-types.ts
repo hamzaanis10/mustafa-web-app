@@ -31,8 +31,10 @@ export interface LoginResponse {
 }
 
 export interface LoginData {
-    identifier: string;
-    password: string;
+    identifier?: string;
+    userInfo?:any;
+    accessToken?:any;
+    password?: string;
 }
 
 export interface CustomerProfile {

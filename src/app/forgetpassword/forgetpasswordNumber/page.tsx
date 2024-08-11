@@ -1,6 +1,6 @@
 "use client"
 import AppDialog from '@/components/common/app.dialog/app.dialog'
-import AppForgetPasswordNumber from '@/components/common/app.forget.password.number/app.forget.password.number'
+//import AppForgetPasswordNumber from '@/components/common/app.forget.password.number/app.forget.password.number'
 import AppOtpDialog from '@/components/common/app.otp.dialog.content/app.otp.dialog.content'
 import AppSuccessDialog from '@/components/common/app.success.dialog.content/app.success.dialog.content'
 import React, { useState } from 'react'
@@ -37,7 +37,7 @@ function page() {
     return (
         <div>
             <AppDialog header="Reset Password" visible={showForgotPasswordNumberForm} modal onHide={closeForm} >
-                <AppForgetPasswordNumber onContinue={openOtpForm}/>
+                {/* <AppForgetPasswordNumber onContinue={openOtpForm}/> */}
             </AppDialog>
 
             <AppDialog header="Enter Verification Code" visible={showOtpForm} modal onHide={closeOtpForm} className='sm: w-15rem md: w-20rem lg: w-22rem'>

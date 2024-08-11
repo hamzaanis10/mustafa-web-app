@@ -7,7 +7,7 @@ import { PaginatorPageChangeEvent } from "primereact/paginator";
 import AppStepMenu from "@/components/common/app.step.menu/app.step.menu";
 import { MenuItem } from "primereact/menuitem";
 import AppButton from "@/components/common/app.button/app.button";
-import AppCategories from "../((withSidebar))/cmp/c.layout/menu.category/menu.catrgory";
+import AppCategories from "../((withsidebar))/cmp/c.layout/menu.category/menu.catrgory";
 
 function page() {
   const [first, setFirst] = useState<number>(0);
