@@ -28,7 +28,7 @@ const CartsListSidebar: React.FC<any> = (props: any) => {
   const [checked, setChecked] = useState<boolean>(false);
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
 
-  const checkoutLink = isAuthenticated ? '/order-information' : '/checkout'
+  const checkoutLink = isAuthenticated ? '/order-information' : '/order-information'
 
   const toggleItem = (itemId: string) => {
     const newCheckedItems = new Set(checkedItems);

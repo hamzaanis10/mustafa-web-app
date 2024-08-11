@@ -63,7 +63,7 @@ const CartListView: React.FC<CartListViewProps> = ({
                 style={{ borderBottom: "1px solid #E9E9E9" }}
               >
                 <Checkbox
-                  onChange={(e) => setChecked(e.checked)}
+                //  onChange={(e) => setChecked(e.checked)}
                   checked={checked}
                 ></Checkbox>{" "}
                 <p className="m-0 font-semibold">SG Department (2)</p>
@@ -77,7 +77,7 @@ const CartListView: React.FC<CartListViewProps> = ({
               >
                 <div className="flex align-items-center gap-2 p-3 flex-wrap lg:flex-nowrap">
                   <Checkbox
-                    onChange={(e) => toggleItem(item.id)}
+                   // onChange={(e) => toggleItem(item.id)}
                     checked={checkedItems.has(item.id)}
                     // className="w-1rem lg:w-2rem"
                     style={{ width: "fit-content" }}

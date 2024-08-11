@@ -112,8 +112,9 @@ const AppShippingAddressForm = () => {
         value={zipCode}
         onChange={handleZipCodeChange}
         originalPlaceholder={originalPlaceholder}
-        onFocus={handleFocus}
-        onBlur={handleBlur} />
+        //onFocus={handleFocus}
+        //onBlur={handleBlur} 
+        />
 
        <AppInputOptional
         value={unitNumber}

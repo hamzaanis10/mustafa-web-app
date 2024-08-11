@@ -28,6 +28,11 @@ export const isActionLoading = (actionType: string) => {
   } else return false;
 };
 
+export function getRandomNumber() {
+  let randomNumber = Math.floor(1000 + Math.random() * 9000); // generate a 4 digit random number
+  return randomNumber
+}
+
 export const getAllCartProducts = (packages: any) => {
   let foundProducts: any = [];
   packages &&

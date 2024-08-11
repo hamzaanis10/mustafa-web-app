@@ -94,7 +94,7 @@ const page = () => {
               removeIcon={true}
               label="Yan Zhang"
               description="No 17, Jalan MH 1, Taman Muzaffar Heights, 75450 Ayer Keroh,Melaka, Malaysiass"
-              onClick={openDialogForm}
+           //   onClick={openDialogForm}
             />
           </div>
           <div className="mt-3">
@@ -110,12 +110,12 @@ const page = () => {
               <AppBillingAddress
                 label="Same as shipping address"
                 checked={!openBillingForm}
-                onClick={() => setOpenBillingForm(false)}
+               // onClick={() => setOpenBillingForm(false)}
               />
               <AppBillingAddress
                 label="Use a different billing address"
                 checked={openBillingForm}
-                onClick={() => setOpenBillingForm(!openBillingForm)}
+               // onClick={() => setOpenBillingForm(!openBillingForm)}
               />
             </div>
             {openBillingForm && <AppBillingAddressForm />}
