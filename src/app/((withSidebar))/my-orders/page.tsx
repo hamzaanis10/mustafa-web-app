@@ -7,7 +7,7 @@ import { PaginatorPageChangeEvent } from "primereact/paginator";
 import AppStepMenu from "@/components/common/app.step.menu/app.step.menu";
 import { MenuItem } from "primereact/menuitem";
 import AppButton from "@/components/common/app.button/app.button";
-import AppCategories from "../((withSidebar))/cmp/c.layout/menu.category/menu.catrgory";
+import AppCategories from "../cmp/c.layout/menu.category/menu.catrgory";
 
 function page() {
   const [first, setFirst] = useState<number>(0);
@@ -53,10 +53,7 @@ function page() {
     },
   };
   return (
-    <div id="My_order" className="flex">
-      <div className="hidden lg:flex lg:w-3 lg:relative  z-2 menu-container">
-        <AppCategories />
-      </div>
+    <div id="My_order" className="w-full" >
       <div className="pt-6  m-auto flex flex-column align-items-center">
         <div className="text-center mb-3">
           <span className="text-4xl font-semibold"> My Orders </span>
@@ -114,7 +111,13 @@ function page() {
                         />
                       ) : (
                         <div>
-                          <p>Checkbox</p>
+                          <img
+                          src={"/assets/images/checker.png"}
+                          alt={""}
+                          className="dark:invert mb-2 shadow-1 border-round"
+                          width={76}
+                          height={76}
+                        />
                         </div>
                       )}
                     </div>

@@ -4,7 +4,7 @@ import { Password } from 'primereact/password';
 import './password.changes.css'
 
 interface AppPasswordChangeProps {
-  goBack?: string
+  goBack?: () =>  void
 };
 
 const PasswordChange: React.FC<AppPasswordChangeProps> = (props:any) => {

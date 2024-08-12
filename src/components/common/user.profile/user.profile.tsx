@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MyAccount from "./my.account";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { USER_INFO_DETAILS } from "../util/util";
 import { Sidebar } from "primereact/sidebar";
 import "./user-profile.css";
+import { useRouter } from "next/navigation";
 
 const UserProfile: React.FC = () => {
   const userInfo = useSelector((state: RootState) => state.login.userInfo);
   const isAuthenticated = useSelector(
     (state: RootState) => state.login.isAuthenticated
   );
+  const router = useRouter();
 
   const [showLoginForm, setShowLoginForm] = useState<boolean>(false);
 
@@ -30,6 +32,16 @@ const UserProfile: React.FC = () => {
 
   const closeLoginForm = () => {
     setShowLoginForm(false);
+  };
+
+  const handlClickRouter = (name: string) =>{
+      if(name === "Settings"){
+        router.push('/my-settings')
+      }
+      if(name === "My Orders"){
+        router.push('/my-orders')
+      }
+      setVisible(false)
   };
 
   return (
@@ -74,7 +86,8 @@ const UserProfile: React.FC = () => {
                 return (
                   <div
                     key={index}
-                    className="flex gap-2 align-items-center pt-4 pb-0 text-base text-color"
+                    className="flex gap-2 align-items-center pt-4 pb-0 text-base text-color cursor-pointer"
+                    onClick={() => handlClickRouter(item.name)}
                   >
                     <img src={item.image} alt={item.name} width="auto" />
                     {item.name}
