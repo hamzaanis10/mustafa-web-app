@@ -15,6 +15,7 @@ import AppSideBar from "@/components/common/app.sidebar/app.side.bar";
 import { Checkbox } from "primereact/checkbox";
 import "./categories.css";
 import { Button } from "primereact/button";
+import AppSortProducts from "@/components/common/app.sort.products/app.sort.products";
 
 interface Product {
   id: string;
@@ -44,12 +45,17 @@ interface Category {
   children: Category[];
 }
 
-export default function CategoryListing({ params }: any, props: any) {
+export default function CategoryListing({ params }: Product, props: any) {
+  const [selectedSortOption, setSelectedSortOption] = useState<string>("Recommend");
   const [visibleRight, setVisibleRight] = useState<boolean>(false);
   const [checkedItem, setCheckedItem] = useState<{ [key: string]: boolean }>(
     {}
   );
   const categoryId = params.id;
+
+  const handleSortChange = (sortOption: string) => {
+    setSelectedSortOption(sortOption);
+  };
 
   const {
     data: categoryList,
@@ -132,7 +138,7 @@ export default function CategoryListing({ params }: any, props: any) {
   const childCategoryIds = category ? getAllSubLevelCategoryIds(category) : [];
   const categoryName = category ? getLanguageBaseName(category.name) : "";
 
-  const itemTemplate = (product: any) => {
+  const itemTemplate = (product: Product) => {
     return <CategoryListView product={product} systemConfig={systemConfig} />;
   };
 
@@ -147,7 +153,6 @@ export default function CategoryListing({ params }: any, props: any) {
   const selectedBrandIds = Object.keys(checkedItem).filter(
     (key) => checkedItem[key]
   );
-
 
   return (
     <>
@@ -227,41 +232,45 @@ export default function CategoryListing({ params }: any, props: any) {
               />
             </div>
           </div>
-          <Button
-            // label={
-            //   <>
-            //     Filter
-            //     {selectedBrandIds.length > 0 && (
-            //       <span
-            //         style={{
-            //           backgroundColor: "#00cb56", // Change to desired background color
-            //           borderRadius: "50px",
-            //           padding: "5px 11px",
-            //           marginLeft: "15px",
-            //           color: "#fff", // Text color
-            //         }}
-            //       >
-            //         {selectedBrandIds.length}
-            //       </span>
-            //     )}
-            //   </>
-            // }
-            style={{
-              backgroundColor: "#fff",
-              color: "#000",
-              borderRadius: "none",
-              width: "10%",
-              margin: "30px 0 0 20px",
-              padding: "10px 0 10px 10px",
-              textAlign: "left",
-              border:"none"
-            }}
-            onClick={() => setVisibleRight(true)}
-          />
+          <div className="flex gap-3 align-items-center">
+            <AppSortProducts  onSortChange={handleSortChange}/>
+            <Button
+              label={
+                <>
+                  Filter
+                  {selectedBrandIds.length > 0 && (
+                    <span
+                      style={{
+                        backgroundColor: "#00cb56", // Change to desired background color
+                        borderRadius: "50px",
+                        padding: "5px 11px",
+                        marginLeft: "15px",
+                        color: "#fff", // Text color
+                      }}
+                    >
+                      {selectedBrandIds.length}
+                    </span>
+                  )}
+                </>
+              }
+              style={{
+                backgroundColor: "#fff",
+                color: "#000",
+                borderRadius: "none",
+                width: "10%",
+                margin: "30px 0 0 20px",
+                padding: "10px 0 10px 10px",
+                textAlign: "left",
+                border: "none",
+              }}
+              onClick={() => setVisibleRight(true)}
+            />
+          </div>
           <div className="md:p-5 md:pb-8 pb-8 pt-3 pr-1 pl-4 ">
             <CategoryProductListing
               categoryIds={childCategoryIds}
               brandIds={selectedBrandIds} // Pass selected brand IDs to CategoryProductListing
+              sortOption={selectedSortOption}
             />
           </div>
         </div>

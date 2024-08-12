@@ -24,7 +24,7 @@ export function useCartsList(params: any = {}) {
 }
 
 export function useCartSummary(params: any = {}, swrOptions: SWRConfiguration = {}) {
-    const key = useKey(`v1/order/calculate-price`, params);
+    const key = useKey(`v1/order/calculate-price`);
     const appToastRef = useRefToastContext();
     //appToastRef.current?.show({ severity: 'error', summary: '', detail: 'test', life: 3000 });
     const { data, error, isLoading, mutate } = useSWR<any>(key, (url: any) => fetcherPost(url,

@@ -27,9 +27,18 @@ interface Product {
 interface CategoryProductListingProps {
   categoryIds: string[];
   brandIds: string[];
+  sortOption: string;
 }
 
-export default function CategoryProductListing({ categoryIds,brandIds }: CategoryProductListingProps) {
+export default function CategoryProductListing({ categoryIds,brandIds ,sortOption }: CategoryProductListingProps) {
+  const sortByMapping: { [key: string]: { sortBy: string; sortDir: string } } = {
+    "Recommend": { sortBy: "total_sale_count", sortDir: "desc" },
+    "Newest": { sortBy: "created_at", sortDir: "desc" },
+    "Price: Low to high": { sortBy: "base_price", sortDir: "asc" },
+    "Price: High to low": { sortBy: "base_price", sortDir: "desc" },
+    // "Top Rated": { sortBy: "rating", sortDir: "desc" },
+};
+const sortConfig = sortByMapping[sortOption] || { sortBy: "total_sale_count", sortDir: "desc" };
   const {
     mutate,
     data: productsList,
@@ -39,8 +48,8 @@ export default function CategoryProductListing({ categoryIds,brandIds }: Categor
     error,
   } = useCategoryProductList({
     size: PRODUCTS_PAGE_SIZE,
-    sortBy: "total_sale_count",
-    sortDir: "desc",
+    sortBy: sortConfig.sortBy,
+    sortDir: sortConfig.sortDir,
     categoryIds: categoryIds,
     brandIds: brandIds, 
 

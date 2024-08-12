@@ -18,6 +18,7 @@ import {
   getLanguageBaseName,
   // isActionLoading,
 } from "@/components/common/util/util";
+import ProductDetailBarSkeleton from "@/skeletons/horizontal.bars.skeleton/product.detail.bar.skeleton";
 
 interface ProductDetail {
   params: {
@@ -53,16 +54,12 @@ export default function Home({ params }: ProductDetail, props: any) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string>("");
 
-
   useEffect(() => {
     if (productDetails) {
       const weight = productDetails.get("weight");
       setSelectedSize(`Weight: ${weight}`);
     }
   }, [productDetails]);
-
-
-
 
   const productWeight = productDetails && productDetails.get("weight");
   const sizes = [
@@ -119,14 +116,13 @@ export default function Home({ params }: ProductDetail, props: any) {
 
   const productDimension = productDetails && productDetails.get("size");
 
+  const viewToCartITem = () => {
+    console.log("redirect");
+  };
 
-  const viewToCartITem = () =>{
-    console.log("redirect")
-  }
-
-  const customDialogStyle  = {
-    marginLeft: '10px',
-    color: '#ff4c72', // Color of the close icon
+  const customDialogStyle = {
+    marginLeft: "10px",
+    color: "#ff4c72", // Color of the close icon
   };
 
   const addToCart = () => {
@@ -162,17 +158,12 @@ export default function Home({ params }: ProductDetail, props: any) {
         )
       );
     }
-
-    
   };
-
 
   const cartProduct: any = findCartItem(
     userCart && userCart.get("packages"),
     productDetails && productDetails.get("id")
   );
-
-  
   return (
     <main
       className="pt-1 pr-2 pb-9 pl-2 md:pl-9 md:pr-9 lg:pl-9 lg:pr-9 xl:pl-8 xl:pr-8"
@@ -180,7 +171,7 @@ export default function Home({ params }: ProductDetail, props: any) {
       style={{ backgroundColor: "#F5F5F5" }}
     >
       {isLoadingProductDetails ? (
-        <CartBarSkeleton count={5} />
+        <ProductDetailBarSkeleton />
       ) : (
         <div
           className="bg-white mt-4 xl:w-9 mx-auto border-round-2xl p-4"
@@ -336,32 +327,66 @@ export default function Home({ params }: ProductDetail, props: any) {
               cartProduct.get("product").get("productId") ? (
                 <AppCounterButton
                   dispatch={dispatch}
-                  product={ productDetails && productDetails?.toJS()}
+                  product={productDetails && productDetails?.toJS()}
                   userCart={userCart}
                   cartProduct={cartProduct}
                 />
               ) : isCartsLoading ? null : (
                 <div className="flex w-22rem">
-                      <Button
-                        onClick={addToCart}
-                        icon="pi pi-shopping-cart"
-                        label="Add to Cart"
-                        disabled={productDetails && productDetails.get('inventoryStatus') === "OUTOFSTOCK"}
-                        rounded
-                        style={{ width: "90%" }}
-                      />
-                      <div className="mt-1 mx-1">
-                        <i
-                          className="pi pi-heart text-4xl"
-                          style={{ color: "#434343" }}
-                        />
-                      </div>
-                    </div>
+                  <Button
+                    onClick={addToCart}
+                    icon="pi pi-shopping-cart"
+                    label="Add to Cart"
+                    disabled={
+                      productDetails &&
+                      productDetails.get("inventoryStatus") === "OUTOFSTOCK"
+                    }
+                    rounded
+                    style={{ width: "90%" }}
+                  />
+                  <div className="mt-1 mx-1">
+                    <i
+                      className="pi pi-heart text-4xl"
+                      style={{ color: "#434343" }}
+                    />
+                  </div>
+                </div>
               )}
             </div>
           </div>
         </div>
       )}
+
+      <div className="bg-white mt-4 xl:w-9 mx-auto border-round-2xl p-4">
+        <h2 style={{ color: "#262626", fontWeight: "500" }}>Description</h2>
+        <p className="text-base" style={{ lineHeight: "1.5" }}>
+          {getLanguageBaseName(
+            productDetails && productDetails.get("description")
+          )}
+        </p>
+
+        <div className="flex gap-3 flex-wrap">
+          {productDetails
+            ? productDetails
+                .get("images")
+                .map((image: string, index: number) => (
+                  <div className="w-10rem md:w-13rem xl:w-15rem" style={{boxShadow: 'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px'}}>
+                    <img
+                      key={index}
+                      // src={image}
+                      src={`${
+                        systemConfig &&
+                        systemConfig.get("fileUploadBaseUrl") &&
+                        systemConfig.get("fileUploadBaseUrl")
+                      }${image}`}
+                      alt={`Product Image ${index + 1}`}
+                      width={'100%'}
+                    />
+                  </div>
+                ))
+            : null}
+        </div>
+      </div>
     </main>
   );
 }

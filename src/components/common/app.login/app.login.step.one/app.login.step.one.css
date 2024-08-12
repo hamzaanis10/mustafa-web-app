@@ -49,9 +49,6 @@
     /* .inputfield .p-inputtext{
         border: none !important;
     } */
-    .p-inputtext{
-        height: 40px;
-    }
     
     .p-inputtext:enabled:focus {
         outline: 0 none;
