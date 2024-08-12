@@ -11,6 +11,7 @@ import "primeflex/primeflex.css";
 import "../globals.css";
 import Header from "@/components/common/header/header";
 import ReduxProvider from "@/store/redux-provider";
+import { ConfirmDialog } from "primereact/confirmdialog";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           <PrimeReactProvider>
             <Header />
             {children}
+            <ConfirmDialog />
           </PrimeReactProvider>
         </ReduxProvider>
       </body>

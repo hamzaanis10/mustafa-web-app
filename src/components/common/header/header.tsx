@@ -8,7 +8,7 @@ import { Sidebar } from "primereact/sidebar";
 import ReduxProvider from "@/store/redux-provider";
 import { useTotalCartItems } from "@/app/hooks/fetch/cart";
 import Link from "next/link";
-import AppCategories from "@/app/((withSidebar))/cmp/c.layout/menu.category/menu.catrgory";
+import AppCategories from "@/app/((withsidebar))/cmp/c.layout/menu.category/menu.catrgory";
 
 const Header = () => {
   const {

@@ -1,23 +1,34 @@
 interface AppPriceTableProps {
-  openCouponDialog: () => void
+  openCouponDialog: () => void;
+  cartSummaryDetails: any;
 }
-const AppPriceTable: React.FC<AppPriceTableProps> = (props: any) => {
+const AppPriceTable: React.FC<AppPriceTableProps> = ({
+  openCouponDialog,
+  cartSummaryDetails,
+}) => {
+
+
+
+  const deliveryFees = cartSummaryDetails?.packages?.map(
+    (pkg: any) => pkg.deliveryFee
+  );
+
 
   return (
     <div>
-      <table>
+      <table className="w-full">
         <tbody>
           <tr className="text-base font-normal">
-            <td>items total:</td>
-            <td style={{ color: "#9D9D9D", float: "right" }}>€100.00</td>
+            <td>Items total:</td>
+            <td style={{ color: "#9D9D9D", float: "right" }}>{cartSummaryDetails && cartSummaryDetails.currency} {cartSummaryDetails && cartSummaryDetails.itemsFinalAmount}</td>
           </tr>
           <tr className="text-base font-normal ">
-            <td>items discount:</td>
-            <td style={{ color: "#FF4C72", float: "right" }}>€10.00</td>
+            <td>Items discount:</td>
+            <td style={{ color: "#FF4C72", float: "right" }}>{cartSummaryDetails && cartSummaryDetails.currency} {cartSummaryDetails && cartSummaryDetails.itemsDiscount}</td>
           </tr>
           <tr className="text-base font-normal ">
-            <td>items subtotal:</td>
-            <td style={{ color: "#9D9D9D", float: "right" }}>€100.00</td>
+            <td>Items subtotal:</td>
+            <td style={{ color: "#9D9D9D", float: "right" }}>{cartSummaryDetails && cartSummaryDetails.currency} {cartSummaryDetails && cartSummaryDetails.itemsSubTotal}</td>
           </tr>
           <tr className="text-2xl" style={{ height: '20px' }}>
             <td colSpan={2}></td>
@@ -25,7 +36,7 @@ const AppPriceTable: React.FC<AppPriceTableProps> = (props: any) => {
           <tr className="text-base font-normal ">
             <td>Delivery fee:</td>
             <td style={{ float: "right" }}>
-              €00.00 <del style={{ color: "#9D9D9D" }}> €100.00</del>
+            {cartSummaryDetails && cartSummaryDetails.currency} {cartSummaryDetails && cartSummaryDetails.deliveryDiscount} <del style={{ color: "#9D9D9D" }}> {cartSummaryDetails && cartSummaryDetails.currency} {cartSummaryDetails && deliveryFees}</del>
             </td>
           </tr>
           <tr className="text-2xl" style={{ height: '20px' }}>
@@ -33,7 +44,7 @@ const AppPriceTable: React.FC<AppPriceTableProps> = (props: any) => {
           </tr>
           <tr className="text-base ">
             <td style={{ color: "#434343", fontWeight: 600 }}>Coupons</td>
-            <td style={{ color: "#00CB56", float: "right" }} onClick={props.openCouponDialog}>
+            <td style={{ color: "#00CB56", float: "right" }} onClick={openCouponDialog}>
               $2.3
               <i
                 className="pi pi-angle-right ml-2"
@@ -46,12 +57,12 @@ const AppPriceTable: React.FC<AppPriceTableProps> = (props: any) => {
           </tr>
           <tr className="text-2xl">
             <td style={{ color: "#434343", fontWeight: 600 }}>Estimate total</td>
-            <td style={{ color: "#434343", float: "right" }}>€90.00</td>
+            <td style={{ color: "#434343", float: "right" }}>{cartSummaryDetails.currency} {cartSummaryDetails.orderFinalAmount}</td>
           </tr>
         </tbody>
       </table>
     </div>
   );
-}
+};
 
 export default AppPriceTable;

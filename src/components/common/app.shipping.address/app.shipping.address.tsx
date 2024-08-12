@@ -5,7 +5,7 @@ interface AppShippingAddressProps {
   description?:string;
   iconImage?:boolean;
   removeIcon?:boolean;
-  onclick?:()=> void;
+  onClick?:()=> void;
 
 };
 

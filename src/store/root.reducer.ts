@@ -5,6 +5,7 @@ import { signupApi } from './apis/signupAPI';
 import signUpSlice from './reducers/signUpSlice';
 import loginSlice from './reducers/loginSlice';
 import { loginApi } from './apis/loginAPI';
+import { customerProfileApi } from './apis/customerProfileAPI';
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     [loginApi.reducerPath]: loginApi.reducer,
     signUp: signUpSlice,
     [signupApi.reducerPath]: signupApi.reducer,
+    [customerProfileApi.reducerPath]: customerProfileApi.reducer,
 });
 
 export default rootReducer;

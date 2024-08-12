@@ -44,7 +44,7 @@ interface Category {
   children: Category[];
 }
 
-export default function CategoryListing({ params }: Product, props: any) {
+export default function CategoryListing({ params }: any, props: any) {
   const [visibleRight, setVisibleRight] = useState<boolean>(false);
   const [checkedItem, setCheckedItem] = useState<{ [key: string]: boolean }>(
     {}
@@ -132,7 +132,7 @@ export default function CategoryListing({ params }: Product, props: any) {
   const childCategoryIds = category ? getAllSubLevelCategoryIds(category) : [];
   const categoryName = category ? getLanguageBaseName(category.name) : "";
 
-  const itemTemplate = (product: Product) => {
+  const itemTemplate = (product: any) => {
     return <CategoryListView product={product} systemConfig={systemConfig} />;
   };
 
@@ -148,7 +148,6 @@ export default function CategoryListing({ params }: Product, props: any) {
     (key) => checkedItem[key]
   );
 
-  console.log("selectedBrandIds", selectedBrandIds);
 
   return (
     <>
@@ -229,24 +228,24 @@ export default function CategoryListing({ params }: Product, props: any) {
             </div>
           </div>
           <Button
-            label={
-              <>
-                Filter
-                {selectedBrandIds.length > 0 && (
-                  <span
-                    style={{
-                      backgroundColor: "#00cb56", // Change to desired background color
-                      borderRadius: "50px",
-                      padding: "5px 11px",
-                      marginLeft: "15px",
-                      color: "#fff", // Text color
-                    }}
-                  >
-                    {selectedBrandIds.length}
-                  </span>
-                )}
-              </>
-            }
+            // label={
+            //   <>
+            //     Filter
+            //     {selectedBrandIds.length > 0 && (
+            //       <span
+            //         style={{
+            //           backgroundColor: "#00cb56", // Change to desired background color
+            //           borderRadius: "50px",
+            //           padding: "5px 11px",
+            //           marginLeft: "15px",
+            //           color: "#fff", // Text color
+            //         }}
+            //       >
+            //         {selectedBrandIds.length}
+            //       </span>
+            //     )}
+            //   </>
+            // }
             style={{
               backgroundColor: "#fff",
               color: "#000",

@@ -6,7 +6,7 @@ import { getLanguageBaseName } from "../util/util";
 import CartBarSkeleton from "@/skeletons/horizontal.bars.skeleton/cart.skeleton";
 
 export default function CartListItem(props: any) {
-  const { item, cartProduct, systemConfig, userCart, dispatch, showCounterButton } = props;
+  const { item, cartProduct, systemConfig, userCart, dispatch, showCounterButton, quantityShow } = props;
   const { data: productDetails, isLoading: isLoadingProductDetails } =
     useProductDetails(
       {
@@ -22,6 +22,10 @@ export default function CartListItem(props: any) {
         revalidateOnFocus: false, // Do not revalidate data on component focus
       }
     );
+
+    let cartQuantity = cartProduct && cartProduct.get('product') && Number(cartProduct.get('product').get('quantity')) || 1;
+
+    
 
   return (
     <>
@@ -80,24 +84,31 @@ export default function CartListItem(props: any) {
                   productDetails && productDetails.get("description")
                 )}
               </p>
-              <p className="flex align-items-center gap-2 m-0">
+             <div className="flex justify-content-between mt-2">
+             <p className="flex align-items-center gap-2 m-0">
                 <span
                   className="text-xl font-medium"
                   style={{ color: "#009736" }}
                 >
-                  {productDetails && productDetails.get("basePrice")}
+                    {productDetails.get('currency')} {productDetails && productDetails.get("basePrice")}
                 </span>
-                <span className="text-xs" style={{ color: "#9D9D9D" }}>
-                  <del>
-                    {" "}
-                    {productDetails && productDetails.get("basePrice")}
-                  </del>
-                </span>
+                {productDetails.get("originalPrice") &&  
+                  <span className="text-xs" style={{ color: "#9D9D9D" }}>
+                    <del>
+                    {productDetails.get('currency')} {productDetails && productDetails.get("originalPrice")}
+                    </del>
+                  </span>
+                }
+                
               </p>
+              {quantityShow &&  <p className="text-xl font-medium m-0" style={{color:"#00CB56"}}> x {cartQuantity}</p>}
+             
+             </div>
             </div>
             {
              showCounterButton && productDetails && <AppCounterButton userCart={userCart} dispatch={dispatch} product={productDetails && productDetails.toJS()} cartProduct={cartProduct} />
             }
+            
           </div>
           {/* <div className="flex align-items-center gap-2 p-3 lg:pl-6 pr-5 pb-3 justify-content-between bg-white" >
                 <p

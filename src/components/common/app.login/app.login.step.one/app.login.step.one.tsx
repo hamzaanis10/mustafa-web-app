@@ -88,7 +88,7 @@ useEffect(() => {
 
   const handleLogin = async () => {
     try {
-      const loginData = {
+      const loginData:any = {
         identifier: isEmail ? value : value,
         password
       };
@@ -154,7 +154,7 @@ useEffect(() => {
             <AppButton
               disabled={!canLogin}
               label="Log In"
-              onClick={props.onContinue}
+              onClick={handleLogin}
             />
           </div>
 

@@ -18,7 +18,6 @@ import {
   getLanguageBaseName,
   // isActionLoading,
 } from "@/components/common/util/util";
-import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
 
 interface ProductDetail {
   params: {
@@ -164,20 +163,7 @@ export default function Home({ params }: ProductDetail, props: any) {
       );
     }
 
-    confirmDialog({
-      message: `${getLanguageBaseName(productDetails && productDetails.get("name"))} has been successfully added to the cart!`,
-      acceptLabel: 'View',
-      rejectLabel: '',
-      // header: 'Delete Confirmation',
-      // icon: 'pi pi-info-circle',
-      defaultFocus: 'reject',
-      // acceptClassName: 'p-button-danger',
-      position:'top-right',
-      accept: viewToCartITem,
-      className: 'confirm-dialog-add-to-cart',
-      style: customDialogStyle,
-      //reject
-    });
+    
   };
 
 
@@ -376,7 +362,6 @@ export default function Home({ params }: ProductDetail, props: any) {
           </div>
         </div>
       )}
-      <ConfirmDialog />
     </main>
   );
 }

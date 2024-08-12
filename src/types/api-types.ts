@@ -31,6 +31,36 @@ export interface LoginResponse {
 }
 
 export interface LoginData {
-    identifier: string;
-    password: string;
+    identifier?: string;
+    userInfo?:any;
+    accessToken?:any;
+    password?: string;
 }
+
+export interface CustomerProfile {
+    id: string;
+    username: string;
+    passwordHash: string;
+    displayName: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneCountryCode: string;
+    phoneFlagCode: string;
+    phoneNumber: string;
+    active: boolean;
+    failedLoginCount: number;
+    accessTokenResetAt: string;
+    deviceSerial: string;
+    isGuest: boolean;
+    customerSettings: {
+      countryId: string;
+      provinceId: string;
+      currency: string;
+      email: string;
+    };
+    lastFirebaseToken: string;
+    deleted: boolean;
+    createdAt: string;
+    updatedAt: string;
+  }

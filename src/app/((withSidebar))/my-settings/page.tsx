@@ -6,7 +6,6 @@ import Nickname from '@/components/common/app.setting/nickname';
 import AppAccountSetting from '@/components/common/app.setting/account.setting';
 import Email from '@/components/common/app.setting/email';
 import PasswordChange from '@/components/common/app.setting/password.changes';
-import AppCategories from '../cmp/c.layout/menu.category/menu.catrgory';
 
 export default function page() {
     const [Setting, setSetting] = useState<boolean>(true)
@@ -67,9 +66,9 @@ export default function page() {
           <Email goBack={goBackAccountSetting} />
         )}
 
-        {openChangePassword && (
+        {/* {openChangePassword && (
           <PasswordChange goBack={goBackAccountSetting} />
-        )}
+        )} */}
 
 
     </div>

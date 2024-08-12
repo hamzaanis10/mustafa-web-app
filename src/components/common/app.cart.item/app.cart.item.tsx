@@ -4,7 +4,7 @@ import React from "react";
 import { Sidebar } from "primereact/sidebar";
 import { Checkbox } from "primereact/checkbox";
 import { useState } from "react";
-import { CART_LIST_ITEMS } from "../util/util";
+// import { CART_LIST_ITEMS } from "../util/util";
 import "./app.cart.item.css";
 import AppCounterButton from "../app.counter.button/app.counter.button";
 
@@ -55,7 +55,7 @@ const CartListView: React.FC<CartListViewProps> = ({
           <span className="underline font-semibold text-sm md:text-base">Pick</span>
         </div>
 
-        <div>
+        {/* <div>
           {CART_LIST_ITEMS.map((item) => (
             <>
               <div
@@ -63,7 +63,7 @@ const CartListView: React.FC<CartListViewProps> = ({
                 style={{ borderBottom: "1px solid #E9E9E9" }}
               >
                 <Checkbox
-                  onChange={(e) => setChecked(e.checked)}
+                //  onChange={(e) => setChecked(e.checked)}
                   checked={checked}
                 ></Checkbox>{" "}
                 <p className="m-0 font-semibold">SG Department (2)</p>
@@ -77,7 +77,7 @@ const CartListView: React.FC<CartListViewProps> = ({
               >
                 <div className="flex align-items-center gap-2 p-3 flex-wrap lg:flex-nowrap">
                   <Checkbox
-                    onChange={(e) => toggleItem(item.id)}
+                   // onChange={(e) => toggleItem(item.id)}
                     checked={checkedItems.has(item.id)}
                     // className="w-1rem lg:w-2rem"
                     style={{ width: "fit-content" }}
@@ -129,8 +129,8 @@ const CartListView: React.FC<CartListViewProps> = ({
                 </div>
               </div>
             </>
-          ))}
-        </div>
+          ))} */}
+        {/* </div> */}
       </div>
       <div className="flex p-3 justify-content-between align-items-center fixed bottom-0 w-23rem md:w-29rem xl:w-3">
         <div className="flex flex-column">

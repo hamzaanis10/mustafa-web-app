@@ -1,24 +1,43 @@
 import React, { useEffect, useState } from "react";
 import MyAccount from "./my.account";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import {useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "@/store/store";
 import { USER_INFO_DETAILS } from "../util/util";
 import { Sidebar } from "primereact/sidebar";
 import "./user-profile.css";
 import { useRouter } from "next/navigation";
+import { initializeAuthState } from "@/store/apis/authInitializer";
+import { useGetCustomerProfileQuery } from "@/store/apis/customerProfileAPI";
 
 const UserProfile: React.FC = () => {
-  const userInfo = useSelector((state: RootState) => state.login.userInfo);
+  const dispatch = useAppDispatch();
   const isAuthenticated = useSelector(
     (state: RootState) => state.login.isAuthenticated
   );
   const router = useRouter();
 
-  const [showLoginForm, setShowLoginForm] = useState<boolean>(false);
+  const { data, isLoading } = useGetCustomerProfileQuery(undefined, {
+    skip: !isAuthenticated,
+  });
 
+  const [showLoginForm, setShowLoginForm] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
 
-  const identifier = isAuthenticated ? userInfo?.identifier : "My Account";
+  useEffect(() => {
+    const initializeAuth = async () => {
+      await dispatch(initializeAuthState());
+    };
+    initializeAuth();
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      setShowLoginForm(false); 
+    }
+  }, [isAuthenticated]);
+
+  const identifier = isAuthenticated ? data?.displayName : "My Account";
+  if (isLoading) return <div>Loading...</div>;
 
   const openLoginForm = () => {
     if(isAuthenticated)

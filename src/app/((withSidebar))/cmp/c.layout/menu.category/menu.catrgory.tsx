@@ -3,7 +3,7 @@
 import {
   getLanguageBaseName,
 } from "@/components/common/util/util";
-import "./menu.category.css";
+import "./menu.categories.css";
 import { TieredMenu } from "primereact/tieredmenu";
 import { useCategoriesList } from "@/app/hooks/fetch/categories";
 import HorizontalBarSkeleton from "@/skeletons/horizontal.bars.skeleton/horizontal.bars.skeleton";
