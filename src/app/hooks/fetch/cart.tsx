@@ -24,6 +24,7 @@ export function useCartsList(params: any = {}) {
 }
 
 export function useCartSummary(params: any = {}, swrOptions: SWRConfiguration = {}) {
+    const accessToken = sessionStorage.getItem('accessToken');
     const key = useKey(`v1/order/calculate-price`);
     const appToastRef = useRefToastContext();
     //appToastRef.current?.show({ severity: 'error', summary: '', detail: 'test', life: 3000 });
@@ -32,6 +33,10 @@ export function useCartSummary(params: any = {}, swrOptions: SWRConfiguration = 
             ...params,
             appToastRef,
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': accessToken ? `Bearer ${accessToken}`: '',
+            },
             type: 'GET_CART_SUMMARY'
         }), swrOptions);
 
