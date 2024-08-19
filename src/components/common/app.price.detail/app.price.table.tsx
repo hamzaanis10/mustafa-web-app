@@ -57,7 +57,7 @@ const AppPriceTable: React.FC<AppPriceTableProps> = ({
           </tr>
           <tr className="text-2xl">
             <td style={{ color: "#434343", fontWeight: 600 }}>Estimate total</td>
-            <td style={{ color: "#434343", float: "right" }}>{cartSummaryDetails.currency} {cartSummaryDetails.orderFinalAmount}</td>
+            <td style={{ color: "#434343", float: "right" }}>{cartSummaryDetails?.currency} {cartSummaryDetails?.orderFinalAmount}</td>
           </tr>
         </tbody>
       </table>
