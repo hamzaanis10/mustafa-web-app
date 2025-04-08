@@ -237,26 +237,13 @@ export default function CategoryListing({ params }: CategoryListingProps) {
             </div>
           </div>
           <div className="flex gap-3 align-items-center">
-            <AppSortProducts  onSortChange={handleSortChange}/>
+            <AppSortProducts onSortChange={handleSortChange} />
             <Button
-              label={
-                <>
-                  Filter
-                  {selectedBrandIds.length > 0 && (
-                    <span
-                      style={{
-                        backgroundColor: "#00cb56", // Change to desired background color
-                        borderRadius: "50px",
-                        padding: "5px 11px",
-                        marginLeft: "15px",
-                        color: "#fff", // Text color
-                      }}
-                    >
-                      {selectedBrandIds.length}
-                    </span>
-                  )}
-                </>
-              }
+              label={`Filter ${
+                selectedBrandIds.length > 0
+                  ? `(${selectedBrandIds.length})`
+                  : ""
+              }`}
               style={{
                 backgroundColor: "#fff",
                 color: "#000",
