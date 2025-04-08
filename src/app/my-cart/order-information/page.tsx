@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import "./page.scss";
-import AppCategories from "@/app/((withsidebar))/cmp/c.layout/menu.category/menu.catrgory";
+import AppCategories from "@/app/((withSidebar))/cmp/c.layout/menu.category/menu.catrgory";
 import AppShippingAddress from "@/components/common/app.shipping.address/app.shipping.address";
 import AppOrderDetail from "@/components/common/app.order.detail/app.order.detail";
 import AppOrderSummaryStatus from "@/components/common/app.order.summary.status/app.order.summary.status";

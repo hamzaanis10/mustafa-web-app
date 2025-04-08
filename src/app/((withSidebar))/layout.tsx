@@ -8,7 +8,7 @@ import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 import "../globals.css";
 import { Metadata } from "next";
-import AppCategories from "@/app/((withsidebar))/cmp/c.layout/menu.category/menu.catrgory";
+import AppCategories from "@/app/((withSidebar))/cmp/c.layout/menu.category/menu.catrgory";
 import Header from "@/components/common/header/header";
 import ReduxProvider from "@/store/redux-provider";
 // const inter = Inter({ subsets: ["latin"] });

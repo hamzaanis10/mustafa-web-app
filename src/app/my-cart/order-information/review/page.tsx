@@ -1,7 +1,7 @@
 "use client"
 import React, { ChangeEvent, useState } from "react";
 import './page.css';
- import AppCategories from "@/app/((withsidebar))/cmp/c.layout/menu.category/menu.catrgory";
+import AppCategories from "@/app/((withSidebar))/cmp/c.layout/menu.category/menu.catrgory";
 import AppButton from "@/components/common/app.button/app.button";
 import { Rating } from "primereact/rating";
 import { InputText } from "primereact/inputtext";
