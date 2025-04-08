@@ -45,12 +45,16 @@ interface Category {
   children: Category[];
 }
 
-export default function CategoryListing({ params }: Product, props: any) {
+interface CategoryListingProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function CategoryListing({ params }: CategoryListingProps) {
   const [selectedSortOption, setSelectedSortOption] = useState<string>("Recommend");
   const [visibleRight, setVisibleRight] = useState<boolean>(false);
-  const [checkedItem, setCheckedItem] = useState<{ [key: string]: boolean }>(
-    {}
-  );
+  const [checkedItem, setCheckedItem] = useState<{ [key: string]: boolean }>( {});
   const categoryId = params.id;
 
   const handleSortChange = (sortOption: string) => {
