@@ -1,5 +1,5 @@
-import { LoginData } from '@/types/api-types';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { LoginData } from "@/types/api-types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {
   userInfo: LoginData | null;
@@ -12,7 +12,7 @@ const initialState: UserState = {
 };
 
 const loginSlice = createSlice({
-  name: 'login',
+  name: "login",
   initialState,
   reducers: {
     setUser(state, action: PayloadAction<LoginData>) {
@@ -22,7 +22,9 @@ const loginSlice = createSlice({
     clearUser(state) {
       state.userInfo = null;
       state.isAuthenticated = false;
-      sessionStorage.removeItem('accessToken');
+      if (typeof window !== "undefined" && window.sessionStorage) {
+        sessionStorage.removeItem("accessToken");
+      }
     },
   },
 });
