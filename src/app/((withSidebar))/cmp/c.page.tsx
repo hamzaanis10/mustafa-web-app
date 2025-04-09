@@ -51,7 +51,8 @@ export default function CPage() {
             style={{
               padding: "40px",
               color: "#00CB56",
-              background: "#FFFFFF",
+              // background: "#FFFFFF",
+              backgroundColor: "rgb(0, 203, 86)",
               boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
             }}
           />
